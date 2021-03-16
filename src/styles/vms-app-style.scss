@@ -1,0 +1,78 @@
+@import "../assets/styles/util.scss";
+@import "app-colors";
+@import "app-mixins";
+
+/************ Button Styles **************/
+.vms-btn-primary {
+    font-family: Montserrat-Bold;
+    line-height: 1.5;
+    color: $vms-secondary;
+    border-radius: 25px;
+    background: $vms-primary;
+    @include flexbox;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 30px;
+    &:hover {
+        background: $vms-grey-200;
+    }
+}
+
+/*********** Input Type styles ************/
+.vms-form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 50%;
+    .form__field {
+        font-family: inherit;
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid $vms-grey-900;
+        outline: 0;
+        font-size: 0.85rem;
+        color: $vms-black;
+        padding: 6px 0;
+        background: transparent;
+        transition: border-color 0.2s;
+
+        &::placeholder {
+            color: transparent;
+        }
+
+        &:placeholder-shown ~ .form__label {
+            font-size: 0.8rem;
+            cursor: text;
+            top: 28px;
+        }
+    }
+    .form__label {
+        position: absolute;
+        top: 6px;
+        display: block;
+        transition: 0.2s;
+        font-size: 0.8rem;
+        color: $vms-grey-900;
+    }
+
+    .form__field:focus {
+        ~ .form__label {
+            position: absolute;
+            top: 8px;
+            display: block;
+            transition: 0.2s;
+            font-size: 0.75rem;
+            color: $vms-primary;
+            font-weight: 700;
+        }
+        padding-bottom: 6px;
+        border-width: 1px;
+        border-color: $vms-primary !important;
+    }
+    .form__field {
+        &:required,
+        &:invalid {
+            box-shadow: none;
+        }
+    }
+}

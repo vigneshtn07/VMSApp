@@ -1,0 +1,17 @@
+@import "app-colors";
+
+.prompt {
+    > div {
+        margin: 8px 0;
+    }
+    img {
+        height: 50px;
+        width: 50px;
+    }
+    div:nth-child(1) {
+        margin-bottom: 0;
+    }
+    div:nth-child:last-child {
+        margin-bottom: 12px;
+    }
+}

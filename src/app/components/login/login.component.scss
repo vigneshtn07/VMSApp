@@ -1,0 +1,156 @@
+@import "app-colors";
+@import "app-mixins";
+
+/*//////////////////////////////////////////////////////////////////
+  [ login styles]
+*/
+
+.login-container {
+  width: 100%;
+  margin: 0 auto;
+  &__section {
+    width: 100%;
+    min-height: 100vh;
+    @include flexbox;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    //@include linear-gradient(--vms-login-gradient);
+    background-color: $vms-primary;
+  }
+  &__signin {
+    width: 960px;
+    background: $vms-secondary;
+    border-radius: 10px;
+    overflow: hidden;
+    @include flexbox;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 55px 130px 33px 95px;
+  }
+  &__image {
+    width: 316px;
+    top: 30px;
+    position: relative;
+    margin: 0 auto;
+    img {
+      max-width: 100%;
+    }
+  }
+  &__form {
+    width: 290px;
+  }
+  &__title {
+    font-family: "Poppins-Bold";
+    font-size: 24px;
+    color: $vms-primary;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 54px;
+  }
+  &__input {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 10px;
+    input {
+      font-family: "Poppins-Medium";
+      font-size: 15px;
+      line-height: 1.5;
+      color: #666666;
+      display: block;
+      width: 100%;
+      background: #e6e6e6;
+      height: 50px;
+      border-radius: 25px;
+      padding: 0 30px 0 68px;
+    }
+  }
+  &__input-icon {
+    font-size: 15px;
+    @include flexbox;
+    align-items: center;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 35px;
+    pointer-events: none;
+    color: $vms-grey-300;
+  }
+  &__btn {
+    width: 100%;
+    @include flexbox;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+    > button.vms-btn-primary {
+      font-size: 15px;
+      text-transform: uppercase;
+      width: 100%;
+      height: 50px;
+    }
+  }
+  &__help-text {
+    font-family: Poppins-Regular;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #999999;
+  }
+
+  &__help-text-1 {
+    font-family: Poppins-Regular;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #666666;
+  }
+}
+
+/*------------------------------------------------------------------
+  [ Responsive styles]
+*/
+@media (max-width: 992px) {
+  .login-container__signin {
+    padding: 55px 130px 33px 95px;
+  }
+
+  .login-container__image {
+    width: 35%;
+  }
+
+  .login-container__form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container__signin {
+    padding: 100px 80px 33px 80px;
+  }
+
+  .login-container__image {
+    display: none;
+  }
+
+  .login-container__form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-container__signin {
+    padding: 100px 15px 33px 15px;
+  }
+}
+
+/*------------------------------------------------------------------
+  Override app-style css
+*/
+a:hover {
+  color: $vms-primary !important;
+}

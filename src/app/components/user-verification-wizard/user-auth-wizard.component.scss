@@ -1,0 +1,70 @@
+@import "app-colors";
+@import "app-mixins";
+
+.verification-wizard {
+    background-color: $vms-primary;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    @include flexbox;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    &__content {
+        width: 50%;
+        border-radius: 10px;
+        padding: 50px;
+        background: $vms-secondary;
+        @include flexbox;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    ::ng-deep {
+        .wizard-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: $vms-primary;
+            margin-bottom: 16px;
+        }
+        .wizard-content {
+            @include flexbox;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+            p {
+                text-align: center;
+            }
+            .vms-form__group {
+                width: 70%;
+                margin-bottom: 1.25rem;
+            }
+        }
+        .wizard-title {
+            text-align: center;
+            flex: 1 1 100%;
+        }
+        .wizard-img {
+            span {
+                font-size: 38px;
+                color: $vms-green;
+            }
+        }
+    }
+}
+
+/*------------------------------------------------------------------
+  [ Responsive styles]
+*/
+@media (max-width: 768px) {
+    .verification-wizard__content {
+        width: 60%;
+        padding: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .verification-wizard__content {
+        width: 75%;
+        padding: 18px;
+    }
+}

@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+//importing third party library bootstrap
+@import "~bootstrap/scss/bootstrap.scss";
+
+//importing app base styles
+@import "./styles/app-base-styles.scss";
+
+//importing customized VMS App styles
+@import "./styles/vms-app-style.scss";
+
+//importing app font styles
+@import "./assets/fonts/app-fonts.scss";

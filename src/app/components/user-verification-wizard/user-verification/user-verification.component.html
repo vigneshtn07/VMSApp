@@ -1,0 +1,18 @@
+<user-auth-wizard>
+    <ng-container>
+        <div class="wizard-title">Verify your Email Address</div>
+        <div class="wizard-content">
+            <p>On order to continue with registration, you need to confirm your email address,
+                Please enter your email address below and click on verify email
+            </p>
+            <div class="vms-form__group field">
+                <input type="input" class="form__field" [(ngModel)]="this.emailId" placeholder="Email ID"
+                    name="email id" id='email-id' required />
+                <label for="name" class="form__label">Email ID</label>
+            </div>
+        </div>
+        <div class="wizard-action">
+            <button class="vms-btn-primary" (click)="OpenModalPopUp()">Verify Email</button>
+        </div>
+    </ng-container>
+</user-auth-wizard>
