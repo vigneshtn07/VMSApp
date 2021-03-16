@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-forgot-password',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotPasswordComponent implements OnInit {
   emailId: string = '';
-  constructor() { }
+  modalRef!: BsModalRef;
+  constructor(private modalService: BsModalService
+    , private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'wizard-prompt' }));
+  }
+
+  redirectToLogin(): void {
+    this.modalRef.hide();
+    this.router.navigate(['/login']);
   }
 
 }
