@@ -1,0 +1,37 @@
+<div class="vms-signup-container row" theme>
+    <div class="col-12 vms-signup-container__title d-flex justify-content-center">
+        <p>Skill Source Sign Up</p>
+    </div>
+    <div class="col-12 vms-signup-container__subHead d-flex justify-content-center">
+        <p>Enter the folllowing information to continue</p>
+    </div>
+    <form class="col-12 vms-signup-container__form">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
+                <input type="text" name="CompanyName" id="" class="form__field" placeholder="Company Name"
+                    aria-describedby="helpId">
+                <label for="CompanyName" class="form__label">CompanyName</label>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
+                <input type="text" name="fedralTaxId" mask="99-9999999" id="" class="form__field"
+                    placeholder="Fedral Tax ID" aria-describedby="helpId">
+                <label for="fedralTaxId" class="form__label">Fedral Tax ID</label>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
+                <input type="text" name="Phone" id="" mask="(999)-999-9999" class="form__field" placeholder="Phone"
+                    aria-describedby="helpId">
+                <label for="Phone" class="form__label">Phone</label>
+            </div>
+        </div>
+    </form>
+    <div class="col-12 vms-signup-container__actions">
+        <button class="vms-btn-primary" (click)="onContinue()">
+            Continue
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>

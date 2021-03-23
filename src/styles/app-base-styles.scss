@@ -13,6 +13,13 @@ body,
 html {
     height: 100%;
     font-family: Poppins-Regular, sans-serif;
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+}
+
+.main-content {
+    height: 100vh;
 }
 
 a {
@@ -119,7 +126,7 @@ iframe {
     margin-right: 0;
 }
 
-.col {
+[class*="col"] {
     padding-left: 0;
     padding-right: 0;
 }

@@ -12,8 +12,14 @@ import { UserAuthWizardComponent } from './components/user-verification-wizard/u
 import { ConfirmationPromptComponent } from './components/user-verification-wizard/user-verification/confirmation-prompt/confirmation-prompt.component';
 import { UserVerificationComponent } from './components/user-verification-wizard/user-verification/user-verification.component';
 import { SharedModule } from './shared/shared.module';
-
-
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { SignUpComponent } from './components/registration/skill-source/sign-up/sign-up.component';
+import { SignupPhaseOneComponent } from './components/registration/skill-source/sign-up/signup-phase-one/signup-phase-one.component';
+import { SignupPhaseTwoComponent } from './components/registration/skill-source/sign-up/signup-phase-two/signup-phase-two.component';
+import { SignupPhaseThreeComponent } from './components/registration/skill-source/sign-up/signup-phase-three/signup-phase-three.component';
+import { SignupPhaseFourComponent } from './components/registration/skill-source/sign-up/signup-phase-four/signup-phase-four.component';
 export abstract class AppModuleConstants {
     static readonly MODULE_IMPORTS = [
         BrowserModule,
@@ -30,7 +36,15 @@ export abstract class AppModuleConstants {
         UserVerificationComponent,
         AuthSuccessComponent,
         UserAuthWizardComponent,
-        ConfirmationPromptComponent
+        ConfirmationPromptComponent,
+        ForgotPasswordComponent,
+        ChangePasswordComponent,
+        RegistrationComponent,
+        SignUpComponent,
+        SignupPhaseOneComponent,
+        SignupPhaseTwoComponent,
+        SignupPhaseThreeComponent,
+        SignupPhaseFourComponent
 
     ];
     static readonly MODULE_PROVIDERS = [];
