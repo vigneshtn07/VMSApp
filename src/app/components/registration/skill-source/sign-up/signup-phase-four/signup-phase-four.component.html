@@ -1,1 +1,117 @@
-<p>signup-phase-four works!</p>
+<div class="container">
+    <div class="vms-signup-container row" theme>
+        <div class="col-12 vms-signup-container__title d-flex justify-content-center">
+            <p>Additional Information</p>
+        </div>
+        <form class="col-12 vms-signup-container__form">
+            <div class="row ">
+                <div class="col-12 col-md-6 vms-form__group field">
+                    <input type="text" class="form__field" placeholder="NIACSCode" name="NIACSCode" id='NIACSCode'
+                        required numbersOnly />
+                    <label for="NIACSCode" class="form__label">NIACS Code</label>
+                </div>
+                <div class="col-12 col-md-6 vms-form__group field">
+                    <input type="text" class="form__field" placeholder="dnbRating" name="dnbRating" id='dnbRating'
+                        numbersOnly />
+                    <label for="CompanyName" class="form__label">DnB Rating</label>
+                </div>
+            </div>
+        </form>
+        <div class="col-12 vms-signup-container__categoryHead">
+            <p>Please submit a copy of the following documents</p>
+        </div>
+        <div class="col-12 m-t-20">
+            <div class="row">
+                <div class="col-12 pl-3 upload-input">
+                    <label>W9 Form</label>
+                    <input type="file">
+                    <button class="vms-btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 m-t-20">
+            <div class="row">
+                <div class="col-12 pl-3 upload-input">
+                    <label>Articles of incorporation</label>
+                    <input type="file">
+                    <button class="vms-btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 m-t-20">
+            <div class="row">
+                <div class="col-12 pl-3 upload-input">
+                    <label>Certificate of good standing</label>
+                    <input type="file">
+                    <button class="vms-btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 m-t-20">
+            <div class="row">
+                <div class="col-12 pl-3 upload-input">
+                    <label>Last three quaters of 941</label>
+                    <input type="file">
+                    <button class="vms-btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 m-t-20">
+            <div class="col-12 upload-input ">
+                <label>If you are unable to provide last three quater of 941, please provide your reasons
+                    below</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-12 vms-signup-container__categoryHead">
+            <p>Authorized company representative</p>
+        </div>
+        <div class="col-12">
+            <div class="row ">
+                <div class="col-12 col-md-6 vms-form__group field">
+                    <input type="text" class="form__field" placeholder="NIACSCode" name="Name" id='Name' required />
+                    <label for="Name" class="form__label">Name</label>
+                </div>
+                <div class="col-12 col-md-6 vms-form__group field">
+                    <input type="text" class="form__field" placeholder="dnbRating" name="Title" id='Title' />
+                    <label for="Title" class="form__label">Title</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 vms-signup-container__categoryHead">
+            <p>Authorized company representative</p>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-6 ml-2 signature-pad">
+                    <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()"
+                        (onEndEvent)="drawComplete()">
+                    </signature-pad>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 m-t-20 pl-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="agree" value="agree">
+                <label class="form-check-label" for="agree">I hereby declare that all information furnished above
+                    are true and correct to the best of my
+                    knowledge. I
+                    understand that any false information given may at iVMS discretion, render this application
+                    invalid
+                    and
+                    reserve the rights to reject my application</label>
+            </div>
+        </div>
+        <div class="col-12 vms-signup-container__actions">
+            <div class="row justify-content-center">
+                <button class="col-12 col-sm-5  vms-btn-primary-outline mr-md-4" (click)="navigateBack()">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    Previous
+                </button>
+                <button class="col-12 col-sm-5  vms-btn-primary" (click)="onSubmit()">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

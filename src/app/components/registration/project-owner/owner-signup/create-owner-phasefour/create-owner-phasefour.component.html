@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="vms-signup-container row" theme>
+        <form class="col-12 vms-signup-container__form">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 vms-form__group field">
+                    <label class="stanalone-form__label" for="projectname">Please read carefully the following list of
+                        commitment/terms and conditions you need to
+                        comply to inorder to use the portal</label>
+                </div>
+                <div class="col-12 pl-5 vms-form__group field">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li *ngFor="let item of list; let idx = index">
+                                    <input class="form-check-input" type="checkbox" [checked]="item.checked">
+                                    <a href="javascript:void(0)" (click)="openModal(modal1, idx)">{{item.title}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 vms-form__group field">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dec" value="dec">
+                                <label class="form-check-label" for="dec">I hereby declare that all information
+                                    furnished
+                                    above are true and correct to the best of my
+                                    knowledge.I understand that any inaccurate or false information given may at VMS
+                                    discretion,render this application invalid and reserve the rights to reject my
+                                    application</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br /><br>
+        <div class="col-12 vms-signup-container__actions">
+            <div class="row">
+                <button class="col-12 col-sm-3  mr-sm-3 vms-btn-primary-outline" (click)="navigateBack()">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    Previous
+                </button>
+                <button class="col-12 col-sm-3  mr-sm-3 vms-btn-primary-outline">
+                    Cancel
+                </button>
+                <button class="col-12 col-sm-3  mr-sm-3 vms-btn-primary" (click)="onSubmit()">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #modal1>
+    <div class="modal-header">
+        <h4 class="modal-title">{{statementHeader}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" [innerHTML]="statementContent">
+    </div>
+    <div class="modal-action d-flex justify-content-center my-4" theme>
+        <button class="vms-btn-primary mr-3" (click)="acceptModal()">I Agree</button>
+        <button class="vms-btn-primary-outline" (click)="modalRef.hide()">Cancel</button>
+    </div>
+</ng-template>

@@ -1,0 +1,163 @@
+<div class="container">
+    <div class="vms-signup-container row" theme>
+        <div class="col-12 vms-signup-container__title d-flex justify-content-center">
+            <p>Business information form</p>
+        </div>
+        <form class="col-12 vms-signup-container__form">
+            <div class="row d-flex">
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="stateOfIncorporation" id="" class="form__field"
+                        placeholder="State of Incorporation" aria-describedby="helpId" maxlength="30">
+                    <label for="stateOfIncorporation" class="form__label">State of Incorporation</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field date-field">
+                    <input type="text" placeholder="Year Established" name="establishedYear" [(ngModel)]="modelDate"
+                        class="form__field form-control" [bsConfig]="bsConfig" class="form__field form-control"
+                        bsDatepicker>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field drop-down">
+                    <ng-multiselect-dropdown [placeholder]="'Select Industry'" name="industry"
+                        [settings]="dropdownSettings" [data]="industryDropDownList" [(ngModel)]="industrySelectedItems"
+                        (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="Division" id="" class="form__field" maxlength="30"
+                        placeholder="Division/Subsidary/Affiliate of" aria-describedby="helpId">
+                    <label for="Division" class="form__label">Division/Subsidary/Affiliate of</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="AnnualRevenue" id="" class="form__field" maxlength="10"
+                        placeholder="Annual Revenue(US)" aria-describedby="helpId" numbersOnly>
+                    <label for="AnnualRevenue" class="form__label">Annual Revenue(US)</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="TotalContractors" id="" class="form__field"
+                        placeholder="Total # of Contractors" aria-describedby="helpId" numbersOnly maxlength="10">
+                    <label for="TotalContractors" class="form__label">Total # of Contractors</label>
+                </div>
+                <div class="col-12 col-md-2 col-lg-3 vms-form__group field">
+                    <input type="text" name="Website" id="" class="form__field" maxlength="10" placeholder="Website"
+                        aria-describedby="helpId" numbersOnly>
+                    <label for="Website" class="form__label">Website</label>
+                </div>
+            </div>
+            <!-- <div class="row d-flex">
+                
+            </div> -->
+            <!-- <div class="row d-flex">
+               
+            </div> -->
+            <div class="col-12 vms-signup-container__categoryHead">
+                <p>Headquater address / Headquater address in US</p>
+            </div>
+            <div class="row d-flex">
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="StreetAddress" id="" class="form__field" placeholder="Street Address"
+                        aria-describedby="helpId" maxlength="50">
+                    <label for="StreetAddress" class="form__label">Street Address</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="City" id="" class="form__field" placeholder="City"
+                        aria-describedby="helpId" maxlength="30">
+                    <label for="City" class="form__label">City</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="State" id="" class="form__field" placeholder="State/Province"
+                        aria-describedby="helpId" maxlength="30">
+                    <label for="State" class="form__label">State/Province</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <select class="dropdown">
+                        <option>Select country</option>
+                        <option>India</option>
+                        <option>UK</option>
+                        <option>Russia</option>
+                        <option>Japan</option>
+                        <option>Malasiya</option>
+                        <option>Australia</option>
+                        <option>New Zealand</option>
+                        <option>Canada</option>
+                        <option>Africa</option>
+                        <option>Sri lanka</option>
+                        <option>USA</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="Zipcode" id="" class="form__field" placeholder="Zip/Postal code"
+                        aria-describedby="helpId" [textMask]="maskTypes.ZipCode">
+                    <label for="Zipcode" class="form__label">Zip/Postal code</label>
+                </div>
+            </div>
+            <div class="col-12 vms-signup-container__categoryHead">
+                <p>Accounting Contact</p>
+            </div>
+            <div class="row d-flex ">
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="Name" id="" class="form__field" placeholder="Name" maxlength="50"
+                        aria-describedby="helpId">
+                    <label for="Name" class="form__label">Name</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="Email" id="" class="form__field" placeholder="Email"
+                        aria-describedby="helpId">
+                    <label for="Email" class="form__label">Email</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="Email" id="" class="form__field" placeholder="Phone"
+                        [textMask]="maskTypes.Phone" aria-describedby="helpId">
+                    <label for="Phone" class="form__label">Phone</label>
+                </div>
+            </div>
+            <div class="col-12 vms-signup-container__categoryHead">
+                <p>Business Contact</p>
+            </div>
+            <div class="row d-flex">
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="Name" id="" class="form__field" placeholder="Name" maxlength="50"
+                        aria-describedby="helpId">
+                    <label for="Name" class="form__label">Name</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="Email" id="" class="form__field" placeholder="Email"
+                        aria-describedby="helpId">
+                    <label for="Email" class="form__label">Email</label>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
+                    <input type="text" name="Email" id="" class="form__field" placeholder="Phone"
+                        [textMask]="maskTypes.Phone" aria-describedby="helpId">
+                    <label for="Phone" class="form__label">Phone</label>
+                </div>
+            </div>
+            <div class="col-12 vms-signup-container__categoryHead d-flex ">
+                <p>Business Description</p>
+            </div>
+            <div class="row d-flex ">
+                <div class="col-12 vms-form__group field">
+                    <textarea class="form-control" name="BusinessDescription" id="BusinessDescription"
+                        rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-12 vms-signup-container__categoryHead d-flex">
+                <p>Explain company's typical invoice frequency and Payment terms</p>
+            </div>
+            <div class="row d-flex ">
+                <div class="col-12 vms-form__group field">
+                    <textarea class="form-control" name="Paymentterms" id="Paymentterms" rows="3"></textarea>
+                </div>
+            </div>
+        </form>
+        <div class="col-12 vms-signup-container__actions">
+            <div class="row justify-content-center">
+                <button class="col-12 col-sm-5 vms-btn-primary-outline mr-sm-4" (click)="navigateBack()">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    Previous
+                </button>
+                <button class="col-12 col-sm-5 vms-btn-primary" (click)="onContinue()">
+                    Continue
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

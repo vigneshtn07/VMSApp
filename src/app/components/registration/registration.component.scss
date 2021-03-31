@@ -1,15 +1,15 @@
 .main-content {
-    padding: 100px 150px;
+  padding: 100px 0;
 }
 
 @media (max-width: 768px) {
-    .main-content {
-        padding: 100px 100px;
-    }
+  .main-content {
+    padding: 100px 0;
+  }
 }
 
 @media (max-width: 576px) {
-    .main-content {
-        padding: 100px 40px;
-    }
+  .main-content {
+    padding: 100px 40px;
+  }
 }

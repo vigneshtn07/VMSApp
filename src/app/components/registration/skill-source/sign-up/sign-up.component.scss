@@ -2,54 +2,116 @@
 @import "app-mixins";
 
 .vms-signup-container {
-    &__title {
-        p {
-            color: $vms-primary;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
+  &__title {
+    p {
+      color: $vms-primary;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-align: center;
     }
-    &__subHead {
-        p {
-            color: $vms-grey-200;
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
+  }
+  &__subHead {
+    p {
+      color: $vms-grey-200;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      text-align: center;
     }
-    &__categoryHead {
-        margin-top: 2rem;
-        p {
-            font-size: 1rem;
-            font-weight: 600;
-        }
+  }
+  &__categoryHead {
+    margin-top: 2rem;
+    padding-left: 15px;
+    p {
+      font-size: 1rem;
+      font-weight: 600;
     }
-    &__form {
+  }
+  &__form {
+    width: 100%;
+    .vms-form__group {
+      select {
         width: 100%;
-        .vms-form__group {
-            select {
-                width: 100%;
-                border: 0;
-                border-bottom: 1px solid $vms-grey-900;
-                position: relative;
-                top: 8px;
-                color: $vms-grey-900;
-                font-size: 0.85rem;
-            }
+        height: 100%;
+        border: 0;
+        border-bottom: 1px solid $vms-grey-900;
+        position: relative;
+        color: $vms-grey-900;
+        font-size: 1rem;
+        &:focus {
+          outline: 0;
         }
+      }
     }
+  }
+  &__actions {
+    @include flexbox;
+    justify-content: center;
+    margin: 4rem 0;
+    button {
+      i {
+        padding: 0 10px;
+        font-weight: 800;
+        font-size: 1.35rem;
+      }
+    }
+  }
+}
+
+//third party library overriden CSS
+::ng-deep .theme-green .bs-datepicker-head {
+  background-color: #d8020f;
+}
+
+::ng-deep .theme-green .bs-datepicker-body table td span.selected {
+  background-color: #d8020f;
+}
+
+.date-field input {
+  box-shadow: none;
+  border-radius: 0;
+  &::placeholder {
+    color: $vms-grey-900;
+  }
+}
+
+.drop-down ::ng-deep .dropdown-list {
+  margin-top: 0;
+  padding: 0;
+  .multiselect-item-checkbox
+    input[type="checkbox"]
+    + div[_ngcontent-hss-c81]:before {
+    border-color: $vms-primary;
+  }
+  .multiselect-item-checkbox input[type="checkbox"]:checked + div:before {
+    background-color: $vms-primary;
+  }
+}
+
+.drop-down ::ng-deep {
+  .multiselect-dropdown {
+    height: 100%;
+    .dropdown-btn .selected-item {
+      border-color: $vms-primary;
+      background-color: $vms-primary;
+    }
+  }
+  div:nth-child(1) {
+    height: 100%;
+    > span.dropdown-btn {
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+      border-bottom: 1px solid grey;
+    }
+  }
+}
+@media (max-width: 576px) {
+  .vms-signup-container {
     &__actions {
-        @include flexbox;
-        justify-content: center;
-        margin: 4rem 0;
-        button {
-            i {
-                padding-left: 10px;
-                font-weight: 800;
-                font-size: 1.35rem;
-            }
-        }
+      .vms-btn-primary-outline {
+        margin-bottom: 1.25rem;
+      }
     }
+  }
 }

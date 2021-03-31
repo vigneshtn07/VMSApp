@@ -18,9 +18,15 @@
                 </div>
 
                 <div class="login-container__input">
-                    <input type="password" name="pass" placeholder="Password">
+                    <input [type]="showPassword ? 'text' : 'password'" name="pass" placeholder="Password">
                     <span class="login-container__input-icon">
                         <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                    <span class="login-container__password-icon" (click)="showPassword = !showPassword">
+                        <i class="fa" [ngClass]="{
+                            'fa-eye-slash': !showPassword,
+                            'fa-eye': showPassword
+                          }"></i>
                     </span>
                 </div>
 

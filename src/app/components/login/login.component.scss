@@ -83,6 +83,11 @@
     pointer-events: none;
     color: $vms-grey-300;
   }
+  &__password-icon {
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+  }
   &__btn {
     width: 100%;
     @include flexbox;

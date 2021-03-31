@@ -1,0 +1,13 @@
+<div class="progress-container" #progressBreadCrumb>
+    <div class="step" *ngFor="let title of breadCrumbtitles;let idx = index;let lastIdx = last; trackBy: trackByFn;">
+        <div class="step__progress" [class.step__progress--last]="lastIdx">
+        </div>
+        <div class="step__progress__icon-wrapper">
+            <span>
+                <div class="step__progress__icon-wrapper__title">{{title}}</div>
+                <img src="../../../../assets/images/tick-icon.png" class="success" alt="tick-icon">
+                <img src="../../../../assets/images/cross-icon.png" class="failed" alt="cross-icon">
+            </span>
+        </div>
+    </div>
+</div>

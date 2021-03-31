@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center" #progressBarEle>
+    <progress-bar [inputConfig]="stepProgressData" [stepValue]="stepProgressData.currentStep"
+        [isProcessFailed]="stepProgressData.isProcessFailed" [progressMove]="stepProgressData.progressMove">
+    </progress-bar>
+</div>
+
+<ng-container *ngIf="this.signUpWizardStep === 1">
+    <app-create-owner-phaseone (wizardStepEmitter)="onWizardStepEmitter($event)"></app-create-owner-phaseone>
+</ng-container>
+<ng-container *ngIf="this.signUpWizardStep === 2">
+    <app-create-owner-phasetwo (wizardStepEmitter)="onWizardStepEmitter($event)"></app-create-owner-phasetwo>
+</ng-container>
+<ng-container *ngIf="this.signUpWizardStep === 3">
+    <app-create-owner-phasethree (wizardStepEmitter)="onWizardStepEmitter($event)"></app-create-owner-phasethree>
+</ng-container>
+<ng-container *ngIf="this.signUpWizardStep === 4">
+    <app-create-owner-phasefour (wizardStepEmitter)="onWizardStepEmitter($event)"></app-create-owner-phasefour>
+</ng-container>
+<ng-container *ngIf="showRegistraionResponse">
+    <app-create-owner-response></app-create-owner-response>
+</ng-container>

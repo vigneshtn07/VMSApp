@@ -4,73 +4,99 @@
 
 /************ Button Styles **************/
 .vms-btn-primary {
-    font-family: Montserrat-Bold;
-    line-height: 1.5;
+  font-family: Montserrat-Bold;
+  line-height: 1.5;
+  color: $vms-secondary;
+  border-radius: 25px;
+  background: $vms-primary;
+  @include flexbox;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 30px;
+  &:hover {
+    background: $vms-grey-200;
+  }
+}
+
+.vms-btn-primary-outline {
+  font-family: Montserrat-Bold;
+  line-height: 1.5;
+  color: $vms-primary;
+  border-radius: 25px;
+  border: 1px solid $vms-primary;
+  @include flexbox;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 30px;
+  &:hover {
+    background: $vms-grey-200;
     color: $vms-secondary;
-    border-radius: 25px;
-    background: $vms-primary;
-    @include flexbox;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 30px;
-    &:hover {
-        background: $vms-grey-200;
-    }
+    border-color: $vms-grey-200;
+  }
 }
 
 /*********** Input Type styles ************/
 .vms-form__group {
-    position: relative;
-    padding: 15px;
-    .form__field {
-        font-family: inherit;
-        width: 100%;
-        border: 0;
-        border-bottom: 1px solid $vms-grey-900;
-        outline: 0;
-        font-size: 0.85rem;
-        color: $vms-black;
-        padding: 6px 0;
-        background: transparent;
-        transition: border-color 0.2s;
+  position: relative;
+  padding: 15px;
+}
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid $vms-grey-900;
+  outline: 0;
+  font-size: 1rem;
+  color: $vms-black;
+  padding: 6px 0;
+  background: transparent;
+  transition: border-color 0.2s;
 
-        &::placeholder {
-            color: transparent;
-        }
+  &::placeholder {
+    color: transparent;
+  }
 
-        &:placeholder-shown ~ .form__label {
-            font-size: 0.8rem;
-            cursor: text;
-            top: 28px;
-        }
-    }
-    .form__label {
-        position: absolute;
-        top: 6px;
-        display: block;
-        transition: 0.2s;
-        font-size: 0.8rem;
-        color: $vms-grey-900;
-    }
+  &:placeholder-shown ~ .form__label {
+    font-size: 1rem;
+    cursor: text;
+    top: 28px;
+  }
+}
+.form__label {
+  position: absolute;
+  top: 2px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $vms-grey-900;
+}
 
-    .form__field:focus {
-        ~ .form__label {
-            position: absolute;
-            top: 8px;
-            display: block;
-            transition: 0.2s;
-            font-size: 0.75rem;
-            color: $vms-primary;
-            font-weight: 700;
-        }
-        padding-bottom: 6px;
-        border-width: 1px;
-        border-color: $vms-primary !important;
-    }
-    .form__field {
-        &:required,
-        &:invalid {
-            box-shadow: none;
-        }
-    }
+.stanalone-form__label {
+  color: $vms-grey-700;
+  font-weight: 600;
+}
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 4px;
+    display: block;
+    transition: 0.2s;
+    font-size: 0.75rem;
+    color: $vms-primary;
+    font-weight: 700;
+  }
+  padding-bottom: 6px;
+  border-width: 1px;
+  border-color: $vms-primary !important;
+}
+.form__field {
+  &:required,
+  &:invalid {
+    box-shadow: none;
+  }
+}
+
+.notifier__notification-message {
+  color: $vms-secondary;
 }

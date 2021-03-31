@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ThemeModule } from 'src/theme';
@@ -20,32 +19,56 @@ import { SignupPhaseOneComponent } from './components/registration/skill-source/
 import { SignupPhaseTwoComponent } from './components/registration/skill-source/sign-up/signup-phase-two/signup-phase-two.component';
 import { SignupPhaseThreeComponent } from './components/registration/skill-source/sign-up/signup-phase-three/signup-phase-three.component';
 import { SignupPhaseFourComponent } from './components/registration/skill-source/sign-up/signup-phase-four/signup-phase-four.component';
-export abstract class AppModuleConstants {
-    static readonly MODULE_IMPORTS = [
-        BrowserModule,
-        AppRoutingModule,
-        ThemeModule.forRoot({
-            themes: [lightTheme, darkTheme],
-            active: 'light'
-        }),
-        SharedModule
-    ];
-    static readonly MODULE_DECLARATIONS = [
-        AppComponent,
-        LoginComponent,
-        UserVerificationComponent,
-        AuthSuccessComponent,
-        UserAuthWizardComponent,
-        ConfirmationPromptComponent,
-        ForgotPasswordComponent,
-        ChangePasswordComponent,
-        RegistrationComponent,
-        SignUpComponent,
-        SignupPhaseOneComponent,
-        SignupPhaseTwoComponent,
-        SignupPhaseThreeComponent,
-        SignupPhaseFourComponent
+import { CreatePasswordComponent } from './components/create-password/create-password.component';
+import { RegistrationStatusComponent } from './components/registration-status/registration-status.component';
+import { RegistrationAddtionalInfoComponent } from './components/registration-addtional-info/registration-addtional-info.component';
+import { RegistrationResponseComponent } from './components/registration/skill-source/sign-up/registration-response/registration-response.component';
+import { RegistrationSpecialistFormComponent } from './components/registration/specialist/registration-form/registration-form.component';
+import { CreateOwnerPhasefourComponent } from './components/registration/project-owner/owner-signup/create-owner-phasefour/create-owner-phasefour.component';
+import { CreateOwnerPhaseoneComponent } from './components/registration/project-owner/owner-signup/create-owner-phaseone/create-owner-phaseone.component';
+import { CreateOwnerPhasethreeComponent } from './components/registration/project-owner/owner-signup/create-owner-phasethree/create-owner-phasethree.component';
+import { CreateOwnerPhasetwoComponent } from './components/registration/project-owner/owner-signup/create-owner-phasetwo/create-owner-phasetwo.component';
+import { CreateOwnerResponseComponent } from './components/registration/project-owner/owner-signup/create-owner-response/create-owner-response.component';
+import { OwnerSignupComponent } from './components/registration/project-owner/owner-signup/owner-signup.component';
 
-    ];
-    static readonly MODULE_PROVIDERS = [];
+export abstract class AppModuleConstants {
+  static readonly MODULE_IMPORTS = [
+    BrowserModule,
+    AppRoutingModule,
+    ThemeModule.forRoot({
+      themes: [lightTheme, darkTheme],
+      active: 'light',
+    }),
+    SharedModule,
+  ];
+  static readonly MODULE_DECLARATIONS = [
+    AppComponent,
+    LoginComponent,
+    UserVerificationComponent,
+    AuthSuccessComponent,
+    UserAuthWizardComponent,
+    ConfirmationPromptComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
+    RegistrationComponent,
+    SignUpComponent,
+    SignupPhaseOneComponent,
+    SignupPhaseTwoComponent,
+    SignupPhaseThreeComponent,
+    SignupPhaseFourComponent,
+    CreatePasswordComponent,
+    RegistrationStatusComponent,
+    RegistrationAddtionalInfoComponent,
+    RegistrationResponseComponent,
+    RegistrationResponseComponent,
+    RegistrationSpecialistFormComponent,
+    SignUpComponent,
+    CreateOwnerPhaseoneComponent,
+    CreateOwnerPhasetwoComponent,
+    CreateOwnerPhasethreeComponent,
+    CreateOwnerPhasefourComponent,
+    CreateOwnerResponseComponent,
+    OwnerSignupComponent,
+  ];
+  static readonly MODULE_PROVIDERS = [];
 }

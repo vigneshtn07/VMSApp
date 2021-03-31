@@ -1,0 +1,10 @@
+@import "app-colors";
+
+.response-container ::ng-deep .verification-wizard {
+  background-color: transparent;
+  min-height: 0;
+}
+
+.response-container ::ng-deep .verification-wizard__content {
+  border: 1px solid $vms-primary;
+}

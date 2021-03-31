@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="vms-signup-container row" theme>
+        <div class="col-12 vms-signup-container__title d-flex justify-content-center">
+            <p>Project Information</p>
+        </div>
+        <form class="col-12 vms-signup-container__form">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 vms-signup-container__categoryHead d-flex justify-content-center">
+                    <p>Please enter one project you own in order to get initial
+                        approval</p>
+                </div>
+                <div class="col-12  vms-form__group field">
+                    <label class="stanalone-form__label" for="projectname">Project Name</label>
+                    <textarea class="form-control" name="projectname" id="projectname"
+                        placeholder="Name any current project that you Own(Required)" rows="3"></textarea>
+                </div>
+                <div class="col-12 vms-form__group field">
+                    <label class="stanalone-form__label" for="projectdesc">Project Description </label>
+                    <textarea class="form-control" name="projectdesc" id="projectdesc"
+                        placeholder="Details and purpose of project(Requried)" rows="3"></textarea>
+                </div>
+            </div>
+        </form>
+        <div class="col-12 vms-signup-container__actions">
+            <div class="row justify-content-center">
+                <button class="col-12 col-sm-5 vms-btn-primary-outline mr-sm-4" (click)="navigateBack()">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    Previous
+                </button>
+                <button class="col-12 col-sm-5 vms-btn-primary" (click)="onContinue()">
+                    Continue
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

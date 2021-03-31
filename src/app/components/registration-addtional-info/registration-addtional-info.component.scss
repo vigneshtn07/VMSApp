@@ -1,0 +1,173 @@
+@import "app-colors";
+@import "app-mixins";
+
+.container {
+  margin-top: 100px;
+}
+
+.vms-signup-container {
+  &__title {
+    p {
+      color: $vms-primary;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  }
+  &__subHead {
+    p {
+      color: $vms-grey-200;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+  }
+  &__categoryHead {
+    margin-top: 2rem;
+    p {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+  &__form {
+    width: 100%;
+    .vms-form__group {
+      select {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-bottom: 1px solid $vms-grey-900;
+        position: relative;
+        color: $vms-grey-900;
+        font-size: 1rem;
+        &:focus {
+          outline: 0;
+        }
+      }
+    }
+  }
+  &__actions {
+    @include flexbox;
+    justify-content: center;
+    margin: 4rem 0;
+    button {
+      i {
+        padding-left: 10px;
+        font-weight: 800;
+        font-size: 1.35rem;
+      }
+    }
+  }
+}
+
+//third party library overriden CSS
+::ng-deep .theme-green .bs-datepicker-head {
+  background-color: #d8020f;
+}
+
+::ng-deep .theme-green .bs-datepicker-body table td span.selected {
+  background-color: #d8020f;
+}
+
+.date-field input {
+  box-shadow: none;
+  border-radius: 0;
+  &::placeholder {
+    color: $vms-grey-900;
+  }
+}
+
+.drop-down ::ng-deep .dropdown-list {
+  margin-top: 0;
+  padding: 0;
+  .multiselect-item-checkbox
+    input[type="checkbox"]
+    + div[_ngcontent-hss-c81]:before {
+    border-color: $vms-primary;
+  }
+  .multiselect-item-checkbox input[type="checkbox"]:checked + div:before {
+    background-color: $vms-primary;
+  }
+}
+
+.round {
+  position: relative;
+}
+
+.round label {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+}
+
+.round label:after {
+  border: 2px solid #000;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label {
+  background-color: #fff;
+  border-color: #000;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+.drop-down ::ng-deep {
+  .multiselect-dropdown {
+    height: 100%;
+    .dropdown-btn .selected-item {
+      border-color: $vms-primary;
+      background-color: $vms-primary;
+    }
+  }
+  div:nth-child(1) {
+    height: 100%;
+    > span.dropdown-btn {
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+      border-bottom: 1px solid grey;
+    }
+  }
+}
+
+.upload-input {
+  position: relative;
+  input {
+    display: block;
+    width: 115px;
+    z-index: 1;
+    position: absolute;
+    opacity: 0;
+    height: 38px;
+    cursor: pointer;
+  }
+  button {
+    position: relative;
+    top: -2px;
+    left: -2px;
+    cursor: pointer;
+  }
+}

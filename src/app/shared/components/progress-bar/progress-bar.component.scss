@@ -1,0 +1,136 @@
+$grey-45: #8b969e;
+$grey-10: #e5e5e5;
+$white: #fff;
+$red: #f01919;
+$green: #4b8b3b;
+
+.progress-container {
+  display: flex;
+  width: 100%;
+  min-height: 110px; //added css
+  margin-bottom: 50px; //added css
+  margin-left: 50px;
+  .step:not(:last-child) {
+    width: 180px;
+  }
+  .step {
+    position: relative;
+    min-height: 50px;
+    &__progress {
+      width: 80%;
+      height: 0.5em;
+      background: #e5e5e5;
+      position: relative;
+      top: 50%;
+      border-radius: 20px;
+      margin-left: 30px;
+      &--last {
+        width: 0;
+      }
+    }
+    span {
+      position: absolute;
+      top: -25px;
+      left: -20px;
+    }
+    .step__progress__icon-wrapper {
+      position: relative;
+      top: 47%;
+      transform: translateY(-50%);
+      &__title {
+        position: absolute;
+        top: 50px;
+        left: -10px;
+        font-size: 0.75rem;
+        color: $grey-45;
+        font-weight: 600;
+      }
+      > span {
+        display: inline-block;
+        z-index: 1;
+        height: 45px;
+        display: inline-block;
+        background-color: $green;
+        border-radius: 24px;
+        width: 45px;
+        text-align: center;
+        position: relative;
+        top: 50%;
+        background-color: $white;
+        border: 3px solid $grey-10;
+      }
+      img.success,
+      img.failed {
+        position: absolute;
+        left: 5px;
+        height: 20px;
+        width: 30px;
+        margin-top: 10px;
+        transition: all 0.6s linear;
+        opacity: 0;
+      }
+      &__text {
+        position: relative;
+        left: -50%;
+        text-align: center;
+        bottom: 45px;
+      }
+    }
+  }
+  .step.done {
+    .step__progress:after {
+      position: absolute;
+      content: "";
+      height: 0.5em;
+      border-radius: 20px;
+      width: 0;
+      top: 0;
+      background-color: $green;
+      animation: growLine 1s linear forwards 0.2s;
+    }
+    .step__progress__icon-wrapper {
+      > span {
+        background-color: $green;
+        border-color: $green;
+      }
+      img.success {
+        transform: rotate(360deg);
+        opacity: 1;
+      }
+    }
+  }
+  .step.inprogress {
+    .step__progress__icon-wrapper {
+      > span {
+        border-color: $green;
+      }
+    }
+  }
+  .step.failed {
+    .step__progress__icon-wrapper {
+      > span {
+        background-color: $red;
+        border-color: $red;
+      }
+      img.failed {
+        transform: rotate(360deg);
+        opacity: 1;
+      }
+      &__title {
+        color: $red;
+      }
+    }
+  }
+}
+
+@keyframes growLine {
+  to {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .progress-container {
+    display: none;
+  }
+}

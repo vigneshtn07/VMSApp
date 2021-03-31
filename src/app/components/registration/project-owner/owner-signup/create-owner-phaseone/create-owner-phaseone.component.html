@@ -1,0 +1,34 @@
+<div class="vms-signup-container row" theme>
+    <div class="col-12 vms-signup-container__title d-flex justify-content-center">
+        <p>Project Owner Sign Up</p>
+    </div>
+    <form class="col-12 vms-signup-container__form">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
+                <input type="text" class="form__field" placeholder="CompanyName" name="CompanyName" id='CompanyName'
+                    required />
+                <label for="CompanyName" class="form__label">Company Name</label>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
+                <input type="text" class="form__field" placeholder="FedralTaxId" name="FedralTaxId" id='FedralTaxId'
+                    [textMask]="maskTypes.TaxId" [maxLength]="maskTypes.TaxId.mask.length" required />
+                <label for="FedralTaxId" class="form__label">Fedral Tax ID</label>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
+                <input type="text" class="form__field" placeholder="PhoneNumber" name="PhoneNumber" id='PhoneNumber'
+                    [textMask]="maskTypes.Phone" [maxLength]="maskTypes.Phone.mask.length" required />
+                <label for="PhoneNumber" class="form__label">Phone Number</label>
+            </div>
+        </div>
+    </form>
+    <div class="col-12 vms-signup-container__actions">
+        <button class="vms-btn-primary" (click)="onContinue()">
+            Continue
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>

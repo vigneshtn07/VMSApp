@@ -1,1 +1,70 @@
-<p>signup-phase-three works!</p>
+<div class="container">
+    <div class="vms-signup-container row" theme>
+        <div class="col-12 vms-signup-container__title d-flex justify-content-center">
+            <p>Additional Information</p>
+        </div>
+        <form class="col-12 vms-signup-container__form">
+            <div class="row d-flex">
+                <div class="col-12 vms-form__group field">
+                    <label class="stanalone-form__label" for="TopTechSkills">Top Technical skill and Industry
+                        services</label>
+                    <textarea class="form-control" name="TopTechSkills" id="TopTechSkills" rows="3"></textarea>
+                </div>
+                <div class="col-12 vms-form__group field">
+                    <label class="stanalone-form__label" for="BenefitsProvides">Benefits Provides</label>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="Medical" value="Medical">
+                                <label class="form-check-label" for="Medical">Medical</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="Vision" value="Vision">
+                                <label class="form-check-label" for="Vision">Vision</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="LifeInsurance"
+                                    value="LifeInsurance">
+                                <label class="form-check-label" for="LifeInsurance">Life Insurance</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="Disablity" value="Disablity">
+                                <label class="form-check-label" for="Disablity">Disablity</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="401K" value="401K">
+                                <label class="form-check-label" for="Disablity">401K</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="OtherBenefits"
+                                    value="OtherBenefits">
+                                <label class="form-check-label" for="OtherBenefits">401K</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 vms-form__group field">
+                    <label class="stanalone-form__label" for="serviceQualityPolicy">Service quality policy</label>
+                    <textarea class="form-control" name="serviceQualityPolicy" id="serviceQualityPolicy"
+                        rows="3"></textarea>
+                </div>
+                <div class="col-12 vms-form__group field">
+                    <label class="stanalone-form__label" for="offerTraining">Do you offer training</label>
+                    <textarea class="form-control" name="offerTraining" id="offerTraining" rows="3"></textarea>
+                </div>
+            </div>
+        </form>
+        <div class="col-12 vms-signup-container__actions">
+            <div class="row justify-content-center">
+                <button class="col-12 col-sm-5  vms-btn-primary-outline mr-sm-4" (click)="navigateBack()">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    Previous
+                </button>
+                <button class="col-12 col-sm-5  vms-btn-primary" (click)="onContinue()">
+                    Continue
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
