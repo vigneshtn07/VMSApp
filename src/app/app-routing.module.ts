@@ -10,8 +10,11 @@ import { OwnerSignupComponent } from './components/registration/project-owner/ow
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SignUpComponent } from './components/registration/skill-source/sign-up/sign-up.component';
 import { RegistrationSpecialistFormComponent } from './components/registration/specialist/registration-form/registration-form.component';
+import { RegistrationSuccessComponent } from './components/registration/specialist/registration-success/registration-success.component';
 import { AuthSuccessComponent } from './components/user-verification-wizard/auth-success/auth-success.component';
 import { UserVerificationComponent } from './components/user-verification-wizard/user-verification/user-verification.component';
+import { VerificationResponseComponent } from './components/verify-admins/verification-response/verification-response.component';
+import { VerifyAdminsComponent } from './components/verify-admins/verify-admins.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,6 +24,13 @@ const routes: Routes = [
   { path: 'create-password', component: CreatePasswordComponent },
   { path: 'registration-status', component: RegistrationStatusComponent },
   { path: 'info-form', component: RegistrationAddtionalInfoComponent },
+  {
+    path: 'verify-email',
+    children: [
+      { path: 'admin', component: VerifyAdminsComponent },
+      { path: 'response', component: VerificationResponseComponent },
+    ],
+  },
   {
     path: 'registration',
     children: [
@@ -44,6 +54,10 @@ const routes: Routes = [
   {
     path: 'register-specialist',
     component: RegistrationSpecialistFormComponent,
+  },
+  {
+    path: 'verify-specialist',
+    component: RegistrationSuccessComponent,
   },
   {
     path: 'change-password',

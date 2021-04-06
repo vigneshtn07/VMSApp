@@ -30,6 +30,9 @@ import { CreateOwnerPhasethreeComponent } from './components/registration/projec
 import { CreateOwnerPhasetwoComponent } from './components/registration/project-owner/owner-signup/create-owner-phasetwo/create-owner-phasetwo.component';
 import { CreateOwnerResponseComponent } from './components/registration/project-owner/owner-signup/create-owner-response/create-owner-response.component';
 import { OwnerSignupComponent } from './components/registration/project-owner/owner-signup/owner-signup.component';
+import { RegistrationSuccessComponent } from './components/registration/specialist/registration-success/registration-success.component';
+import { VerificationResponseComponent } from './components/verify-admins/verification-response/verification-response.component';
+import { VerifyAdminsComponent } from './components/verify-admins/verify-admins.component';
 
 export abstract class AppModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -69,6 +72,9 @@ export abstract class AppModuleConstants {
     CreateOwnerPhasefourComponent,
     CreateOwnerResponseComponent,
     OwnerSignupComponent,
+    RegistrationSuccessComponent,
+    VerifyAdminsComponent,
+    VerificationResponseComponent,
   ];
   static readonly MODULE_PROVIDERS = [];
 }

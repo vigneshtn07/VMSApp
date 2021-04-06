@@ -1,0 +1,20 @@
+@import "app-colors";
+.icon {
+  span {
+    color: $vms-green;
+    font-size: 3rem;
+  }
+}
+
+.icon--failed {
+  span {
+    color: $vms-primary;
+    font-size: 3rem;
+  }
+}
+
+.response-container {
+  border: 1px solid $vms-primary;
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
