@@ -34,6 +34,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/fonts/font-awesome-4.7.0/scss/font-awesome.scss",
               "src/styles.scss"
             ],
             "stylePreprocessorOptions": {
@@ -63,7 +64,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",

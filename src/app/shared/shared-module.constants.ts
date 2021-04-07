@@ -5,6 +5,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotifierModule } from 'angular-notifier';
+import { TableModule } from 'primeng/table';
 
 import { VMSDialogModalComponent } from './components/vms-dialog-modal/vms-dialog-modal.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -22,6 +23,7 @@ export abstract class SharedModuleConstants {
     BrowserAnimationsModule,
     NgMultiSelectDropDownModule.forRoot(),
     SignaturePadModule,
+    TableModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {
@@ -33,7 +35,7 @@ export abstract class SharedModuleConstants {
           distance: 12,
           gap: 10,
         },
-      }
+      },
     }),
   ];
   static readonly MODULE_DECLARATIONS = [
@@ -52,7 +54,7 @@ export abstract class SharedModuleConstants {
     NumberDirective,
     SignaturePadModule,
     ProgressBarComponent,
-    NotifierModule
+    NotifierModule,
   ];
   static readonly MODULE_PROVIDERS = [];
 }
