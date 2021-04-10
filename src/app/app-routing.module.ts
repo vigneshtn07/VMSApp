@@ -15,6 +15,9 @@ import { AuthSuccessComponent } from './components/user-verification-wizard/auth
 import { UserVerificationComponent } from './components/user-verification-wizard/user-verification/user-verification.component';
 import { VerificationResponseComponent } from './components/verify-admins/verification-response/verification-response.component';
 import { VerifyAdminsComponent } from './components/verify-admins/verify-admins.component';
+import { AppNavbarComponent } from './shared/components/app-navbar/app-navbar.component';
+import {VmsNotificationComponent} from  './shared/components/vms-notification/vms-notification.component';
+import { AppSidebarComponent } from './shared/components/app-sidebar/app-sidebar.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -63,7 +66,11 @@ const routes: Routes = [
     path: 'change-password',
     component: ChangePasswordComponent,
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'Notification',
+    component: AppSidebarComponent,
+  }
+  // ,{ path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

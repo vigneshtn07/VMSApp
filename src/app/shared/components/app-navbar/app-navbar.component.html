@@ -1,1 +1,22 @@
-<p>app-navbar works!</p>
+<nav class="nav-bar">
+    <!--<div class="notification-wrapper">
+      <div class="notification-btn">
+        <span class="fa fa-bell"></span>
+      </div>
+       <div *ngIf="showNotification" class="notification-content">
+        <div class="notification-header">
+          <span class="mdi mdi-settings"></span>
+          <span class="label">Notifications</span>
+        </div>
+      </div> 
+    </div>-->
+    <div class="notification-box" (click)="openNotification(!showNotification)" >
+      <div class="notification-bell">
+        <span class="bell-top"></span>
+        <span class="bell-middle"></span>
+        <span class="bell-bottom"></span>
+        <span class="bell-rad"></span>
+      </div>
+    </div> 
+    <app-vms-notification ></app-vms-notification>
+  </nav>
