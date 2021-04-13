@@ -1,0 +1,12 @@
+@import "app-colors";
+
+:host ::ng-deep .p-dropdown {
+  width: 100%;
+  &:not(.p-disabled):hover {
+    border-color: $vms-primary;
+  }
+  &:not(.p-disabled).p-focus {
+    box-shadow: none;
+    border-color: $vms-primary;
+  }
+}

@@ -11,6 +11,10 @@ export const lightTheme: Theme = {
     '--vms-grey-200': '#232323',
     '--vms-black': '#000000',
     '--vms-green': '#0f580f',
+    '--vms-aqua-green': '#17a2b8',
+    '--vms-orange': '#e88d2f',
+    '--vms-red': '#d8020f',
+    '--vms-box-shadow-grey': '#e1e1e1',
     '--vms-login-gradient':
       'rgba(244, 36, 48, 1) 0%, rgba(233, 20, 33, 1) 35%, rgba(212, 9, 21, 1) 100%',
   },

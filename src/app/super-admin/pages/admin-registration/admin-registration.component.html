@@ -1,0 +1,275 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12 card">
+            <div class="row card__container registration-detail">
+                <div class="col-12 col-lg-6">
+                    <div class="registration-detail__owner-info">
+                        <h3>KV Tech</h3>
+                        <div class="d-flex owner-status">
+                            <p>1026886</p>
+                            <p class="owner-status--in-progress">In Progress</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 d-flex registration-detail__actions">
+                    <button class="vms-btn-primary-success">
+                        Approve
+                    </button>
+                    <button class="vms-btn-primary-failure">
+                        Reject
+                    </button>
+                    <button class="vms-btn-primary-outline">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-12 col-lg-8">
+            <div class="row card">
+                <div class="col-12 card__container registration-form registration-form--edit ">
+                    <div class="card-title mb-3 ">
+                        <p>Registration Details</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Name</label>
+                            <input type="text" name="name" id="" class="form__field" aria-describedby="name"
+                                maxlength="30">
+                        </div>
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Account Type</label>
+                            <select class="dropdown d-block">
+                                <option>Select country</option>
+                                <option>Skill source</option>
+                                <option>Specialist</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Submitted Date</label>
+                            <input type="text" placeholder="Year Established" name="establishedYear" autocomplete="off"
+                                [(ngModel)]="submittedDate" class="form-control" [bsConfig]="bsConfig"
+                                class="form__field form-control" bsDatepicker>
+                        </div>
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Owner</label>
+                            <input type="text" name="Owner" id="" class="form__field" aria-describedby="name"
+                                maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Assigned To</label>
+                            <input type="text" name="AssignedTo" id="" class="form__field" aria-describedby="name"
+                                maxlength="30">
+                        </div>
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Assigned Date</label>
+                            <input type="text" placeholder="Year Established" name="assignedDate" autocomplete="off"
+                                [(ngModel)]="assignedDate" class="form-control" [bsConfig]="bsConfig"
+                                class="form__field form-control" bsDatepicker>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Contact Email</label>
+                            <input type="text" name="ContactEmail" id="" class="form__field" aria-describedby="name"
+                                maxlength="30">
+                        </div>
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Contact Name</label>
+                            <input type="text" name="ContactNname" id="" class="form__field" aria-describedby="name"
+                                maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Last Modified By</label>
+                            <input type="text" name="LastModifiedBy" id="" class="form__field" aria-describedby="name"
+                                maxlength="30">
+                        </div>
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Last Modified Date</label>
+                            <input type="text" placeholder="Year Established" name="establishedYear" autocomplete="off"
+                                [(ngModel)]="lastModifiedDate" class="form-control" [bsConfig]="bsConfig"
+                                class="form__field form-control" bsDatepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 card__container registration-form registration-form--view d-none">
+                    <div class="card-title mb-3 ">
+                        <p>Registration Details</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Name</label>
+                            <p class="form__value">Kyle Jamieson</p>
+                        </div>
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Account Type</label>
+                            <p class="form__value">Project Owner</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Submitted Date</label>
+                            <p class="form__value">Mar 10, 2020</p>
+                        </div>
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">owner</label>
+                            <p class="form__value">Simon Beuror</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Contact Email</label>
+                            <p class="form__value">Simon Beuror@gmail.com</p>
+                        </div>
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Contact Name</label>
+                            <p class="form__value">Simon Beuror</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Last Modified Date</label>
+                            <p class="form__value">Apr 1, 2020</p>
+                        </div>
+                        <div class="col-12 col-md-6 vms-form__group">
+                            <label class="stanalone-form__label mb-0">Last Modified By</label>
+                            <p class="form__value">Simon Beuror@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row card my-4">
+                <div class="col-12 card__container registration-status-checklist">
+                    <div class="row card-title mb-3 ">
+                        <p>Registration Status</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 my-2">
+                            <stacked-progress-bar></stacked-progress-bar>
+                        </div>
+                    </div>
+                    <div class="row mx-3 mx-md-5 checklists">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem1" value="CheckItem1">
+                                <label class="form-check-label" for="CheckItem1">Check Item 1</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem2" value="CheckItem2">
+                                <label class="form-check-label" for="CheckItem2">Check Item 2</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem3" value="CheckItem3">
+                                <label class="form-check-label" for="CheckItem1">Check Item 3</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem4" value="CheckItem4">
+                                <label class="form-check-label" for="CheckItem1">Check Item 4</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem5" value="CheckItem5">
+                                <label class="form-check-label" for="CheckItem1">Check Item 5</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem6" value="CheckItem6">
+                                <label class="form-check-label" for="CheckItem1">Check Item 6</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem7" value="CheckItem7">
+                                <label class="form-check-label" for="CheckItem1">Check Item 7</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem8" value="CheckItem8">
+                                <label class="form-check-label" for="CheckItem1">Check Item 8</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem9" value="CheckItem9">
+                                <label class="form-check-label" for="CheckItem1">Check Item 9</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="CheckItem10" value="CheckItem10">
+                                <label class="form-check-label" for="CheckItem1">Check Item 10</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="row card">
+                <div class="col-12 card__container registration-form-attachments">
+                    <div class="card-title mb-3">
+                        <p>Attachments</p>
+                    </div>
+                    <div class="attachment-thumbnails">
+                        <img *ngFor="let img of imageObject; let i = index" src="{{img.thumbImage || img.posterImage}}"
+                            (click)="showLightbox(i)" />
+                    </div>
+                </div>
+            </div>
+            <div class="row card my-4">
+                <div class="col-12 card__container registration-form-comments">
+                    <div class="card-title mb-3 ">
+                        <p>Communication History</p>
+                    </div>
+                    <div class="comment-area mb-2">
+                        <div class="comment">
+                            <p><span class="user">Karthick :</span> Upload all registration attachements</p>
+                        </div>
+                        <div class="comment-date">
+                            <p><i class="fa fa-clock-o" aria-hidden="true"></i>Mar 24, 2020 - 6:18pm</p>
+                        </div>
+                    </div>
+                    <div class="comment-area mb-2">
+                        <div class="comment">
+                            <p><span class="user">Admin :</span> Plese wait for verification</p>
+                        </div>
+                        <div class="comment-date">
+                            <p><i class="fa fa-clock-o" aria-hidden="true"></i>Apr 16, 2020 - 9:54am</p>
+                        </div>
+                    </div>
+                    <div class="new-comment mb-2">
+                        <div>
+                            <label>New comment</label>
+                        </div>
+                        <div>
+                            <textarea rows="3" cols="30"></textarea>
+                        </div>
+                    </div>
+                    <div class="comment-actions">
+                        <button class="vms-btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-image-fullscreen-view [images]="imageObject" [imageIndex]="currentIndex" [show]="showFlag"
+    (close)="closeEventHandler()"></ng-image-fullscreen-view>

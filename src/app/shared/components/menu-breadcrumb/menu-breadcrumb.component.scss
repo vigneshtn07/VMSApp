@@ -1,0 +1,17 @@
+@import "app-colors";
+
+ol.breadcrumb {
+  background-color: $vms-secondary;
+  margin-left: 5px;
+  li {
+    > a {
+      font-size: 1rem;
+    }
+    &:not(:first-child):before {
+      content: ">";
+    }
+  }
+  .breadcrumb-item.active {
+    color: $vms-primary;
+  }
+}

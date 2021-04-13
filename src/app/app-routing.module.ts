@@ -15,6 +15,21 @@ import { AuthSuccessComponent } from './components/user-verification-wizard/auth
 import { UserVerificationComponent } from './components/user-verification-wizard/user-verification/user-verification.component';
 import { VerificationResponseComponent } from './components/verify-admins/verification-response/verification-response.component';
 import { VerifyAdminsComponent } from './components/verify-admins/verify-admins.component';
+import { AdminRegistrationComponent } from './super-admin/pages/admin-registration/admin-registration.component';
+import { DashboardComponent } from './super-admin/pages/dashboard/dashboard.component';
+import { SuperAdminComponent } from './super-admin/super-admin.component';
+
+const SUPER_ADMIN_ROUTES: Routes = [
+  {
+    path: 'super-admin',
+    component: SuperAdminComponent,
+    children: [
+      { path: 'registration/:id', component: AdminRegistrationComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    ],
+  },
+];
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -64,6 +79,7 @@ const routes: Routes = [
     component: ChangePasswordComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  ...SUPER_ADMIN_ROUTES,
 ];
 
 @NgModule({

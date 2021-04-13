@@ -34,6 +34,9 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
               "src/assets/fonts/font-awesome-4.7.0/scss/font-awesome.scss",
               "src/styles.scss"
             ],

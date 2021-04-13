@@ -1,1 +1,14 @@
-<p>vms-grid works!</p>
+<div class="row">
+    <div class="col-12 col-sm-2">
+        <vms-grid-catergory-selection></vms-grid-catergory-selection>
+    </div>
+    <div class="col-12  col-sm-7 col-md-6">
+        <vms-grid-search></vms-grid-search>
+    </div>
+    <div class="col-12 col-sm-3 col-md-4 d-flex  justify-content-sm-end">
+        <vms-grid-options></vms-grid-options>
+    </div>
+</div>
+<div class="row p-dimen">
+    <vms-grid-table [columns]="columns" [values]="values"></vms-grid-table>
+</div>

@@ -1,0 +1,157 @@
+@import "app-colors";
+
+.card {
+  border: 0;
+  margin: 0.5rem 0;
+  &__container {
+    padding: 1rem;
+    box-shadow: 0px 0px 12px 2px $vms-box-shadow-grey;
+    border-radius: 0.5rem;
+    .card-title {
+      > p {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.registration-detail {
+  &__owner-info {
+    font-family: "Poppins-Bold";
+    .owner-status {
+      p:nth-child(1) {
+        margin-right: 8px;
+        &:after {
+          content: "|";
+          display: inline-block;
+          margin-left: 6px;
+        }
+      }
+      &--in-progress {
+        color: $vms-orange;
+      }
+    }
+  }
+  &__actions {
+    flex-wrap: wrap;
+    margin: 0.5rem 0;
+    button {
+      height: 40px;
+      margin-right: 1rem;
+      flex: 1 1 100%;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.registration-form {
+  &--view {
+    .vms-form__group {
+      .stanalone-form__label {
+        font-weight: 500;
+      }
+      .form__value {
+        font-size: 1rem;
+        color: $vms-primary;
+        font-weight: 600;
+      }
+    }
+  }
+  &--edit {
+    .vms-form__group {
+      select {
+        height: 60%;
+      }
+    }
+  }
+}
+
+.registration-form-attachments {
+  .attachment-thumbnails {
+    img {
+      cursor: pointer;
+      width: 110px;
+      height: 100px;
+      padding: 5px;
+      border-radius: 10px;
+      border: 1px solid $vms-box-shadow-grey;
+      margin: 8px;
+    }
+  }
+}
+
+.registration-form-comments {
+  .comment-area {
+    .comment {
+      > p {
+        font-size: 15px;
+        .user {
+          font-size: 16px;
+          color: $vms-primary;
+        }
+      }
+    }
+    .comment-date {
+      > p {
+        font-size: 12px;
+        i {
+          color: $vms-primary;
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+  .new-comment {
+    textarea {
+      border: 1px solid $vms-grey-700;
+      outline: $vms-grey-700;
+      &:focus {
+        border-color: $vms-grey-700 !important;
+      }
+    }
+  }
+  .comment-actions {
+    button {
+      padding: 4px 16px;
+    }
+  }
+}
+
+.registration-status-checklist {
+  .checklists {
+    div[class="col-12 col-sm-6"] {
+      padding: 0.5rem 0;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .registration-detail {
+    &__actions {
+      flex-wrap: nowrap;
+      button {
+        flex: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .registration-detail {
+    &__actions {
+      //margin: 0;
+    }
+  }
+}
+
+@media (min-width: 978px) {
+  .card {
+    margin: 0;
+  }
+  .registration-detail {
+    &__actions {
+      justify-content: flex-end;
+    }
+  }
+}

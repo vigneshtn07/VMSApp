@@ -1,0 +1,108 @@
+@import "app-colors";
+
+:host {
+  width: inherit;
+}
+
+:host ::ng-deep {
+  .p-datatable-responsive-demo .p-datatable-tbody > tr > td .p-column-title {
+    display: none;
+  }
+  .p-datatable .p-sortable-column-icon {
+    color: $vms-secondary;
+  }
+  .p-datatable .p-sortable-column:not(.p-highlight):hover,
+  .p-datatable .p-sortable-column.p-highlight:hover {
+    background-color: $vms-grey-300;
+    color: $vms-secondary;
+  }
+  .p-datatable .p-sortable-column:focus {
+    box-shadow: none;
+  }
+  .p-datatable .p-sortable-column.p-highlight .p-sortable-column-icon {
+    color: $vms-secondary;
+  }
+  .p-datatable .p-datatable-tbody {
+    td {
+      a.grid-link {
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: 600;
+        &.grid-link-In {
+          color: $vms-orange;
+        }
+        &.grid-link-Need {
+          color: $vms-orange;
+        }
+        &.grid-link-Approved {
+          color: $vms-green;
+        }
+        &.grid-link-New {
+          color: $vms-aqua-green;
+        }
+        &.grid-link-Rejected {
+          color: $vms-red;
+        }
+        &.grid-link-Discounted {
+          color: $vms-red;
+        }
+      }
+    }
+  }
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: $vms-primary;
+  color: $vms-secondary;
+}
+
+@media screen and (max-width: 40rem) {
+  :host ::ng-deep {
+    .p-datatable {
+      &.p-datatable-responsive-demo {
+        .p-datatable-thead > tr > th,
+        .p-datatable-tfoot > tr > td {
+          display: none !important;
+        }
+
+        .p-datatable-tbody > tr > td {
+          text-align: left;
+          display: block;
+          width: 100%;
+          float: left;
+          clear: left;
+          border: 0 none;
+
+          .p-column-title {
+            padding: 0.4rem;
+            min-width: 30%;
+            display: inline-block;
+            margin: -0.4em 1em -0.4em -0.4rem;
+            font-weight: bold;
+          }
+
+          &:last-child {
+            border-bottom: 1px solid var(--surface-d);
+          }
+        }
+      }
+    }
+  }
+}
+
+.table-header {
+  display: flex;
+  justify-content: flex-start;
+  span {
+    i.p-input-icon-left > i:first-of-type {
+      left: 1rem;
+    }
+    input {
+      padding-left: 3rem;
+      width: 400px;
+      height: 3rem;
+      border: 1px solid grey;
+      border-radius: 28px;
+    }
+  }
+}

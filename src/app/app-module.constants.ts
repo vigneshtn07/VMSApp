@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-
+import { KnobModule } from 'primeng/knob';
 import { ThemeModule } from 'src/theme';
 import { darkTheme } from 'src/theme/variants/app-dark-theme';
 import { lightTheme } from 'src/theme/variants/app-light-theme';
@@ -13,7 +13,6 @@ import { UserVerificationComponent } from './components/user-verification-wizard
 import { SharedModule } from './shared/shared.module';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import { RegistrationComponent } from './components/registration/registration.component';
 import { SignUpComponent } from './components/registration/skill-source/sign-up/sign-up.component';
 import { SignupPhaseOneComponent } from './components/registration/skill-source/sign-up/signup-phase-one/signup-phase-one.component';
 import { SignupPhaseTwoComponent } from './components/registration/skill-source/sign-up/signup-phase-two/signup-phase-two.component';
@@ -33,6 +32,8 @@ import { OwnerSignupComponent } from './components/registration/project-owner/ow
 import { RegistrationSuccessComponent } from './components/registration/specialist/registration-success/registration-success.component';
 import { VerificationResponseComponent } from './components/verify-admins/verification-response/verification-response.component';
 import { VerifyAdminsComponent } from './components/verify-admins/verify-admins.component';
+import { SuperAdminModule } from './super-admin/super-admin.module';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 export abstract class AppModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -43,6 +44,8 @@ export abstract class AppModuleConstants {
       active: 'light',
     }),
     SharedModule,
+    KnobModule,
+    SuperAdminModule,
   ];
   static readonly MODULE_DECLARATIONS = [
     AppComponent,
@@ -53,7 +56,6 @@ export abstract class AppModuleConstants {
     ConfirmationPromptComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
-    RegistrationComponent,
     SignUpComponent,
     SignupPhaseOneComponent,
     SignupPhaseTwoComponent,
@@ -75,6 +77,7 @@ export abstract class AppModuleConstants {
     RegistrationSuccessComponent,
     VerifyAdminsComponent,
     VerificationResponseComponent,
+    RegistrationComponent,
   ];
   static readonly MODULE_PROVIDERS = [];
 }

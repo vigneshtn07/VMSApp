@@ -1,0 +1,15 @@
+@import "app-colors";
+
+.grid-options {
+  span {
+    padding: 0 10px;
+    i {
+      font-size: 1.5rem;
+      color: $vms-primary;
+      &:hover {
+        color: $vms-black;
+        cursor: pointer;
+      }
+    }
+  }
+}

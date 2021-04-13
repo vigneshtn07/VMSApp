@@ -1,0 +1,56 @@
+:host,
+main {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar,
+.content {
+  height: 100%;
+  overflow: auto;
+  float: left;
+  transition: width 0.35s;
+}
+
+.sidebar {
+  background: #2e353d;
+  width: 18%;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.collapsed {
+  width: 0;
+}
+
+.sidebar.collapsed + .content {
+  width: 100%;
+}
+
+.content {
+  width: 82%;
+}
+
+// button {
+//   width: 30px;
+//   height: 30px;
+//   border: none;
+//   outline: none;
+//   background: black;
+//   cursor: pointer;
+// }
+
+h3 {
+  font-family: sans-serif;
+  color: white;
+  text-align: center;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 576px) {
+}
