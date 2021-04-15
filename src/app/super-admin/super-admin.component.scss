@@ -5,40 +5,14 @@ main {
   width: 100%;
 }
 
-.sidebar,
-.content {
-  height: 100%;
-  overflow: auto;
-  float: left;
-  transition: width 0.35s;
-}
-
-.sidebar {
-  background: #2e353d;
-  width: 18%;
-  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.5);
-}
-
-.sidebar.collapsed {
-  width: 0;
-}
-
 .sidebar.collapsed + .content {
   width: 100%;
 }
 
-.content {
-  width: 82%;
+.sidebar {
+  background: #2e353d;
+  box-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
 }
-
-// button {
-//   width: 30px;
-//   height: 30px;
-//   border: none;
-//   outline: none;
-//   background: black;
-//   cursor: pointer;
-// }
 
 h3 {
   font-family: sans-serif;
@@ -46,11 +20,56 @@ h3 {
   text-align: center;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
+  .sidebar {
+    position: absolute;
+    height: 100%;
+    width: 85%;
+    z-index: 1;
+    top: 55px;
+    transition: width 0.2s;
+  }
+
+  .content {
+    margin-top: 2.75rem;
+  }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 576px) and (max-width: 978px) {
+  .sidebar {
+    position: absolute;
+    height: 100%;
+    width: 40%;
+    z-index: 1;
+    transition: width 0.2s;
+  }
+  .sidebar.collapsed {
+    width: 0%;
+    z-index: 0;
+  }
+  .content {
+    margin-top: 2.75rem;
+  }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 978px) {
+  .sidebar,
+  .content {
+    height: 100%;
+    overflow: hidden;
+    float: left;
+    transition: width 0.35s;
+  }
+
+  .sidebar {
+    width: 18%;
+  }
+
+  .sidebar.collapsed {
+    width: 0;
+  }
+
+  .content {
+    width: 82%;
+  }
 }

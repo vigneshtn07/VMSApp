@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {
   ProgressBreadCumb,
   ProgressMove,
@@ -16,9 +17,14 @@ export class AdminRegistrationComponent implements OnInit {
   assignedDate: any;
   approvedOrRejectedDate: any;
   bsConfig!: Partial<BsDatepickerConfig>;
+  modalRef!: BsModalRef;
 
   currentIndex: any = -1;
   showFlag: any = false;
+  selectUserAssignment: string = 'self';
+
+  userListOptions: any;
+  selectedUserOption: any;
 
   imageObject: Array<any> = [
     {
@@ -43,7 +49,14 @@ export class AdminRegistrationComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private modalService: BsModalService) {
+    this.userListOptions = [
+      { user: 'Karthick', code: 'karthick' },
+      { user: 'Sabari', code: 'sabari' },
+      { user: 'Vijay', code: 'Vijay' },
+      { user: 'Harish', code: 'Harish' },
+    ];
+  }
 
   ngOnInit(): void {}
 
@@ -56,4 +69,10 @@ export class AdminRegistrationComponent implements OnInit {
     this.showFlag = false;
     this.currentIndex = -1;
   }
+
+  openModal(modalId: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(modalId);
+  }
+
+  assignUser(): void {}
 }

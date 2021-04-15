@@ -126,6 +126,31 @@
   }
 }
 
+.modal-body {
+  .p-field-radiobutton {
+    label {
+      margin-bottom: 0;
+      margin-left: 6px;
+    }
+  }
+  .p-dropdown {
+    width: 100%;
+  }
+  ::ng-deep .p-dropdown {
+    width: 100%;
+    &:not(.p-disabled):hover {
+      border-color: $vms-primary;
+    }
+    &:not(.p-disabled).p-focus {
+      box-shadow: none;
+      border-color: $vms-primary;
+    }
+  }
+  ::ng-deep .p-disabled {
+    background-color: #e1e1e1;
+  }
+}
+
 @media (min-width: 576px) {
   .registration-detail {
     &__actions {
@@ -147,7 +172,7 @@
 
 @media (min-width: 978px) {
   .card {
-    margin: 0;
+    margin: 0 1rem;
   }
   .registration-detail {
     &__actions {

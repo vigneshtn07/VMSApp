@@ -7,6 +7,7 @@ export const darkTheme: Theme = {
     '--vms-secondary': '#fff',
     '--vms-grey-900': '#9b9b9b',
     '--vms-grey-700': '#707070',
+    '--vms-grey-500': '#555555',
     '--vms-grey-300': '#333333',
     '--vms-grey-200': '#232323',
     '--vms-black': '#000000',

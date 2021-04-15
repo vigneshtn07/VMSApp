@@ -3,6 +3,7 @@ $vms-primary: var(--vms-primary);
 $vms-secondary: var(--vms-secondary);
 $vms-grey-900: var(--vms-grey-900);
 $vms-grey-700: var(--vms-grey-700);
+$vms-grey-500: var(--vms-grey-500);
 $vms-grey-300: var(
   --vms-grey-300
 ); //used as Dark theme primary (NOTE: Do Not use this code for other stylings except theme)
@@ -16,3 +17,5 @@ $vms-box-shadow-grey: var(--vms-box-shadow-grey);
 
 //app-dark theme colors
 $login-gradient: var(--vms-login-gradient);
+
+$vms-white: #fff;

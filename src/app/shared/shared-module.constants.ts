@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotifierModule } from 'angular-notifier';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { ButtonModule } from 'primeng/button';
 
 import { VMSDialogModalComponent } from './components/vms-dialog-modal/vms-dialog-modal.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -40,6 +42,8 @@ export abstract class SharedModuleConstants {
     TableModule,
     DropdownModule,
     RouterModule,
+    RadioButtonModule,
+    ButtonModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {
@@ -96,6 +100,7 @@ export abstract class SharedModuleConstants {
     TypeofPipe,
     SearchFilterPipe,
     DropdownModule,
+    RadioButtonModule,
   ];
   static readonly MODULE_PROVIDERS = [];
 }

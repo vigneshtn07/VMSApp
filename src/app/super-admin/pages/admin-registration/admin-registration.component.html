@@ -12,15 +12,18 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 d-flex registration-detail__actions">
+                    <button class="vms-btn-primary-outline" (click)="openModal(assignUserModal)">
+                        Assign To
+                    </button>
                     <button class="vms-btn-primary-success">
                         Approve
                     </button>
                     <button class="vms-btn-primary-failure">
                         Reject
                     </button>
-                    <button class="vms-btn-primary-outline">
+                    <!-- <button class="vms-btn-primary-outline">
                         Cancel
-                    </button>
+                    </button> -->
                 </div>
             </div>
         </div>
@@ -273,3 +276,40 @@
 
 <ng-image-fullscreen-view [images]="imageObject" [imageIndex]="currentIndex" [show]="showFlag"
     (close)="closeEventHandler()"></ng-image-fullscreen-view>
+
+
+<ng-template #assignUserModal>
+    <div class="modal-header">
+        <h4 class="modal-title">Assign Record to User</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row px-4">
+            <div class="col-6 p-field-radiobutton">
+                <p-radioButton name="userAssignment" value="self" inputId="self" [(ngModel)]="selectUserAssignment">
+                </p-radioButton>
+                <label for="self">Self</label>
+            </div>
+            <div class="col-6 p-field-radiobutton">
+                <p-radioButton name="userAssignment" value="other" inputId="other" [(ngModel)]="selectUserAssignment">
+                </p-radioButton>
+                <label for="other">Other User</label>
+            </div>
+        </div>
+        <div class="row px-4 mt-4">
+            <div class="col-12">
+                <label>Users</label>
+
+                <p-dropdown class="w-100" [options]="userListOptions" [(ngModel)]="selectedUserOption"
+                    optionLabel="user" [disabled]="selectUserAssignment == 'self'">
+                </p-dropdown>
+            </div>
+        </div>
+    </div>
+    <div class="modal-action d-flex justify-content-center my-4" theme>
+        <button class="vms-btn-primary mr-3" (click)="assignUser()">Submit</button>
+        <button class="vms-btn-primary-outline" (click)="modalRef.hide()">Cancel</button>
+    </div>
+</ng-template>

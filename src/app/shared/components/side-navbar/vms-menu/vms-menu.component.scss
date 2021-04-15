@@ -1,0 +1,36 @@
+@import "app-colors";
+
+.vms-menu {
+  &__list-item {
+    color: $vms-white;
+    a {
+      display: block;
+      padding: 1rem 0.25rem 1rem 1rem;
+      // border-bottom: 1px solid $vms-grey-500;
+      // border-top: 1px solid $vms-grey-500;
+      cursor: pointer;
+      &:hover {
+        background-color: $vms-black;
+      }
+    }
+    &.has-submenu {
+      padding-bottom: 0;
+      .vms-menu__list-item {
+        a {
+          padding-left: 2.5rem;
+          border-bottom: 0;
+          border-top: 0;
+        }
+      }
+      .sub-menu {
+        max-height: 0;
+        transition: max-height 0.15s ease-out;
+        overflow: hidden;
+      }
+      .collapse-menu {
+        max-height: 500px;
+        transition: max-height 0.25s ease-in;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<ul class="vms-menu">
+    <li *ngFor="let menuItem of src" class="vms-menu__list-item" [ngClass]="menuItem.subMenu? 'has-submenu' : ''"
+        (click)="expandSubMenu(menuItem, $event)">
+        <a>{{menuItem.menu}}</a>
+        <div *ngIf="menuItem.subMenu" class="sub-menu" [class.collapse-menu]="menuItem.expandSubMenu">
+            <vms-menu [src]="menuItem.subMenu"></vms-menu>
+        </div>
+    </li>
+</ul>

@@ -1,10 +1,9 @@
 <main>
     <app-navbar></app-navbar>
     <aside class="sidebar" [ngClass]="collapsed ? 'collapsed': ''">
-        <side-navbar></side-navbar>
+        <side-navbar (onToogleChange)="toogleSideNavBar($event)" [menuSrc]="superAdminMenus"></side-navbar>
     </aside>
     <div class="content">
-        <button title="Toggle sidebar" (click)="collapsed = !collapsed"></button>
         <div class="container-fluid">
             <menu-breadcrumb></menu-breadcrumb>
             <router-outlet></router-outlet>

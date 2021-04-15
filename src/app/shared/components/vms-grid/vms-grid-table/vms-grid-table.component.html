@@ -1,4 +1,6 @@
-<p-table #dt [columns]="columns" [value]="values" [scrollable]="true" class="p-dimen" scrollHeight="450px">
+<p-table #dt [columns]="columns" [value]="values" [scrollable]="true" class="p-dimen" scrollHeight="450px"
+    [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="colgroup" let-columns>
         <colgroup>
             <col [style]="{width: '3rem'}">
