@@ -120,6 +120,7 @@ main {
   position: relative;
   margin-top: 150px;
   text-align: center;
+  // margin-left: 50px;
 }
 
 .sidebar-item {
@@ -177,9 +178,9 @@ main {
 .sidebar-anchor {
   color: #FFF;
   text-decoration: none;
-  font-size: 1.8em;
-  text-transform: uppercase;
-  position: relative;
+  font-size: 1.2em;
+  // text-transform: uppercase;
+  // position: relative;
   padding-bottom: 7px;
 }
 
@@ -210,7 +211,7 @@ main {
 
 .fa {
   font-size: 1.4em;
-  color: #EF8354;
+  color: #ffffff;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -ms-transition: all 1s ease;

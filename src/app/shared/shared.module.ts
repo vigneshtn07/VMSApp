@@ -5,11 +5,12 @@ import { VmsGridComponent } from './components/vms-grid/vms-grid.component';
 import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
 import { VmsNotificationComponent } from './components/vms-notification/vms-notification.component';
 import { AppSidebarComponent } from './components/app-sidebar/app-sidebar.component';
+import { VmsEmailComponent } from './components/vms-email/vms-email.component';
 
 @NgModule({
   imports: [SharedModuleConstants.MODULE_IMPORTS],
   exports: [SharedModuleConstants.MODULE_EXPORTS],
-  declarations: [SharedModuleConstants.MODULE_DECLARATIONS, VmsGridComponent, AppNavbarComponent, VmsNotificationComponent, AppSidebarComponent],
+  declarations: [SharedModuleConstants.MODULE_DECLARATIONS, VmsGridComponent, AppNavbarComponent, VmsNotificationComponent, AppSidebarComponent, VmsEmailComponent],
   providers: [],
 })
 export class SharedModule {}

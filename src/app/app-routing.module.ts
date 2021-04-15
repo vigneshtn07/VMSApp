@@ -18,6 +18,7 @@ import { VerifyAdminsComponent } from './components/verify-admins/verify-admins.
 import { AppNavbarComponent } from './shared/components/app-navbar/app-navbar.component';
 import {VmsNotificationComponent} from  './shared/components/vms-notification/vms-notification.component';
 import { AppSidebarComponent } from './shared/components/app-sidebar/app-sidebar.component';
+import {VmsEmailComponent} from './shared/components/vms-email/vms-email.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -69,6 +70,10 @@ const routes: Routes = [
   {
     path: 'Notification',
     component: AppSidebarComponent,
+  },
+  {
+    path: 'Mail',
+    component: VmsEmailComponent,
   }
   // ,{ path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
