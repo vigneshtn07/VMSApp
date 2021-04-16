@@ -6,11 +6,14 @@
     a {
       display: block;
       padding: 1rem 0.25rem 1rem 1rem;
-      // border-bottom: 1px solid $vms-grey-500;
-      // border-top: 1px solid $vms-grey-500;
+      border-bottom: 1px solid $vms-grey-500;
+      border-top: 1px solid $vms-grey-500;
       cursor: pointer;
       &:hover {
         background-color: $vms-black;
+      }
+      &:active {
+        background: none;
       }
     }
     &.has-submenu {

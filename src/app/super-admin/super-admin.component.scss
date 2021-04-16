@@ -1,8 +1,9 @@
 :host,
 main {
   position: relative;
-  height: 100%;
-  width: 100%;
+  overflow: hidden;
+  // height: 100%;
+  // width: 100%;
 }
 
 .sidebar.collapsed + .content {
@@ -20,14 +21,23 @@ h3 {
   text-align: center;
 }
 
+.sidebar {
+  position: absolute;
+  height: 100%;
+  width: 85%;
+  z-index: 1;
+  top: 55px;
+  left: 0;
+  transition: left 0.2s;
+}
+
 @media (max-width: 576px) {
   .sidebar {
-    position: absolute;
-    height: 100%;
     width: 85%;
-    z-index: 1;
-    top: 55px;
-    transition: width 0.2s;
+  }
+
+  .sidebar.collapsed {
+    left: -86%;
   }
 
   .content {
@@ -37,39 +47,24 @@ h3 {
 
 @media (min-width: 576px) and (max-width: 978px) {
   .sidebar {
-    position: absolute;
-    height: 100%;
     width: 40%;
-    z-index: 1;
-    transition: width 0.2s;
   }
+
   .sidebar.collapsed {
-    width: 0%;
-    z-index: 0;
+    left: -41%;
   }
+
   .content {
     margin-top: 2.75rem;
   }
 }
 
 @media (min-width: 978px) {
-  .sidebar,
-  .content {
-    height: 100%;
-    overflow: hidden;
-    float: left;
-    transition: width 0.35s;
-  }
-
   .sidebar {
-    width: 18%;
-  }
-
-  .sidebar.collapsed {
-    width: 0;
+    width: 20%;
   }
 
   .content {
-    width: 82%;
+    margin-left: 22%;
   }
 }
