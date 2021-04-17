@@ -34,6 +34,8 @@ import { VerificationResponseComponent } from './components/verify-admins/verifi
 import { VerifyAdminsComponent } from './components/verify-admins/verify-admins.component';
 import { SuperAdminModule } from './super-admin/super-admin.module';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { BusinessAdminModule } from './business-admin/business-admin.module';
+import { TechnicalAdminModule } from './technical-admin/technical-admin.module';
 
 export abstract class AppModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -46,6 +48,8 @@ export abstract class AppModuleConstants {
     SharedModule,
     KnobModule,
     SuperAdminModule,
+    BusinessAdminModule,
+    TechnicalAdminModule,
   ];
   static readonly MODULE_DECLARATIONS = [
     AppComponent,

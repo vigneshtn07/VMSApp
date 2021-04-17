@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-business-admin',
-  templateUrl: './business-admin.component.html',
-  styleUrls: ['./business-admin.component.scss']
+  selector: 'app-technical-admin',
+  templateUrl: './technical-admin.component.html',
+  styleUrls: ['./technical-admin.component.scss']
 })
-export class BusinessAdminComponent implements OnInit {
+export class TechnicalAdminComponent implements OnInit {
+
   collapsed: boolean = false;
   superAdminMenus: any;
   constructor() {
@@ -97,5 +98,4 @@ export class BusinessAdminComponent implements OnInit {
   toogleSideNavBar(event: any): void {
     this.collapsed = event;
   }
-
 }

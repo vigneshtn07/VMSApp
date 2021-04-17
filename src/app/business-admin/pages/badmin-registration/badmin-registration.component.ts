@@ -7,11 +7,12 @@ import {
 } from 'src/app/shared/interface/progress-breadcrumb';
 
 @Component({
-  selector: 'app-admin-registration',
-  templateUrl: './admin-registration.component.html',
-  styleUrls: ['./admin-registration.component.scss'],
+  selector: 'app-badmin-registration',
+  templateUrl: './badmin-registration.component.html',
+  styleUrls: ['./badmin-registration.component.scss']
 })
-export class AdminRegistrationComponent implements OnInit {
+export class BadminRegistrationComponent implements OnInit {
+
   submittedDate: any;
   lastModifiedDate: any;
   assignedDate: any;
@@ -76,4 +77,3 @@ export class AdminRegistrationComponent implements OnInit {
 
   assignUser(): void {}
 }
-

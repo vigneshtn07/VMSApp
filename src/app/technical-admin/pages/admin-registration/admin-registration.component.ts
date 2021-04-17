@@ -5,13 +5,13 @@ import {
   ProgressBreadCumb,
   ProgressMove,
 } from 'src/app/shared/interface/progress-breadcrumb';
-
 @Component({
   selector: 'app-admin-registration',
   templateUrl: './admin-registration.component.html',
-  styleUrls: ['./admin-registration.component.scss'],
+  styleUrls: ['./admin-registration.component.scss']
 })
-export class AdminRegistrationComponent implements OnInit {
+export class TAdminRegistrationComponent implements OnInit {
+
   submittedDate: any;
   lastModifiedDate: any;
   assignedDate: any;
@@ -76,4 +76,3 @@ export class AdminRegistrationComponent implements OnInit {
 
   assignUser(): void {}
 }
-

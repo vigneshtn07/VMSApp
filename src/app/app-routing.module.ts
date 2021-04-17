@@ -18,6 +18,15 @@ import { VerifyAdminsComponent } from './components/verify-admins/verify-admins.
 import { AdminRegistrationComponent } from './super-admin/pages/admin-registration/admin-registration.component';
 import { DashboardComponent } from './super-admin/pages/dashboard/dashboard.component';
 import { SuperAdminComponent } from './super-admin/super-admin.component';
+import { BADashboardComponent } from './business-admin/pages/dashboard/dashboard.component';
+import { BadminRegistrationComponent } from './business-admin/pages/badmin-registration/badmin-registration.component';
+import { BusinessAdminComponent } from './business-admin/business-admin.component';
+
+
+import { TechnicalAdminComponent } from './technical-admin/technical-admin.component';
+import { TDashboardComponent } from './technical-admin/pages/dashboard/dashboard.component';
+import { TAdminRegistrationComponent } from './technical-admin/pages/admin-registration/admin-registration.component';
+
 
 const SUPER_ADMIN_ROUTES: Routes = [
   {
@@ -26,6 +35,30 @@ const SUPER_ADMIN_ROUTES: Routes = [
     children: [
       { path: 'registration/:id', component: AdminRegistrationComponent },
       { path: 'dashboard', component: DashboardComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    ],
+  },
+];
+
+const BUSINESS_ADMIN_ROUTES: Routes = [
+  {
+    path: 'business-admin',
+    component: BusinessAdminComponent,
+    children: [
+      { path: 'registration/:id', component: BadminRegistrationComponent },
+      { path: 'dashboard', component: BADashboardComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    ],
+  },
+];
+
+const TECHNICAL_ADMIN_ROUTES: Routes = [
+  {
+    path: 'technical-admin',
+    component: TechnicalAdminComponent,
+    children: [
+      { path: 'registration/:id', component: TAdminRegistrationComponent },
+      { path: 'dashboard', component: TDashboardComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },
@@ -79,7 +112,7 @@ const routes: Routes = [
     component: ChangePasswordComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  ...SUPER_ADMIN_ROUTES,
+  ...SUPER_ADMIN_ROUTES,...BUSINESS_ADMIN_ROUTES,...TECHNICAL_ADMIN_ROUTES,
 ];
 
 @NgModule({

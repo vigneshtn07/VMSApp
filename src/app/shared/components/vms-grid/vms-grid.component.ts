@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GridHeader } from '../../interface/grid-header';
-import * as _ from 'lodash';
+// import * as _ from 'lodash';
 
 @Component({
   selector: 'vms-grid',
@@ -17,6 +17,6 @@ export class VmsGridComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.values = _.orderBy(this.values, [this.categorySelection], ['asc']);
+  //  this.values = _.orderBy(this.values, [this.categorySelection], ['asc']);
   }
 }
