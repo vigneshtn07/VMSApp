@@ -31,6 +31,7 @@ import { SideNavbarComponent } from './components/side-navbar/side-navbar.compon
 import { VmsNotificationComponent } from './components/vms-notification/vms-notification.component';
 import { VmsMenuComponent } from './components/side-navbar/vms-menu/vms-menu.component';
 import { VmsMenuItemComponent } from './components/side-navbar/vms-menu-item/vms-menu-item.component';
+import { darkTheme, lightTheme, ThemeModule } from 'src/theme';
 
 export abstract class SharedModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -60,6 +61,10 @@ export abstract class SharedModuleConstants {
         },
       },
     }),
+    ThemeModule.forRoot({
+      themes: [lightTheme, darkTheme],
+      active: 'light',
+    }),
   ];
   static readonly MODULE_DECLARATIONS = [
     VMSDialogModalComponent,
@@ -79,10 +84,11 @@ export abstract class SharedModuleConstants {
     SearchFilterPipe,
     VmsNotificationComponent,
     VmsMenuComponent,
-    VmsMenuItemComponent
+    VmsMenuItemComponent,
   ];
   static readonly MODULE_EXPORTS = [
     CommonModule,
+    ThemeModule,
     TextMaskModule,
     VMSDialogModalComponent,
     FormsModule,
@@ -109,7 +115,7 @@ export abstract class SharedModuleConstants {
     RadioButtonModule,
     VmsNotificationComponent,
     VmsMenuComponent,
-    VmsMenuItemComponent
+    VmsMenuItemComponent,
   ];
   static readonly MODULE_PROVIDERS = [];
 }

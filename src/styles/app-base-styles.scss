@@ -41,6 +41,9 @@ a:hover {
   text-decoration: none;
   color: $vms-primary;
 }
+a.vms-btn-primary:hover{
+  color: $vms-secondary;
+}
 
 h1,
 h2,
