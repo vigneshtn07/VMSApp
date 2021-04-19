@@ -1,12 +1,11 @@
-<div class="app-navbar">
-    <div class="row h-full">
-        <div class="col-4"></div>
-        <div class="col-8 ">
-            <div class="nav-option">
-                <div class="nav-option__item">
-                    <i class="fa fa-bell-o" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
+<nav class="nav-bar">
+  <div class="notification-box" (click)="openNotification(!showNotification)">
+    <div class="notification-bell">
+      <span class="bell-top"></span>
+      <span class="bell-middle"></span>
+      <span class="bell-bottom"></span>
+      <span class="bell-rad"></span>
     </div>
-</div>
+  </div>
+  <app-vms-notification></app-vms-notification>
+</nav>

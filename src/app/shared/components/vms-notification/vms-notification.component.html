@@ -1,0 +1,38 @@
+
+  <!-- <div class="nav-right visible-xs">
+    <div class="button" id="btn" >
+      <div class="bar top"></div>
+      <div class="bar middle"></div>
+      <div class="bar bottom"></div>
+    </div>
+  </div> -->
+  <main>
+    <nav> 
+      <!-- <div class="nav-right hidden-xs">
+        <div class="button" id="btn">
+          <div class="bar top"></div>
+          <div class="bar middle"></div>
+          <div class="bar bottom"></div>
+        </div> 
+      </div> -->
+     </nav>
+  </main>
+
+ 
+<!--   
+  <div class="sidebar"   [ngClass]="{'white' : toggle, 'red': !toggle}">
+    <ul class="sidebar-list">
+      <li class="sidebar-item"><a href="#" class="sidebar-anchor">Home</a></li>
+      <li class="sidebar-item"><a href="#" class="sidebar-anchor">About Us</a></li>
+      <li class="sidebar-item"><a href="#" class="sidebar-anchor">Services</a></li>
+      <li class="sidebar-item"><a href="#" class="sidebar-anchor">Contact Us</a></li>
+    </ul>
+  </div> -->
+  
+  <div class="sidebar"   [ngClass]="toggle ? 'success' : 'danger'"  [ngStyle]="{backgroundColor: getColor()}">
+    <ul class="sidebar-list">
+      <li class="sidebar-item"><a class="sidebar-anchor"><span class="fa fa-commenting"></span>New Registration SSL1245672453 - pending assignment Timedate</a></li>
+      <li class="sidebar-item"><a class="sidebar-anchor"><span class="fa fa-commenting"></span>New Registration RegId - pending assignment Timedate</a></li>
+      <li class="sidebar-item"><a class="sidebar-anchor"><span class="fa fa-commenting"></span>New Registration RegId - pending assignment Timedate</a></li>
+    </ul>
+  </div>

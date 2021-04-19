@@ -63,6 +63,10 @@ const TECHNICAL_ADMIN_ROUTES: Routes = [
     ],
   },
 ];
+import { AppNavbarComponent } from './shared/components/app-navbar/app-navbar.component';
+import { VmsNotificationComponent } from './shared/components/vms-notification/vms-notification.component';
+import { AppSidebarComponent } from './shared/components/app-sidebar/app-sidebar.component';
+import { VmsEmailComponent } from './shared/components/vms-email/vms-email.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -112,11 +116,20 @@ const routes: Routes = [
     component: ChangePasswordComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  ...SUPER_ADMIN_ROUTES,...BUSINESS_ADMIN_ROUTES,...TECHNICAL_ADMIN_ROUTES,
+  ...SUPER_ADMIN_ROUTES, ...BUSINESS_ADMIN_ROUTES, ...TECHNICAL_ADMIN_ROUTES,
+  {
+    path: 'Notification',
+    component: AppSidebarComponent,
+  },
+  {
+    path: 'Mail',
+    component: VmsEmailComponent,
+  }
+  // ,{ path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
