@@ -13,10 +13,10 @@ export class AppNavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openNotification(state: boolean) {
-    this.showNotification = state;
-    let myVmsNotificationComponentObj = new VmsNotificationComponent();
-    myVmsNotificationComponentObj.loadMenu(this.showNotification);
-  }
+  // openNotification(state: boolean) {
+  //   this.showNotification = state;
+  //   let myVmsNotificationComponentObj = new VmsNotificationComponent();
+  //   myVmsNotificationComponentObj.loadMenu(this.showNotification);
+  // }
 
 }

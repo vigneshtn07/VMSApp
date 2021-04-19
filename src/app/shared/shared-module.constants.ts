@@ -28,6 +28,9 @@ import { MenuBreadcrumbComponent } from './components/menu-breadcrumb/menu-bread
 import { RouterModule } from '@angular/router';
 import { StackedProgressBarComponent } from './components/stacked-progress-bar/stacked-progress-bar.component';
 import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
+import { VmsNotificationComponent } from './components/vms-notification/vms-notification.component';
+import { VmsMenuComponent } from './components/side-navbar/vms-menu/vms-menu.component';
+import { VmsMenuItemComponent } from './components/side-navbar/vms-menu-item/vms-menu-item.component';
 
 export abstract class SharedModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -74,6 +77,9 @@ export abstract class SharedModuleConstants {
     SideNavbarComponent,
     TypeofPipe,
     SearchFilterPipe,
+    VmsNotificationComponent,
+    VmsMenuComponent,
+    VmsMenuItemComponent
   ];
   static readonly MODULE_EXPORTS = [
     CommonModule,
@@ -101,6 +107,9 @@ export abstract class SharedModuleConstants {
     SearchFilterPipe,
     DropdownModule,
     RadioButtonModule,
+    VmsNotificationComponent,
+    VmsMenuComponent,
+    VmsMenuItemComponent
   ];
   static readonly MODULE_PROVIDERS = [];
 }

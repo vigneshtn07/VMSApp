@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SampleRegistrationList } from '../../constants/mock-data';
+import { SampleRegistrationList } from '../../constants/mock-data-registrations';
 import { RegistrationList } from '../../interface/registration-list';
 import { GridHeader } from '../../../shared/interface/grid-header';
 
@@ -12,7 +12,7 @@ export class RegistrationListComponent implements OnInit {
   public cols!: GridHeader[];
   public registrationlist!: RegistrationList[];
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.cols = [

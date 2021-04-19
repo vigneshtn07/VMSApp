@@ -22,11 +22,12 @@ import { BADashboardComponent } from './business-admin/pages/dashboard/dashboard
 import { BadminRegistrationComponent } from './business-admin/pages/badmin-registration/badmin-registration.component';
 import { BusinessAdminComponent } from './business-admin/business-admin.component';
 
-
+import { AppSidebarComponent } from './shared/components/app-sidebar/app-sidebar.component';
+import { VmsEmailComponent } from './shared/components/vms-email/vms-email.component';
 import { TechnicalAdminComponent } from './technical-admin/technical-admin.component';
 import { TDashboardComponent } from './technical-admin/pages/dashboard/dashboard.component';
 import { TAdminRegistrationComponent } from './technical-admin/pages/admin-registration/admin-registration.component';
-
+import { ProjectsListComponent } from './super-admin/pages/projects-list/projects-list.component';
 
 const SUPER_ADMIN_ROUTES: Routes = [
   {
@@ -34,6 +35,11 @@ const SUPER_ADMIN_ROUTES: Routes = [
     component: SuperAdminComponent,
     children: [
       { path: 'registration/:id', component: AdminRegistrationComponent },
+      {
+        path: 'projects',
+        component: ProjectsListComponent,
+        data: { breadcrumbMenu: 'projects' },
+      },
       { path: 'dashboard', component: DashboardComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
@@ -63,10 +69,6 @@ const TECHNICAL_ADMIN_ROUTES: Routes = [
     ],
   },
 ];
-import { AppNavbarComponent } from './shared/components/app-navbar/app-navbar.component';
-import { VmsNotificationComponent } from './shared/components/vms-notification/vms-notification.component';
-import { AppSidebarComponent } from './shared/components/app-sidebar/app-sidebar.component';
-import { VmsEmailComponent } from './shared/components/vms-email/vms-email.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -116,7 +118,6 @@ const routes: Routes = [
     component: ChangePasswordComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  ...SUPER_ADMIN_ROUTES, ...BUSINESS_ADMIN_ROUTES, ...TECHNICAL_ADMIN_ROUTES,
   {
     path: 'Notification',
     component: AppSidebarComponent,
@@ -124,7 +125,10 @@ const routes: Routes = [
   {
     path: 'Mail',
     component: VmsEmailComponent,
-  }
+  },
+  ...SUPER_ADMIN_ROUTES,
+  ...BUSINESS_ADMIN_ROUTES,
+  ...TECHNICAL_ADMIN_ROUTES,
   // ,{ path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
@@ -132,4 +136,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

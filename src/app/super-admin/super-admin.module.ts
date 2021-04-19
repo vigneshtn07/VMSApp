@@ -8,6 +8,7 @@ import { AdminRegistrationComponent } from './pages/admin-registration/admin-reg
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { SuperAdminComponent } from './super-admin.component';
 import { RouterModule } from '@angular/router';
+import { ProjectsListComponent } from './pages/projects-list/projects-list.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     RegistrationListComponent,
     AdminRegistrationComponent,
     SuperAdminComponent,
+    ProjectsListComponent,
   ],
   imports: [
     CommonModule,
