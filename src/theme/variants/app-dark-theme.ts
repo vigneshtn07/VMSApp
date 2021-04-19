@@ -10,6 +10,7 @@ export const darkTheme: Theme = {
     '--vms-grey-500': '#555555',
     '--vms-grey-300': '#333333',
     '--vms-grey-200': '#232323',
+    '--vms-grey-400': '#d6d6d6',
     '--vms-black': '#000000',
     '--vms-green': '#0f580f',
     '--vms-aqua-green': '#17a2b8',

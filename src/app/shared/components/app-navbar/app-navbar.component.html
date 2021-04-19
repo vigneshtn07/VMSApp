@@ -1,25 +1,40 @@
-<!-- <nav class="nav-bar">
-  <div class="notification-box" (click)="openNotification(!showNotification)">
-    <div class="notification-bell">
-      <span class="bell-top"></span>
-      <span class="bell-middle"></span>
-      <span class="bell-bottom"></span>
-      <span class="bell-rad"></span>
-    </div>
-  </div>
-  <vms-notification></vms-notification>
-</nav> -->
-
 <div class="app-navbar">
-  <div class="row h-full">
-    <div class="col-4"></div>
-    <div class="col-8 ">
-      <div class="nav-option">
-        <div class="nav-option__item">
-          <i class="fa fa-bell-o" aria-hidden="true"></i>
+  <div class="wrapper">
+    <div class="navbar">
+      <div class="navbar_left">
+        <!-- <div class="logo">
+        <a href="#">Coding Market</a>
+      </div> -->
+      </div>
+      <div class="navbar_right">
+        <div class="notifications" [ngClass]="isOpened? 'active': ''">
+          <div class="icon_wrap" (click)="toggle()"><i class="fa fa-bell-o"></i></div>
+          <div class="notification_dd">
+            <ul class="notification_ul">
+              <li class="starbucks success">
+                <div class="notify_data">
+                  <div class="sub_title">
+                    New Registration SSL1245672453 - pending assignment Timedate
+                  </div>
+                </div>
+                <div class="notify_status">
+                  <p>New</p>
+                </div>
+              </li>
+              <li class="starbucks success">
+                <div class="notify_data">
+                  <div class="sub_title">
+                    New Registration RegId - pending assignment Timedate
+                  </div>
+                </div>
+                <div class="notify_status">
+                  <p>New</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- <vms-notification></vms-notification> -->

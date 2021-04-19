@@ -155,7 +155,8 @@
                     </div>
                     <div class="row">
                         <div class="col-12 my-2">
-                            <stacked-progress-bar></stacked-progress-bar>
+                            <stacked-progress-bar (handleProgressClick)="onProgressChange($event)">
+                            </stacked-progress-bar>
                         </div>
                     </div>
                     <div class="row mx-3 mx-md-5 checklists">

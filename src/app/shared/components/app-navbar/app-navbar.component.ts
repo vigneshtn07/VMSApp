@@ -8,15 +8,13 @@ import { VmsNotificationComponent } from 'src/app/shared/components/vms-notifica
 export class AppNavbarComponent implements OnInit {
   showNotification: boolean | any;
   public show: boolean = true;
+  isOpened: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  // openNotification(state: boolean) {
-  //   this.showNotification = state;
-  //   let myVmsNotificationComponentObj = new VmsNotificationComponent();
-  //   myVmsNotificationComponentObj.loadMenu(this.showNotification);
-  // }
-
+  toggle() {
+    this.isOpened = !this.isOpened;
+  }
 }
