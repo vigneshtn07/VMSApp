@@ -41,10 +41,6 @@ export abstract class AppModuleConstants {
   static readonly MODULE_IMPORTS = [
     BrowserModule,
     AppRoutingModule,
-    ThemeModule.forRoot({
-      themes: [lightTheme, darkTheme],
-      active: 'light',
-    }),
     SharedModule,
     KnobModule,
     SuperAdminModule,

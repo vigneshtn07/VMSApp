@@ -26,6 +26,9 @@ export class AdminRegistrationComponent implements OnInit {
   userListOptions: any;
   selectedUserOption: any;
 
+  registrationCheckList: any;
+  exceptionalApproval: boolean = false;
+
   imageObject: Array<any> = [
     {
       image: '../../../../assets/images/attachment-1.png',
@@ -49,6 +52,24 @@ export class AdminRegistrationComponent implements OnInit {
     },
   ];
 
+  aemail = 'test@gmail.com';
+  asubject = 'Approval email';
+  acontent =
+    'Hi < Customer first name>,' +
+    '%0D' +
+    '%0D' +
+    'We are happy to inform you that, you have been approved and your account is ready for action. Please log in with your' +
+    '%0D' +
+    'registered username and password to activate your account.' +
+    '%0D' +
+    '%0D' +
+    'For any assistance please contact us at <support.ivms@kontaak.com>' +
+    '%0D' +
+    '%0D' +
+    'Welcome to iVMS' +
+    '%0D' +
+    'iVMS Team';
+
   constructor(private modalService: BsModalService) {
     this.userListOptions = [
       { user: 'Karthick', code: 'karthick' },
@@ -56,11 +77,24 @@ export class AdminRegistrationComponent implements OnInit {
       { user: 'Vijay', code: 'Vijay' },
       { user: 'Harish', code: 'Harish' },
     ];
+
+    this.registrationCheckList = [
+      { label: 'Checkitem1', checked: false },
+      { label: 'Checkitem2', checked: false },
+      { label: 'Checkitem3', checked: false },
+      { label: 'Checkitem4', checked: false },
+      { label: 'Checkitem5', checked: false },
+      { label: 'Checkitem6', checked: false },
+      { label: 'Checkitem7', checked: false },
+      { label: 'Checkitem8', checked: false },
+      { label: 'Checkitem9', checked: false },
+      { label: 'Checkitem10', checked: false },
+    ];
   }
 
   ngOnInit(): void {}
 
-  showLightbox(index: number) {
+  showImagePreviewer(index: number) {
     this.currentIndex = index;
     this.showFlag = true;
   }
@@ -74,6 +108,12 @@ export class AdminRegistrationComponent implements OnInit {
     this.modalRef = this.modalService.show(modalId);
   }
 
+  showApprovalPrompt(event: any, modalId: TemplateRef<any>): void {
+    if (event.currentTarget.checked) {
+      this.openModal(modalId);
+    }
+  }
+  sendApprovalNofitication(): void {}
+
   assignUser(): void {}
 }
-

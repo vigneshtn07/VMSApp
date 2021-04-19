@@ -150,8 +150,12 @@
             </div>
             <div class="row card my-4">
                 <div class="col-12 card__container registration-status-checklist">
-                    <div class="row card-title mb-3 ">
-                        <p>Registration Status</p>
+                    <div class="row card-title mb-3 ">                        
+                        <p class="flex-grow-1 flex-auto">Registration Status</p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="exceptionalApproval" value="exceptionalApproval"  (change)="showApprovalPrompt($event, approvePrompt)">
+                            <label class="form-check-label" for="exceptionalApproval">Exceptional Approval</label>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-12 my-2">
@@ -159,64 +163,10 @@
                         </div>
                     </div>
                     <div class="row mx-3 mx-md-5 checklists">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-6 py-2" *ngFor="let checkItems of registrationCheckList">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem1" value="CheckItem1">
-                                <label class="form-check-label" for="CheckItem1">Check Item 1</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem2" value="CheckItem2">
-                                <label class="form-check-label" for="CheckItem2">Check Item 2</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem3" value="CheckItem3">
-                                <label class="form-check-label" for="CheckItem1">Check Item 3</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem4" value="CheckItem4">
-                                <label class="form-check-label" for="CheckItem1">Check Item 4</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem5" value="CheckItem5">
-                                <label class="form-check-label" for="CheckItem1">Check Item 5</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem6" value="CheckItem6">
-                                <label class="form-check-label" for="CheckItem1">Check Item 6</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem7" value="CheckItem7">
-                                <label class="form-check-label" for="CheckItem1">Check Item 7</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem8" value="CheckItem8">
-                                <label class="form-check-label" for="CheckItem1">Check Item 8</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem9" value="CheckItem9">
-                                <label class="form-check-label" for="CheckItem1">Check Item 9</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="CheckItem10" value="CheckItem10">
-                                <label class="form-check-label" for="CheckItem1">Check Item 10</label>
+                                <input class="form-check-input" type="checkbox" [id]="checkItems.label" [value]="checkItems.label">
+                                <label class="form-check-label" [for]="checkItems.label">{{checkItems.label}}</label>
                             </div>
                         </div>
                     </div>
@@ -231,7 +181,7 @@
                     </div>
                     <div class="attachment-thumbnails">
                         <img *ngFor="let img of imageObject; let i = index" src="{{img.thumbImage || img.posterImage}}"
-                            (click)="showLightbox(i)" />
+                            (click)="showImagePreviewer(i)" />
                     </div>
                     <!-- upload button placeholder-->
                 </div>
@@ -312,5 +262,29 @@
     <div class="modal-action d-flex justify-content-center my-4" theme>
         <button class="vms-btn-primary mr-3" (click)="assignUser()">Submit</button>
         <button class="vms-btn-primary-outline" (click)="modalRef.hide()">Cancel</button>
+    </div>
+</ng-template>
+
+
+<ng-template #approvePrompt>
+    <div theme>
+        <div class="modal-header">
+            <h4 class="modal-title">Approve and notify user</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row px-4 mt-4">
+                <div class="col-12 text-center">
+                    <label>Are you sure want to approve and notify the customer</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-action d-flex justify-content-center my-4" theme>
+            <!-- <button class="vms-btn-primary mr-3" (click)="sendApprovalNofitication()">Yes</button> -->
+            <a class="vms-btn-primary mr-3" href="mailto:{{aemail}}?subject={{asubject}}&body={{acontent}}">Approve</a>
+            <button class="vms-btn-primary-outline" (click)="modalRef.hide()">No</button>
+        </div>
     </div>
 </ng-template>

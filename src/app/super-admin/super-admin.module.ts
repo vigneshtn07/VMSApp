@@ -9,6 +9,7 @@ import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { SuperAdminComponent } from './super-admin.component';
 import { RouterModule } from '@angular/router';
 import { ProjectsListComponent } from './pages/projects-list/projects-list.component';
+import { ThemeModule, lightTheme, darkTheme } from 'src/theme';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,10 @@ import { ProjectsListComponent } from './pages/projects-list/projects-list.compo
     SharedModule,
     NgImageFullscreenViewModule,
     RouterModule,
+    ThemeModule.forRoot({
+      themes: [lightTheme, darkTheme],
+      active: 'light',
+    }),
   ],
   exports: [],
 })
