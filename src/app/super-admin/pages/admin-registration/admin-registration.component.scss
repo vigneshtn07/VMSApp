@@ -151,6 +151,11 @@
   }
 }
 
+.fa-expand:hover{
+  color:$vms-primary;
+  cursor: pointer;
+}
+
 @media (min-width: 576px) {
   .registration-detail {
     &__actions {

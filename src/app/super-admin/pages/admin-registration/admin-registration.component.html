@@ -38,8 +38,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Name</label>
-                            <input type="text" name="name" class="form__field" aria-describedby="name"
-                                maxlength="30">
+                            <input type="text" name="name" class="form__field" aria-describedby="name" maxlength="30">
                         </div>
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Account Type</label>
@@ -59,8 +58,7 @@
                         </div>
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Owner</label>
-                            <input type="text" name="Owner" class="form__field" aria-describedby="name"
-                                maxlength="30">
+                            <input type="text" name="Owner" class="form__field" aria-describedby="name" maxlength="30">
                         </div>
                     </div>
                     <div class="row">
@@ -79,19 +77,19 @@
                     <div class="row">
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Contact Email</label>
-                            <input type="text" name="ContactEmail"  class="form__field" aria-describedby="name"
+                            <input type="text" name="ContactEmail" class="form__field" aria-describedby="name"
                                 maxlength="30">
                         </div>
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Contact Name</label>
-                            <input type="text" name="ContactNname"  class="form__field" aria-describedby="name"
+                            <input type="text" name="ContactNname" class="form__field" aria-describedby="name"
                                 maxlength="30">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Last Modified By</label>
-                            <input type="text" name="LastModifiedBy"  class="form__field" aria-describedby="name"
+                            <input type="text" name="LastModifiedBy" class="form__field" aria-describedby="name"
                                 maxlength="30">
                         </div>
                         <div class="col-12 col-md-6 vms-form__group">
@@ -150,10 +148,11 @@
             </div>
             <div class="row card my-4">
                 <div class="col-12 card__container registration-status-checklist">
-                    <div class="row card-title mb-3 ">                        
+                    <div class="row card-title mb-3 ">
                         <p class="flex-grow-1 flex-auto">Registration Status</p>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="exceptionalApproval" value="exceptionalApproval"  (change)="showApprovalPrompt($event, approvePrompt)">
+                            <input class="form-check-input" type="checkbox" id="exceptionalApproval"
+                                value="exceptionalApproval" (change)="showApprovalPrompt($event, approvePrompt)">
                             <label class="form-check-label" for="exceptionalApproval">Exceptional Approval</label>
                         </div>
                     </div>
@@ -166,7 +165,8 @@
                     <div class="row mx-3 mx-md-5 checklists">
                         <div class="col-12 col-sm-6 py-2" *ngFor="let checkItems of registrationCheckList">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" [id]="checkItems.label" [value]="checkItems.label">
+                                <input class="form-check-input" type="checkbox" [id]="checkItems.label"
+                                    [value]="checkItems.label">
                                 <label class="form-check-label" [for]="checkItems.label">{{checkItems.label}}</label>
                             </div>
                         </div>
@@ -177,8 +177,13 @@
         <div class="col-12 col-lg-4">
             <div class="row card">
                 <div class="col-12 card__container registration-form-attachments">
-                    <div class="card-title mb-3">
-                        <p>Attachments</p>
+                    <div class="row card-title mb-3">
+                        <div class="col-8">
+                            <p>Attachments</p>
+                        </div>
+                        <div class="col-2">
+                            <button class="vms-btn-primary">Upload</button>
+                        </div>
                     </div>
                     <div class="attachment-thumbnails">
                         <img *ngFor="let img of imageObject; let i = index" src="{{img.thumbImage || img.posterImage}}"
@@ -189,8 +194,13 @@
             </div>
             <div class="row card my-4">
                 <div class="col-12 card__container registration-form-comments">
-                    <div class="card-title mb-3 ">
-                        <p>Communication History</p>
+                    <div class="row  mb-3">
+                        <div class="col-8 card-title">
+                            <p>Communication History </p>
+                        </div>
+                        <div class="col-1 offset-3">
+                            <i class="fa fa-expand" aria-hidden="true" (click)="openModal(commentprompt)"></i>
+                        </div>
                     </div>
                     <div class="comment-area mb-2">
                         <div class="comment">
@@ -202,7 +212,7 @@
                     </div>
                     <div class="comment-area mb-2">
                         <div class="comment">
-                            <p><span class="user">Admin :</span> Plese wait for verification</p>
+                            <p><span class="user">Admin :</span> Please wait for verification</p>
                         </div>
                         <div class="comment-date">
                             <p><i class="fa fa-clock-o" aria-hidden="true"></i>Apr 16, 2020 - 9:54am</p>
@@ -286,6 +296,41 @@
             <!-- <button class="vms-btn-primary mr-3" (click)="sendApprovalNofitication()">Yes</button> -->
             <a class="vms-btn-primary mr-3" href="mailto:{{aemail}}?subject={{asubject}}&body={{acontent}}">Approve</a>
             <button class="vms-btn-primary-outline" (click)="modalRef.hide()">No</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #commentprompt>
+    <div theme>
+        <div class="modal-header">
+            <h4 class="modal-title">Communication History</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="comment-area mb-2">
+                <div class="comment">
+                    <p><span class="user">Karthick :</span> Upload all registration attachements</p>
+                </div>
+                <div class="comment-date">
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>Mar 24, 2020 - 6:18pm</p>
+                </div>
+            </div>
+            <div class="comment-area mb-2">
+                <div class="comment">
+                    <p><span class="user">Admin :</span> Please wait for verification</p>
+                </div>
+                <div class="comment-date">
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>Apr 16, 2020 - 9:54am</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="comment-actions">
+                <button class="vms-btn-primary">Add Comment</button>
+            </div>
         </div>
     </div>
 </ng-template>

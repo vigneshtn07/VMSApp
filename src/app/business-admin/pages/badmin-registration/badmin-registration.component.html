@@ -35,8 +35,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Name</label>
-                            <input type="text" name="name" class="form__field" aria-describedby="name"
-                                maxlength="30">
+                            <input type="text" name="name" class="form__field" aria-describedby="name" maxlength="30">
                         </div>
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Account Type</label>
@@ -56,14 +55,13 @@
                         </div>
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Owner</label>
-                            <input type="text" name="Owner"  class="form__field" aria-describedby="name"
-                                maxlength="30">
+                            <input type="text" name="Owner" class="form__field" aria-describedby="name" maxlength="30">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Assigned To</label>
-                            <input type="text" name="AssignedTo"  class="form__field" aria-describedby="name"
+                            <input type="text" name="AssignedTo" class="form__field" aria-describedby="name"
                                 maxlength="30">
                         </div>
                         <div class="col-12 col-md-6 vms-form__group">
@@ -76,7 +74,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Contact Email</label>
-                            <input type="text" name="ContactEmail"  class="form__field" aria-describedby="name"
+                            <input type="text" name="ContactEmail" class="form__field" aria-describedby="name"
                                 maxlength="30">
                         </div>
                         <div class="col-12 col-md-6 vms-form__group">
@@ -145,16 +143,21 @@
                     </div>
                 </div>
             </div>
-          
-           
+
             <div class="row card my-4">
                 <div class="col-12 card__container registration-status-checklist">
                     <div class="row card-title mb-3 ">
-                        <p>Registration Status</p>
+                        <p class="flex-grow-1 flex-auto">Registration Status</p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="exceptionalApproval"
+                                value="exceptionalApproval" (change)="showApprovalPrompt($event, approvePrompt)">
+                            <label class="form-check-label" for="exceptionalApproval">Exceptional Approval</label>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 my-2" >
-                            <stacked-progress-bar (handleProgressClick)="onProgressChange($event)"></stacked-progress-bar>
+                        <div class="col-12 my-2">
+                            <stacked-progress-bar (handleProgressClick)="onProgressChange($event)">
+                            </stacked-progress-bar>
                         </div>
                     </div>
                     <div class="row mx-3 mx-md-5 checklists">
@@ -225,19 +228,31 @@
         <div class="col-12 col-lg-4">
             <div class="row card">
                 <div class="col-12 card__container registration-form-attachments">
-                    <div class="card-title mb-3">
-                        <p>Attachments</p>
+                    <div class="row card-title mb-3">
+                        <div class="col-8">
+                            <p>Attachments</p>
+                        </div>
                     </div>
-                    <div class="attachment-thumbnails">
+                    <div class="attachment-thumbnails mb-3">
                         <img *ngFor="let img of imageObject; let i = index" src="{{img.thumbImage || img.posterImage}}"
                             (click)="showLightbox(i)" />
+                    </div>
+                    <div class="row">
+                        <div class="col-2 mb-3">
+                            <button class="vms-btn-primary">Upload</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row card my-4">
                 <div class="col-12 card__container registration-form-comments">
-                    <div class="card-title mb-3 ">
-                        <p>Communication History</p>
+                    <div class="row  mb-3">
+                        <div class="col-8 card-title">
+                            <p>Communication History </p>
+                        </div>
+                        <div class="col-1 offset-3">
+                            <i class="fa fa-expand" aria-hidden="true" (click)="openModal(commentprompt)"></i>
+                        </div>
                     </div>
                     <div class="comment-area mb-2">
                         <div class="comment">
@@ -249,7 +264,7 @@
                     </div>
                     <div class="comment-area mb-2">
                         <div class="comment">
-                            <p><span class="user">Admin :</span> Plese wait for verification</p>
+                            <p><span class="user">Admin :</span> Please wait for verification</p>
                         </div>
                         <div class="comment-date">
                             <p><i class="fa fa-clock-o" aria-hidden="true"></i>Apr 16, 2020 - 9:54am</p>
@@ -275,6 +290,30 @@
 
 <ng-image-fullscreen-view [images]="imageObject" [imageIndex]="currentIndex" [show]="showFlag"
     (close)="closeEventHandler()"></ng-image-fullscreen-view>
+
+
+<ng-template #approvePrompt>
+    <div theme>
+        <div class="modal-header">
+            <h4 class="modal-title">Approve and notify user</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row px-4 mt-4">
+                <div class="col-12 text-center">
+                    <label>Are you sure want to approve and notify the customer</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-action d-flex justify-content-center my-4" theme>
+            <!-- <button class="vms-btn-primary mr-3" (click)="sendApprovalNofitication()">Yes</button> -->
+            <a class="vms-btn-primary mr-3" href="mailto:{{aemail}}?subject={{asubject}}&body={{acontent}}">Approve</a>
+            <button class="vms-btn-primary-outline" (click)="modalRef.hide()">No</button>
+        </div>
+    </div>
+</ng-template>
 
 
 <ng-template #assignUserModal>
@@ -310,5 +349,54 @@
     <div class="modal-action d-flex justify-content-center my-4" theme>
         <button class="vms-btn-primary mr-3" (click)="assignUser()">Submit</button>
         <button class="vms-btn-primary-outline" (click)="modalRef.hide()">Cancel</button>
+    </div>
+</ng-template>
+
+<ng-template #commentprompt>
+    <div theme>
+        <div class="modal-header">
+            <h4 class="modal-title">Communication History</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="comment-area mb-2">
+                <div class="comment">
+                    <p><span class="user">Karthick :</span> Upload all registration attachements</p>
+                </div>
+                <div class="comment-date">
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>Mar 24, 2020 - 6:18pm</p>
+                </div>
+            </div>
+            <div class="comment-area mb-2">
+                <div class="comment">
+                    <p><span class="user">Admin :</span> Please wait for verification</p>
+                </div>
+                <div class="comment-date">
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>Apr 16, 2020 - 9:54am</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-6">
+                    <div class="new-comment mb-2">
+                        <!-- <div>
+                            <label>New comment</label>
+                        </div> -->
+                        <div>
+                            <textarea class="form-control" rows="3" cols="30"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5 ml-4 mt-3">
+                    <div class="comment-actions">
+                        <button class="vms-btn-primary">Add Comment</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </ng-template>

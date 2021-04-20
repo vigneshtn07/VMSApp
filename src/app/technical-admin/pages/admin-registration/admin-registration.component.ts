@@ -112,4 +112,10 @@ export class TAdminRegistrationComponent implements OnInit {
       window.location.href = "mailto:" + this.remail + "?subject=" + this.rsubject + "&body=" + this.rcontent;
     }
   }
+
+  showApprovalPrompt(event: any, modalId: TemplateRef<any>): void {
+    if (event.currentTarget.checked) {
+      this.openModal(modalId);
+    }
+  }
 }
