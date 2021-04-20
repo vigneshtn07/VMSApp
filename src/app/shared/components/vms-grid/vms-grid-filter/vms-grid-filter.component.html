@@ -1,1 +1,33 @@
-<p>vms-grid-filter works!</p>
+<div class="vms-grid-filter">
+    <label>Filter by</label>
+    <div class="filter-option">
+        <ng-multiselect-dropdown [placeholder]="'Account Type'" name="account" [settings]="dropdownSettings"
+            [data]="accountTypeDropDown" [(ngModel)]="accountTypeDropDownSelection" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)">
+        </ng-multiselect-dropdown>
+    </div>
+    <div class="filter-option">
+        <ng-multiselect-dropdown [placeholder]="'Status'" name="status" [settings]="dropdownSettings"
+            [data]="statusDropDown" [(ngModel)]="statusDropDownSelection" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)">
+        </ng-multiselect-dropdown>
+    </div>
+    <div class="filter-option">
+        <ng-multiselect-dropdown [placeholder]="'Date range'" name="date" [settings]="dropdownSettings"
+            [data]="dateRangeDropDown" [(ngModel)]="dateRangeDropDownSelection" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)">
+        </ng-multiselect-dropdown>
+    </div>
+    <div class="filter-option">
+        <ng-multiselect-dropdown [placeholder]="'Assigned To'" name="assignedTo" [settings]="dropdownSettings"
+            [data]="assignedToDropDown" [(ngModel)]="assignedToDropDownSelection" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)">
+        </ng-multiselect-dropdown>
+    </div>
+    <div class="filter-option">
+        <ng-multiselect-dropdown [placeholder]="'Registration Ids'" name="regIds" [settings]="dropdownSettings"
+            [data]="regIdsDropDown" [(ngModel)]="regIdsDropDownSelection" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)">
+        </ng-multiselect-dropdown>
+    </div>
+</div>

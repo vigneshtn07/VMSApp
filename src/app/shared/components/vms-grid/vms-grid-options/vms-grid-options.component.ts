@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vms-grid-options.component.scss'],
 })
 export class VmsGridOptionsComponent implements OnInit {
+  showFilter: boolean = false;
   constructor() {}
 
   ngOnInit(): void {}

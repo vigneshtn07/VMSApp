@@ -34,7 +34,11 @@ const SUPER_ADMIN_ROUTES: Routes = [
     path: 'super-admin',
     component: SuperAdminComponent,
     children: [
-      { path: 'registration/:id', component: AdminRegistrationComponent },
+      {
+        path: 'registration/:id',
+        component: AdminRegistrationComponent,
+        data: { breadcrumbMenu: 'projects' },
+      },
       {
         path: 'projects',
         component: ProjectsListComponent,

@@ -8,13 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class MenuBreadcrumbComponent implements OnInit {
   lastRoutePath: string = '';
-  constructor(private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    const routerUrl = this.router.url;
-    this.lastRoutePath = routerUrl.substr(
-      routerUrl.lastIndexOf('/') + 1,
-      routerUrl.length - 1
-    );
-  }
+  ngOnInit(): void {}
 }

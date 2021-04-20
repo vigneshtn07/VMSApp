@@ -9,6 +9,12 @@
       border-bottom: 1px solid $vms-grey-500;
       border-top: 1px solid $vms-grey-500;
       cursor: pointer;
+      i{
+        padding-left: 1rem;
+        position: relative;
+        top: -2px;
+        font-size: 1.25rem;
+      }
       &:hover {
         background-color: $vms-black;
       }

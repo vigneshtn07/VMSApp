@@ -1,7 +1,9 @@
 <ul class="vms-menu">
-    <li *ngFor="let menuItem of src" class="vms-menu__list-item" [ngClass]="menuItem.subMenu? 'has-submenu' : ''"
+    <li *ngFor="let menuItem of src" class="vms-menu__list-item" [ngClass]="{'has-submenu': menuItem.subMenu, 'expand-menu': menuItem.expandSubMenu }"
         (click)="expandSubMenu(menuItem, $event)">
-        <a>{{menuItem.menu}}</a>
+        <a>{{menuItem.menu}}
+            <!-- <i class="fa fa-sort-desc" aria-hidden="true" [ngClass]="{'d-block': menuItem.subMenu}"></i> -->
+        </a>
         <div *ngIf="menuItem.subMenu" class="sub-menu" [class.collapse-menu]="menuItem.expandSubMenu">
             <vms-menu [src]="menuItem.subMenu"></vms-menu>
         </div>
