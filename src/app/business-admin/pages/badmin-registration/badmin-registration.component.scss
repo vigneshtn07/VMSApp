@@ -127,6 +127,8 @@
 }
 
 .modal-body {
+  overflow-y: scroll;
+  max-height: 150px;
   .p-field-radiobutton {
     label {
       margin-bottom: 0;
