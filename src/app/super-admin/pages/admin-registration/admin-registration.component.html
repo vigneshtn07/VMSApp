@@ -181,15 +181,15 @@
                         <div class="col-8">
                             <p>Attachments</p>
                         </div>
-                        <div class="col-2">
-                            <button class="vms-btn-primary">Upload</button>
-                        </div>
+                        <!-- <div class="col-2">
+                            
+                        </div> -->
                     </div>
                     <div class="attachment-thumbnails">
                         <img *ngFor="let img of imageObject; let i = index" src="{{img.thumbImage || img.posterImage}}"
                             (click)="showImagePreviewer(i)" />
                     </div>
-                    <!-- upload button placeholder-->
+                    <button class="vms-btn-primary upload-btn">Upload</button>
                 </div>
             </div>
             <div class="row card my-4">
