@@ -3,6 +3,7 @@ import { KnobModule } from 'primeng/knob';
 import { ThemeModule } from 'src/theme';
 import { darkTheme } from 'src/theme/variants/app-dark-theme';
 import { lightTheme } from 'src/theme/variants/app-light-theme';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -46,6 +47,7 @@ export abstract class AppModuleConstants {
     SuperAdminModule,
     BusinessAdminModule,
     TechnicalAdminModule,
+    HttpClientModule,
   ];
   static readonly MODULE_DECLARATIONS = [
     AppComponent,

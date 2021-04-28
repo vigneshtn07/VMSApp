@@ -2,44 +2,50 @@
     <div class="login-container__section">
         <div class="login-container__signin">
             <div class="login-container__image">
-                <img src="../../assets/images/vms-login.jpg" alt="vms-img">
+                <img src="../../assets/images/vms-login.jpg" alt="vms-img" />
             </div>
             <!-- Login Form start-->
             <form class="login-container__form">
-                <span class="login-container__title">
-                    VMS Login
-                </span>
+                <span class="login-container__title"> VMS Login </span>
 
                 <div class="login-container__input">
-                    <input type="text" name="email" placeholder="Email">
+                    <input type="text" name="email" placeholder="Email" />
                     <span class="login-container__input-icon">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                 </div>
 
                 <div class="login-container__input">
-                    <input [type]="showPassword ? 'text' : 'password'" name="pass" placeholder="Password">
+                    <input
+                        [type]="showPassword ? 'text' : 'password'"
+                        name="pass"
+                        placeholder="Password"
+                    />
                     <span class="login-container__input-icon">
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
-                    <span class="login-container__password-icon" (click)="showPassword = !showPassword">
-                        <i class="fa" [ngClass]="{
-                            'fa-eye-slash': !showPassword,
-                            'fa-eye': showPassword
-                          }"></i>
+                    <span
+                        class="login-container__password-icon"
+                        (click)="showPassword = !showPassword"
+                    >
+                        <i
+                            class="fa"
+                            [ngClass]="{
+                                'fa-eye-slash': !showPassword,
+                                'fa-eye': showPassword
+                            }"
+                        ></i>
                     </span>
                 </div>
 
                 <div class="login-container__btn">
-                    <button class="vms-btn-primary" type="submit">
+                    <button class="vms-btn-primary" type="submit" (click)="authenticateUser()">
                         Login
                     </button>
                 </div>
 
                 <div class="text-center p-t-12">
-                    <span class="login-container__help-text">
-                        Forgot
-                    </span>
+                    <span class="login-container__help-text"> Forgot </span>
                     <a class="login-container__help-text-1" routerLink="/forgot-password">
                         Username / Password?
                     </a>
