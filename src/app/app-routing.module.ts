@@ -22,7 +22,6 @@ import { BADashboardComponent } from './business-admin/pages/dashboard/dashboard
 import { BadminRegistrationComponent } from './business-admin/pages/badmin-registration/badmin-registration.component';
 import { BusinessAdminComponent } from './business-admin/business-admin.component';
 
-import { AppSidebarComponent } from './shared/components/app-sidebar/app-sidebar.component';
 import { VmsEmailComponent } from './shared/components/vms-email/vms-email.component';
 import { TechnicalAdminComponent } from './technical-admin/technical-admin.component';
 import { TDashboardComponent } from './technical-admin/pages/dashboard/dashboard.component';
@@ -122,10 +121,6 @@ const routes: Routes = [
     component: ChangePasswordComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {
-    path: 'Notification',
-    component: AppSidebarComponent,
-  },
   {
     path: 'Mail',
     component: VmsEmailComponent,
