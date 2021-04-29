@@ -3,7 +3,7 @@ import { KnobModule } from 'primeng/knob';
 import { ThemeModule } from 'src/theme';
 import { darkTheme } from 'src/theme/variants/app-dark-theme';
 import { lightTheme } from 'src/theme/variants/app-light-theme';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -37,6 +37,7 @@ import { SuperAdminModule } from './super-admin/super-admin.module';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { BusinessAdminModule } from './business-admin/business-admin.module';
 import { TechnicalAdminModule } from './technical-admin/technical-admin.module';
+import { VMSInterceptor } from './core/interceptor/httpconfig.interceptor';
 
 export abstract class AppModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -81,5 +82,7 @@ export abstract class AppModuleConstants {
     VerificationResponseComponent,
     RegistrationComponent,
   ];
-  static readonly MODULE_PROVIDERS = [];
+  static readonly MODULE_PROVIDERS = [
+    { provide: HTTP_INTERCEPTORS, useClass: VMSInterceptor, multi: true },
+  ];
 }
