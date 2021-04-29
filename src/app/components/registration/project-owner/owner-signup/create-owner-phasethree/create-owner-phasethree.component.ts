@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-owner-phasethree',
@@ -7,11 +8,24 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class CreateOwnerPhasethreeComponent implements OnInit {
   @Output() wizardStepEmitter: EventEmitter<number> = new EventEmitter();
-  constructor() {}
+  ownerphasethreeForm!: FormGroup;
+  submitted = false;
+  constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.ownerphasethreeForm = this.formBuilder.group({
+      projectname: ['', Validators.required],
+      projectdesc: ['', Validators.required]
+    });
+  }
+
+  get f() { return this.ownerphasethreeForm.controls; }
 
   onContinue(): void {
+    this.submitted = true;
+    if (this.ownerphasethreeForm.invalid) {
+      return;
+    }
     this.wizardStepEmitter.next(4);
   }
 

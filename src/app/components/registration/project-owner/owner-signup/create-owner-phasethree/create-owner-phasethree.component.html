@@ -3,7 +3,7 @@
         <div class="col-12 vms-signup-container__title d-flex justify-content-center">
             <p>Project Information</p>
         </div>
-        <form class="col-12 vms-signup-container__form">
+        <form class="col-12 vms-signup-container__form" [formGroup]="ownerphasethreeForm">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 vms-signup-container__categoryHead d-flex justify-content-center">
                     <p>Please enter one project you own in order to get initial
@@ -12,12 +12,21 @@
                 <div class="col-12  vms-form__group field">
                     <label class="stanalone-form__label" for="projectname">Project Name</label>
                     <textarea class="form-control" name="projectname" id="projectname"
-                        placeholder="Name any current project that you Own(Required)" rows="3"></textarea>
+                        placeholder="Name any current project that you Own(Required)" rows="3"
+                        formControlName="projectname" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.projectname.errors }"></textarea>
+                    <div *ngIf="submitted && f.projectname.errors" class="invalid-feedback">
+                        <div *ngIf="f.projectname.errors.required">Project Name is required</div>
+                    </div>
                 </div>
                 <div class="col-12 vms-form__group field">
                     <label class="stanalone-form__label" for="projectdesc">Project Description </label>
                     <textarea class="form-control" name="projectdesc" id="projectdesc"
-                        placeholder="Details and purpose of project(Requried)" rows="3"></textarea>
+                        placeholder="Details and purpose of project(Requried)" rows="3" formControlName="projectdesc"
+                        autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.projectdesc.errors }"></textarea>
+                    <div *ngIf="submitted && f.projectdesc.errors" class="invalid-feedback">
+                        <div *ngIf="f.projectdesc.errors.required">Project Description is required</div>
+                    </div>
                 </div>
             </div>
         </form>

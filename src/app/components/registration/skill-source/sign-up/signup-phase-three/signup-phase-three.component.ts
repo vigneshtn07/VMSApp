@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-signup-phase-three',
@@ -7,11 +9,25 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SignupPhaseThreeComponent implements OnInit {
   @Output() wizardStepEmitter: EventEmitter<number> = new EventEmitter();
-  constructor() {}
+  skillphasethreeForm!: FormGroup;
+  submitted = false;
 
-  ngOnInit(): void {}
+  constructor(private formBuilder: FormBuilder) { }
+  ngOnInit(): void {
+    this.skillphasethreeForm = this.formBuilder.group({
+      TopTechSkills: ['', Validators.required],
+      serviceQualityPolicy: ['', Validators.required],
+      offerTraining: ['', Validators.required],
+      BenefitsProvides: [false, Validators.requiredTrue]
+    });
+  }
+  get f() { return this.skillphasethreeForm.controls; }
 
   onContinue(): void {
+    this.submitted = true;
+    if (this.skillphasethreeForm.invalid) {
+      return;
+    }
     this.wizardStepEmitter.next(4);
   }
 

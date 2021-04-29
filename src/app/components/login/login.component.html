@@ -5,20 +5,26 @@
                 <img src="../../assets/images/vms-login.jpg" alt="vms-img">
             </div>
             <!-- Login Form start-->
-            <form class="login-container__form">
+            <form [formGroup]="loginForm" class="login-container__form" (ngSubmit)="onSubmit()">
                 <span class="login-container__title">
                     VMS Login
                 </span>
 
                 <div class="login-container__input">
-                    <input type="text" name="email" placeholder="Email">
+                    <input type="text" name="email" placeholder="Email" formControlName="email"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                     <span class="login-container__input-icon">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
                 </div>
 
                 <div class="login-container__input">
-                    <input [type]="showPassword ? 'text' : 'password'" name="pass" placeholder="Password">
+                    <input [type]="showPassword ? 'text' : 'password'" name="pass" formControlName="password"
+                        placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                     <span class="login-container__input-icon">
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
@@ -28,6 +34,9 @@
                             'fa-eye': showPassword
                           }"></i>
                     </span>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
                 </div>
 
                 <div class="login-container__btn">

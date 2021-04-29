@@ -3,54 +3,81 @@
         <div class="col-12 vms-signup-container__title d-flex justify-content-center">
             <p>Additional Information</p>
         </div>
-        <form class="col-12 vms-signup-container__form">
+        <form class="col-12 vms-signup-container__form" [formGroup]="skillphasethreeForm">
             <div class="row d-flex">
                 <div class="col-12 vms-form__group field">
                     <label class="stanalone-form__label" for="TopTechSkills">Top Technical skill and Industry
                         services</label>
-                    <textarea class="form-control" name="TopTechSkills" id="TopTechSkills" rows="3"></textarea>
+                    <textarea class="form-control" name="TopTechSkills" id="TopTechSkills" rows="3"
+                        formControlName="TopTechSkills" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.TopTechSkills.errors }"></textarea>
+                    <div *ngIf="submitted && f.TopTechSkills.errors" class="invalid-feedback">
+                        <div *ngIf="f.TopTechSkills.errors.required">Top Tech Skills is required</div>
+                    </div>
                 </div>
                 <div class="col-12 vms-form__group field">
                     <label class="stanalone-form__label" for="BenefitsProvides">Benefits Provides</label>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="Medical" value="Medical">
+                                <input class="form-check-input" formControlName="BenefitsProvides"
+                                    [ngClass]="{ 'is-invalid': submitted && f.BenefitsProvides.errors }" type="checkbox"
+                                    id="Medical" value="Medical">
                                 <label class="form-check-label" for="Medical">Medical</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="Vision" value="Vision">
+                                <input class="form-check-input" type="checkbox" formControlName="BenefitsProvides"
+                                    [ngClass]="{ 'is-invalid': submitted && f.BenefitsProvides.errors }" id="Vision"
+                                    value="Vision">
                                 <label class="form-check-label" for="Vision">Vision</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="LifeInsurance"
-                                    value="LifeInsurance">
+                                <input class="form-check-input" formControlName="BenefitsProvides"
+                                    [ngClass]="{ 'is-invalid': submitted && f.BenefitsProvides.errors }" type="checkbox"
+                                    id="LifeInsurance" value="LifeInsurance">
                                 <label class="form-check-label" for="LifeInsurance">Life Insurance</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="Disablity" value="Disablity">
+                                <input class="form-check-input" formControlName="BenefitsProvides"
+                                    [ngClass]="{ 'is-invalid': submitted && f.BenefitsProvides.errors }" type="checkbox"
+                                    id="Disablity" value="Disablity">
                                 <label class="form-check-label" for="Disablity">Disablity</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="401K" value="401K">
+                                <input class="form-check-input" formControlName="BenefitsProvides"
+                                    [ngClass]="{ 'is-invalid': submitted && f.BenefitsProvides.errors }" type="checkbox"
+                                    id="401K" value="401K">
                                 <label class="form-check-label" for="Disablity">401K</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="OtherBenefits"
-                                    value="OtherBenefits">
+                                <input class="form-check-input" formControlName="BenefitsProvides"
+                                    [ngClass]="{ 'is-invalid': submitted && f.BenefitsProvides.errors }" type="checkbox"
+                                    id="OtherBenefits" value="OtherBenefits">
                                 <label class="form-check-label" for="OtherBenefits">401K</label>
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="submitted && f.BenefitsProvides.errors" class="invalid-feedback">
+                        <div *ngIf="f.BenefitsProvides.errors.required">Choose atleast one Benefits Provides</div>
+                    </div>
                 </div>
                 <div class="col-12 vms-form__group field">
                     <label class="stanalone-form__label" for="serviceQualityPolicy">Service quality policy</label>
-                    <textarea class="form-control" name="serviceQualityPolicy" id="serviceQualityPolicy"
-                        rows="3"></textarea>
+                    <textarea class="form-control" name="serviceQualityPolicy" id="serviceQualityPolicy" rows="3"
+                        formControlName="serviceQualityPolicy" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.serviceQualityPolicy.errors }"></textarea>
+                    <div *ngIf="submitted && f.serviceQualityPolicy.errors" class="invalid-feedback">
+                        <div *ngIf="f.serviceQualityPolicy.errors.required">Service quality policy is required</div>
+                    </div>
                 </div>
                 <div class="col-12 vms-form__group field">
                     <label class="stanalone-form__label" for="offerTraining">Do you offer training</label>
-                    <textarea class="form-control" name="offerTraining" id="offerTraining" rows="3"></textarea>
+                    <textarea class="form-control" name="offerTraining" id="offerTraining" rows="3"
+                        formControlName="offerTraining" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.offerTraining.errors }"></textarea>
+                    <div *ngIf="submitted && f.offerTraining.errors" class="invalid-feedback">
+                        <div *ngIf="f.offerTraining.errors.required">Training Offering is required</div>
+                    </div>
                 </div>
             </div>
         </form>

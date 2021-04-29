@@ -5,6 +5,7 @@ import {
   BsDatepickerConfig,
 } from 'ngx-bootstrap/datepicker';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-phase-two',
@@ -36,7 +37,9 @@ export class SignupPhaseTwoComponent implements OnInit {
     },
   };
 
-  constructor() {
+  skillphasetwoForm!: FormGroup;
+  submitted = false;
+  constructor(private formBuilder: FormBuilder) {
     this.bsConfig = Object.assign(
       {},
       {
@@ -70,9 +73,41 @@ export class SignupPhaseTwoComponent implements OnInit {
       itemsShowLimit: 2,
       allowSearchFilter: true,
     };
+    this.skillphasetwoForm = this.formBuilder.group({
+      stateOfIncorporation: ['', Validators.required],
+      establishedYear: ['', Validators.required],
+      industrySelectedItems: ['', [Validators.required]],
+      Division: ['', [Validators.required]],
+      payroll: [null, Validators.required],
+      Specialization: ['', [Validators.required]],
+      // AnnualRevenue: ['', Validators.required],
+      TotalEmployees: ['', Validators.required],
+      TotalFullTimeEmployees: ['', Validators.required],
+      TotalSubContractors: ['', Validators.required],
+      Worker: [null, Validators.required],
+      TotalH1BVisa: ['', Validators.required],
+      Website: ['', Validators.required],
+      USHeadQuarters: ['', Validators.required],
+      StreetAddress: ['', Validators.required],
+      City: ['', Validators.required],
+      State: ['', Validators.required],
+      Country: [null, Validators.required],
+      Zipcode: ['', Validators.required],
+      AName: ['', Validators.required],
+      Aemail: ['', [Validators.required, Validators.email]],
+      APhone: ['', Validators.required],
+      Name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      Phone: ['', Validators.required],
+    });
   }
 
+  get f() { return this.skillphasetwoForm.controls; }
   onContinue(): void {
+    // this.submitted = true;
+    // if (this.skillphasetwoForm.invalid) {
+    //   return;
+    // }
     this.wizardStepEmitter.next(3);
   }
 

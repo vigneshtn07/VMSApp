@@ -2,26 +2,38 @@
     <div class="col-12 vms-signup-container__title d-flex justify-content-center">
         <p>Project Owner Sign Up</p>
     </div>
-    <form class="col-12 vms-signup-container__form">
+    <form class="col-12 vms-signup-container__form" [formGroup]="ownerphaseoneForm">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
                 <input type="text" class="form__field" placeholder="CompanyName" name="CompanyName" id='CompanyName'
-                    required />
+                    formControlName="CompanyName" autocomplete="off"
+                    [ngClass]="{ 'is-invalid': submitted && f.CompanyName.errors }" required />
                 <label for="CompanyName" class="form__label">Company Name</label>
+                <div *ngIf="submitted && f.CompanyName.errors" class="invalid-feedback">
+                    <div *ngIf="f.CompanyName.errors.required">Company Name is required</div>
+                </div>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
                 <input type="text" class="form__field" placeholder="FedralTaxId" name="FedralTaxId" id='FedralTaxId'
-                    [textMask]="maskTypes.TaxId" [maxLength]="maskTypes.TaxId.mask.length" required />
+                    [textMask]="maskTypes.TaxId" [maxLength]="maskTypes.TaxId.mask.length" formControlName="FedralTaxId"
+                    autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.FedralTaxId.errors }" required />
                 <label for="FedralTaxId" class="form__label">Fedral Tax ID</label>
+                <div *ngIf="submitted && f.FedralTaxId.errors" class="invalid-feedback">
+                    <div *ngIf="f.FedralTaxId.errors.required">Fedral Tax Id is required</div>
+                </div>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
                 <input type="text" class="form__field" placeholder="PhoneNumber" name="PhoneNumber" id='PhoneNumber'
-                    [textMask]="maskTypes.Phone" [maxLength]="maskTypes.Phone.mask.length" required />
+                    [textMask]="maskTypes.Phone" [maxLength]="maskTypes.Phone.mask.length" formControlName="PhoneNumber"
+                    autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }" required />
                 <label for="PhoneNumber" class="form__label">Phone Number</label>
+                <div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
+                    <div *ngIf="f.PhoneNumber.errors.required">Phone Number is required</div>
+                </div>
             </div>
         </div>
     </form>

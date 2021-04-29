@@ -3,95 +3,156 @@
         <div class="col-12 vms-signup-container__title d-flex justify-content-center">
             <p>Specialist Sign Up</p>
         </div>
-        <form class="col-12 vms-signup-container__form">
+        <form class="col-12 vms-signup-container__form" [formGroup]="specialistregisterForm">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="FirstName" id="" class="form__field" placeholder="First Name"
-                        aria-describedby="helpId" maxlength="30">
+                        aria-describedby="helpId" maxlength="30" formControlName="firstName" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
                     <label for="FirstName" class="form__label">First Name</label>
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="LastName" id="" class="form__field" placeholder="Last Name"
-                        aria-describedby="helpId" maxlength="30">
+                        aria-describedby="helpId" maxlength="30" formControlName="lastName" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
                     <label for="LastName" class="form__label">Last Name</label>
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Email" id="" class="form__field" placeholder="Email"
-                        aria-describedby="helpId" maxlength="30">
+                    <input type="text" name="Email" id="" class="form__field" placeholder="Email" autocomplete="off"
+                        aria-describedby="helpId" maxlength="30" formControlName="email"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                     <label for="Email" class="form__label">Email</label>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field date-field">
-                    <input type="text" placeholder="Date of Birth" name="DateOfBirth" [(ngModel)]="modelDate"
+                    <input type="text" placeholder="Date of Birth" name="DateOfBirth" formControlName="dob"
+                        autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }"
                         class="form__field form-control" [bsConfig]="bsConfig" class="form__field form-control"
                         bsDatepicker>
+                    <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                        <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
+                        <div *ngIf="f.dob.errors.pattern">Date of Birth must be a valid date in the format YYYY-MM-DD
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <select class="dropdown">
-                        <option>Select Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
+                    <select class="dropdown" formControlName="gender"
+                        [ngClass]="{'is-invalid': submitted && f.gender.errors }">
+                        <option value="null" selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
+                    <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                        <div *ngIf="f.gender.errors.required">Gender is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" class="form__field" placeholder="PhoneNumber" name="PhoneNumber" id='PhoneNumber'
-                        [textMask]="maskTypes.Phone" [maxLength]="maskTypes.Phone.mask.length" required />
+                    <input type="text" class="form__field" placeholder="PhoneNumber" name="PhoneNumber" id='
+                            PhoneNumber' [textMask]="maskTypes.Phone" [maxLength]="maskTypes.Phone.mask.length"
+                        required formControlName="PhoneNumber" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }" />
                     <label for="PhoneNumber" class="form__label">Phone Number</label>
+                    <div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.PhoneNumber.errors.required">Phone Number is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="StreetAddress" id="" class="form__field" placeholder="Street Address"
-                        aria-describedby="helpId" maxlength="50">
+                        aria-describedby="helpId" maxlength="50" formControlName="StreetAddress" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.StreetAddress.errors }">
                     <label for="StreetAddress" class="form__label">Street Address</label>
+                    <div *ngIf="submitted && f.StreetAddress.errors" class="invalid-feedback">
+                        <div *ngIf="f.StreetAddress.errors.required">Street Address is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="City" id="" class="form__field" placeholder="City"
-                        aria-describedby="helpId" maxlength="30">
+                        aria-describedby="helpId" maxlength="30" formControlName="City" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
                     <label for="City" class="form__label">City</label>
+                    <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                        <div *ngIf="f.City.errors.required">City is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="State" id="" class="form__field" placeholder="State/Province"
-                        aria-describedby="helpId" maxlength="30">
+                        aria-describedby="helpId" maxlength="30" formControlName="State" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
                     <label for="State" class="form__label">State/Province</label>
+                    <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
+                        <div *ngIf="f.State.errors.required">State is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <select class="dropdown">
-                        <option>Select country</option>
-                        <option>India</option>
-                        <option>UK</option>
-                        <option>Russia</option>
-                        <option>Japan</option>
-                        <option>Malasiya</option>
-                        <option>Australia</option>
-                        <option>New Zealand</option>
-                        <option>Canada</option>
-                        <option>Africa</option>
-                        <option>Sri lanka</option>
-                        <option>USA</option>
+                    <select class="dropdown" formControlName="Country"
+                        [ngClass]="{'is-invalid': submitted && f.Country.errors }">
+                        <option value="null" selected>Select country</option>
+                        <option value="India">India</option>
+                        <option value="UK">UK</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Malasiya">Malasiya</option>
+                        <option value="Australia">Australia</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Sri lanka">Sri lanka</option>
+                        <option value="USA">USA</option>
                     </select>
+                    <div *ngIf="submitted && f.Country.errors" class="invalid-feedback">
+                        <div *ngIf="f.Country.errors.required">Country is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="Zipcode" id="" class="form__field" placeholder="Zip/Postal code"
-                        aria-describedby="helpId" [textMask]="maskTypes.ZipCode">
+                        aria-describedby="helpId" [textMask]="maskTypes.ZipCode" autocomplete="off"
+                        formControlName="Zipcode" [ngClass]="{'is-invalid': submitted && f.Zipcode.errors }">
                     <label for="Zipcode" class="form__label">Zip/Postal code</label>
+                    <div *ngIf="submitted && f.Zipcode.errors" class="invalid-feedback">
+                        <div *ngIf="f.Zipcode.errors.required">Zip/Postal code is required</div>
+                    </div>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="PassportNumber" id="" class="form__field" placeholder="Passport Number"
-                        aria-describedby="helpId" maxlength="30">
+                        aria-describedby="helpId" maxlength="30" autocomplete="off" formControlName="PassportNumber"
+                        [ngClass]="{'is-invalid': submitted && f.PassportNumber.errors }">
                     <label for="PassportNumber" class="form__label">Passport Number</label>
+                    <div *ngIf="submitted && f.PassportNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.PassportNumber.errors.required">Passport Number is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="LinkedInProfile" id="" class="form__field"
-                        placeholder="LinkedIn Profile Name" aria-describedby="helpId" maxlength="30">
+                        placeholder="LinkedIn Profile Name" aria-describedby="helpId" maxlength="30"
+                        formControlName="LinkedInProfile"
+                        [ngClass]="{'is-invalid': submitted && f.LinkedInProfile.errors }">
                     <label for="LinkedInProfile" class="form__label">LinkedIn Profile Name</label>
+                    <div *ngIf="submitted && f.LinkedInProfile.errors" class="invalid-feedback">
+                        <div *ngIf="f.LinkedInProfile.errors.required">Linked In Profile is required</div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="Roles/Titles" id="" class="form__field"
-                        placeholder="Roles/Titles/best suited for" aria-describedby="helpId" maxlength="30">
+                        placeholder="Roles/Titles/best suited for" aria-describedby="helpId" maxlength="30"
+                        formControlName="Roles" [ngClass]="{'is-invalid': submitted && f.Roles.errors }">
                     <label for="Roles/Titles" class="form__label">Roles/Titles/best suited for</label>
+                    <div *ngIf="submitted && f.Roles.errors" class="invalid-feedback">
+                        <div *ngIf="f.Roles.errors.required">Linked In Profile is required</div>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-5 pl-3">
+            <div class="row mt-5 pl-1">
                 <div class="col-12">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="dec" value="dec">
@@ -99,19 +160,22 @@
                             skills match our rating</label>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="dec" value="dec">
-                        <label class="form-check-label" for="dec">I Certify that all information provided as part of
-                            this application is true and correct to the best of my knowledge. I understand that any
-                            false information may result in denial or revaocation of the application</label>
+            </div>
+            <div class="col-12 pl-1">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="dec" value="dec" formControlName="certify"
+                        [ngClass]="{ 'is-invalid': submitted && f.certify.errors }">
+                    <label class="form-check-label" for="dec">I Certify that all information provided as part of
+                        this application is true and correct to the best of my knowledge. I understand that any
+                        false information may result in denial or revaocation of the application</label>
+                    <div *ngIf="submitted && f.certify.errors" class="invalid-feedback">Accept Declaration is required
                     </div>
                 </div>
             </div>
         </form>
         <div class="col-12 vms-signup-container__actions">
             <div class="row justify-content-center">
-                <button class="col-12 col-sm-5  vms-btn-primary-outline mr-sm-4">
+                <button class="col-12 col-sm-5  vms-btn-primary-outline mr-sm-4" (click)="onReset()">
                     Cancel
                 </button>
                 <button class="col-12 col-sm-5  vms-btn-primary" (click)="onSubmit()">
