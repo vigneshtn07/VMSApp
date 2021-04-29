@@ -4,6 +4,7 @@ import {
   BsDatepickerConfig,
 } from 'ngx-bootstrap/datepicker';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-owner-phasetwo',
@@ -12,6 +13,9 @@ import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 })
 export class CreateOwnerPhasetwoComponent implements OnInit {
   @Output() wizardStepEmitter: EventEmitter<number> = new EventEmitter();
+  ownerphasetwoForm!: FormGroup;
+  submitted = false;
+
   minMode: BsDatepickerViewMode = 'year';
   bsConfig: Partial<BsDatepickerConfig>;
   modelDate: any;
@@ -34,7 +38,7 @@ export class CreateOwnerPhasetwoComponent implements OnInit {
       mask: MaskInputType.PhoneFormat,
     },
   };
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
     this.bsConfig = Object.assign(
       {},
       {
@@ -69,6 +73,10 @@ export class CreateOwnerPhasetwoComponent implements OnInit {
   }
 
   onContinue(): void {
+    this.submitted = true;
+    if (this.ownerphasetwoForm.invalid) {
+      return;
+    }
     this.wizardStepEmitter.next(3);
   }
 
@@ -90,5 +98,31 @@ export class CreateOwnerPhasetwoComponent implements OnInit {
     console.log(items);
   }
 
-  ngOnInit(): void {}
+  get f() { return this.ownerphasetwoForm.controls; }
+
+  ngOnInit(): void {
+    this.ownerphasetwoForm = this.formBuilder.group({
+      stateOfIncorporation: ['', Validators.required],
+      establishedYear: ['', Validators.required],
+      industrySelectedItems: ['', [Validators.required]],
+      Division: ['', [Validators.required]],
+      AnnualRevenue: ['', Validators.required],
+      TotalContractors: ['', Validators.required],
+      Website: ['', Validators.required],
+      StreetAddress: ['', Validators.required],
+      City: ['', Validators.required],
+      State: ['', Validators.required],
+      Country: [null, Validators.required],
+      Zipcode: ['', Validators.required],
+      AName: ['', Validators.required],
+      Aemail: ['', [Validators.required, Validators.email]],
+      APhone: ['', Validators.required],
+      Name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      Phone: ['', Validators.required],
+      BusinessDescription: ['', Validators.required],
+      Paymentterms: ['', Validators.required],
+      // certify: [false, Validators.requiredTrue]
+    });
+  }
 }

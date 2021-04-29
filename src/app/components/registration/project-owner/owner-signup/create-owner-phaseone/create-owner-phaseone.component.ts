@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-owner-phaseone',
@@ -8,6 +9,8 @@ import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 })
 export class CreateOwnerPhaseoneComponent implements OnInit {
   @Output() wizardStepEmitter: EventEmitter<number> = new EventEmitter();
+  ownerphaseoneForm!: FormGroup;
+  submitted = false;
 
   maskTypes = {
     Phone: {
@@ -22,11 +25,22 @@ export class CreateOwnerPhaseoneComponent implements OnInit {
     },
   };
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.ownerphaseoneForm = this.formBuilder.group({
+      CompanyName: ['', Validators.required],
+      FedralTaxId: ['', Validators.required],
+      PhoneNumber: ['', Validators.required]
+    });
+  }
 
+  get f() { return this.ownerphaseoneForm.controls; }
   onContinue(): void {
+    this.submitted = true;
+    if (this.ownerphaseoneForm.invalid) {
+      return;
+    }
     this.wizardStepEmitter.next(2);
   }
 }

@@ -11,7 +11,7 @@ import { GridHeader } from '../../../shared/interface/grid-header';
 export class RegistrationListComponent implements OnInit {
   public cols!: GridHeader[];
   public registrationlist!: RegistrationList[];
-
+  private myChanges: any;
   constructor() { }
 
   ngOnInit(): void {

@@ -6,6 +6,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-owner-phasefour',
@@ -19,8 +20,10 @@ export class CreateOwnerPhasefourComponent implements OnInit {
   modalRef!: BsModalRef;
   statementHeader: string;
   statementContent: string;
+  ownerphasefourForm!: FormGroup;
+  submitted = false;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private formBuilder: FormBuilder) {
     this.statementHeader = 'Statement 1';
     this.statementContent = `<p>Timely approval of Timecards and electronic payments</p><br>
     <p>I agree to providin fair payment terms. I Understand that any payment term over Net 45 will inccur a 0.5% fee for every 15 days. I also understand net terms start from the last day</p><br>
@@ -46,7 +49,11 @@ export class CreateOwnerPhasefourComponent implements OnInit {
         checked: false,
       },
     ];
+    this.ownerphasefourForm = this.formBuilder.group({
+      certify: [false, Validators.requiredTrue]
+    });
   }
+
 
   openModal(modalId: TemplateRef<any>, index: number) {
     this.openedModalIndex = index;
@@ -58,11 +65,17 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     this.modalRef.hide();
   }
 
+  get f() { return this.ownerphasefourForm.controls; }
+
   navigateBack(): void {
     this.wizardStepEmitter.next(3);
   }
 
   onSubmit(): void {
+    this.submitted = true;
+    if (this.ownerphasefourForm.invalid) {
+      return;
+    }
     this.wizardStepEmitter.next(5);
   }
 }

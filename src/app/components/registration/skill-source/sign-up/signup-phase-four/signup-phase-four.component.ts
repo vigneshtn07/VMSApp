@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
 import { SignaturePad } from 'angular2-signaturepad';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-phase-four',
@@ -19,17 +20,37 @@ export class SignupPhaseFourComponent implements OnInit {
   signaturePad!: SignaturePad;
   private readonly notifier!: NotifierService;
 
+
   signaturePadOptions: Object = {
     // passed through to szimek/signature_pad constructor
     minWidth: 2,
     // canvasWidth: 500,
     // canvasHeight: 300,
   };
-  constructor(notifierService: NotifierService) {
+
+  skillphasefourForm!: FormGroup;
+  submitted = false;
+
+  constructor(notifierService: NotifierService, private formBuilder: FormBuilder) {
     this.notifier = notifierService;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.skillphasefourForm = this.formBuilder.group({
+      NIACSCode: ['', Validators.required],
+      dnbRating: ['', Validators.required],
+      WForm: ['', Validators.required],
+      Articles: ['', Validators.required],
+      Certificate: ['', Validators.required],
+      quaters: ['', Validators.required],
+      reason: ['', Validators.required],
+      Name: ['', Validators.required],
+      Title: ['', Validators.required],
+      agree: [false, Validators.requiredTrue]
+    });
+  }
+  get f() { return this.skillphasefourForm.controls; }
+
 
   ngAfterViewInit() {
     // this.signaturePad is now available
@@ -52,6 +73,10 @@ export class SignupPhaseFourComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.submitted = true;
+    if (this.skillphasefourForm.invalid) {
+      return;
+    }
     this.wizardStepEmitter.next(5);
     this.notifier.show({
       type: 'Signin successful',
