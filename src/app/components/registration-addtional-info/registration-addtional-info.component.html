@@ -3,7 +3,7 @@
         <div class="col-12 vms-signup-container__title d-flex justify-content-center">
             <p>Additional Info Form</p>
         </div>
-        <form class="col-12 vms-signup-container__form">
+        <form class="col-12 vms-signup-container__form" [formGroup]="infoForm">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-10 col-md-8 vms-form__group field">
                     <label>Please provide all informations and documents requested in the
@@ -25,15 +25,23 @@
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8 vms-form__group field">
-                    <textarea class="form-control" name="details" id="details" rows="3"></textarea>
+                    <textarea class="form-control" name="details" id="details" rows="3" formControlName="details"
+                        autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.details.errors }"></textarea>
+                    <div *ngIf="submitted && f.details.errors" class="invalid-feedback">
+                        <div *ngIf="f.details.errors.required">Details is required</div>
+                    </div>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-12 col-sm-8 offset-sm-1 col-lg-8 offset-lg-2 p-l-13 upload-input">
                     <label>W9 Form</label>
-                    <input type="file">
+                    <input type="file" formControlName="WForm" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && f.WForm.errors }">
                     <button class="vms-btn-primary">Upload</button>
+                    <div *ngIf="submitted && f.WForm.errors" class="invalid-feedback">
+                        <div *ngIf="f.WForm.errors.required">W9 Form is required</div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -42,7 +50,7 @@
                 <button class="col-12 col-sm-5 mb-4 mb-sm-0  vms-btn-primary-outline mr-md-4">
                     Cancel
                 </button>
-                <button class="col-12 col-sm-5  vms-btn-primary">
+                <button class="col-12 col-sm-5  vms-btn-primary" (click)="onSubmit()">
                     Submit
                 </button>
             </div>

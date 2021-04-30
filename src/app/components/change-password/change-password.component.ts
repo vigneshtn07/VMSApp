@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from 'src/app/helpers/must-match.validator';
 
 @Component({
   selector: 'app-change-password',
@@ -11,9 +13,30 @@ export class ChangePasswordComponent implements OnInit {
     newPassword: false,
     confirmPassword: false,
   };
-  constructor() {}
+  changepwdForm!: FormGroup;
+  submitted = false;
+  constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.changepwdForm = this.formBuilder.group({
+      OldPassword: ['', [Validators.required]],
+      EnterNewPassword: ['', [Validators.required]],
+      ConfirmPassword: ['', [Validators.required]]
+    }, {
+      validator: MustMatch('EnterNewPassword', 'ConfirmPassword')
+    });
+  }
 
-  onSubmit(): void {}
+  get f() {
+    return this.changepwdForm.controls;
+  }
+
+  onSubmit(): void {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.changepwdForm.invalid) {
+      return;
+    }
+  }
 }

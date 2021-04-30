@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { ConfirmationPromptComponent } from './confirmation-prompt/confirmation-prompt.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -12,13 +13,27 @@ import { ConfirmationPromptComponent } from './confirmation-prompt/confirmation-
 export class UserVerificationComponent implements OnInit {
   bsModalRef: BsModalRef | undefined;
   emailId: string = '';
-  constructor(private modalService: BsModalService) { }
+  userverifyForm!: FormGroup;
+  submitted = false;
+  constructor(private modalService: BsModalService, private formBuilder: FormBuilder) { }
+
 
   ngOnInit(): void {
+    this.userverifyForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
 
+  get f() {
+    return this.userverifyForm.controls;
+  }
 
   OpenModalPopUp(): void {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.userverifyForm.invalid) {
+      return;
+    }
     const initialState: any = {
       emailId: this.emailId
     }
