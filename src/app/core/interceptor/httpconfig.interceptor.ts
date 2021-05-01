@@ -13,16 +13,16 @@ import { catchError, map } from 'rxjs/operators';
 @Injectable()
 export class VMSInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authToken: string = localStorage.getItem('token') ?? '';
-    if (authToken) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Basic ${authToken}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      });
-    }
+    // const authToken: string = localStorage.getItem('token') ?? '';
+    // if (authToken) {
+    //   request = request.clone({
+    //     setHeaders: {
+    //       Authorization: `Basic ${authToken}`,
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //     },
+    //   });
+    // }
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {

@@ -38,6 +38,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { BusinessAdminModule } from './business-admin/business-admin.module';
 import { TechnicalAdminModule } from './technical-admin/technical-admin.module';
 import { VMSInterceptor } from './core/interceptor/httpconfig.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export abstract class AppModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -49,6 +50,7 @@ export abstract class AppModuleConstants {
     BusinessAdminModule,
     TechnicalAdminModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ];
   static readonly MODULE_DECLARATIONS = [
     AppComponent,
