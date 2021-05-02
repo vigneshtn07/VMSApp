@@ -7,7 +7,7 @@ import { SpecialistRegisterRequest } from 'src/app/services/interface';
 import { SpecialistService } from 'src/app/services/specialist.service';
 
 @Component({
-  selector: 'app-registration-specialist',
+  selector: 'registration-specialist',
   templateUrl: './registration-form.component.html',
   styleUrls: ['./registration-form.component.scss'],
 })
@@ -60,9 +60,9 @@ export class RegistrationSpecialistFormComponent implements OnInit {
     this.submitted = true;
 
     const request: SpecialistRegisterRequest = {
-      email: 'test1243@gmail.com',
-      fname: 'test1233',
-      lname: 'lname123',
+      email: 'test12ss13d43@gmail.com',
+      fname: 'tests1234s3',
+      lname: 'lname125s3',
       password: 'test124356',
     };
 
@@ -74,10 +74,6 @@ export class RegistrationSpecialistFormComponent implements OnInit {
         console.error(error.error);
       }
     );
-    // if (this.specialistregisterForm.invalid) {
-    //   return;
-    // }
-    //this.router.navigate(['verify-specialist']);
   }
 
   get f() {
