@@ -105,9 +105,9 @@ export class SignupPhaseTwoComponent implements OnInit {
   get f() { return this.skillphasetwoForm.controls; }
   onContinue(): void {
     this.submitted = true;
-    if (this.skillphasetwoForm.invalid) {
-      return;
-    }
+    // if (this.skillphasetwoForm.invalid) {
+    //   return;
+    // }
     this.wizardStepEmitter.next(3);
   }
 

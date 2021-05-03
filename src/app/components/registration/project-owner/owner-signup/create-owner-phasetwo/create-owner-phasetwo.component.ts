@@ -74,9 +74,9 @@ export class CreateOwnerPhasetwoComponent implements OnInit {
 
   onContinue(): void {
     this.submitted = true;
-    if (this.ownerphasetwoForm.invalid) {
-      return;
-    }
+    // if (this.ownerphasetwoForm.invalid) {
+    //   return;
+    // }
     this.wizardStepEmitter.next(3);
   }
 
