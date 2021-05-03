@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { STORAGE_KEYS } from 'src/app/core/storage/storage.constants';
+import { StorageType } from 'src/app/core/storage/storage.enum';
+import { StorageService } from 'src/app/core/storage/storage.service';
 import { UserAuthRequest } from 'src/app/services/interface';
+import { MessageService } from 'src/app/services/message.service';
 import { UserAuthenticationService } from 'src/app/services/user-auth.service';
+import { ThemeService } from 'src/theme';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +19,9 @@ export class LoginComponent implements OnInit {
   submitted = false;
   constructor(
     private formBuilder: FormBuilder,
-    private userAuthService: UserAuthenticationService
+    private userAuthService: UserAuthenticationService,
+    private messageService: MessageService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {
@@ -22,6 +29,7 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
+    this.messageService.setDataNotifier('test');
   }
 
   get f() {
@@ -46,6 +54,13 @@ export class LoginComponent implements OnInit {
     };
     this.userAuthService.authUser(userRequest).subscribe((response) => {
       console.log(response);
+      if (response) {
+        this.storageService.storeValue(
+          StorageType.LocalStorage,
+          STORAGE_KEYS.AuthToken,
+          response.access_token
+        );
+      }
     });
   }
 }

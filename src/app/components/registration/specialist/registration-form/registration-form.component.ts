@@ -3,9 +3,11 @@ import { Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SpecialistRegisterRequest } from 'src/app/services/interface';
+import { SpecialistService } from 'src/app/services/specialist.service';
 
 @Component({
-  selector: 'app-registration-specialist',
+  selector: 'registration-specialist',
   templateUrl: './registration-form.component.html',
   styleUrls: ['./registration-form.component.scss'],
 })
@@ -28,7 +30,11 @@ export class RegistrationSpecialistFormComponent implements OnInit {
     },
   };
 
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private specialistService: SpecialistService
+  ) {}
 
   ngOnInit(): void {
     this.specialistregisterForm = this.formBuilder.group({
@@ -46,24 +52,36 @@ export class RegistrationSpecialistFormComponent implements OnInit {
       PassportNumber: ['', Validators.required],
       LinkedInProfile: ['', Validators.required],
       Roles: ['', Validators.required],
-      certify: [false, Validators.requiredTrue]
+      certify: [false, Validators.requiredTrue],
     });
   }
 
   onSubmit(): void {
     this.submitted = true;
-    if (this.specialistregisterForm.invalid) {
-      return;
-    }
-    //alert(JSON.stringify(this.specialistregisterForm.value));
-    this.router.navigate(['verify-specialist']);
+
+    const request: SpecialistRegisterRequest = {
+      email: 'test12ss13d43@gmail.com',
+      fname: 'tests1234s3',
+      lname: 'lname125s3',
+      password: 'test124356',
+    };
+
+    this.specialistService.register(request).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.error(error.error);
+      }
+    );
   }
 
-  get f() { return this.specialistregisterForm.controls; }
+  get f() {
+    return this.specialistregisterForm.controls;
+  }
 
   onReset() {
     this.submitted = false;
     this.specialistregisterForm.reset();
   }
-
 }

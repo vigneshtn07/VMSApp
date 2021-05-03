@@ -10,7 +10,7 @@ import { User } from './model/index';
 
 @Injectable({ providedIn: 'root' })
 export class UserAuthenticationService {
-  baseUrl: string = environment.apiEndPoint;
+  private baseUrl: string = environment.apiEndPoint;
   constructor(private httpClient: HttpClient) {}
 
   public authUser(requsest: Contract.UserAuthRequest): Observable<Model.User> {
