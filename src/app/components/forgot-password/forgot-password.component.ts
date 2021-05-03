@@ -2,6 +2,8 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ForgotPasswordRequest } from 'src/app/services/interface';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,7 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   forgotpwdForm!: FormGroup;
   submitted = false;
   constructor(private modalService: BsModalService
-    , private router: Router, private formBuilder: FormBuilder) { }
+    , private router: Router, private formBuilder: FormBuilder, private commonService: CommonService) { }
 
   ngOnInit(): void {
     this.forgotpwdForm = this.formBuilder.group({
@@ -32,6 +34,21 @@ export class ForgotPasswordComponent implements OnInit {
     if (this.forgotpwdForm.invalid) {
       return;
     }
+
+    const request: ForgotPasswordRequest = {
+      email: 'msm17b011@iiitdm.ac.i'
+    };
+
+    this.commonService.forgotPassword(request).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.error(error.error);
+      }
+    );
+
+
     this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'wizard-prompt' }));
   }
 

@@ -38,9 +38,9 @@ export class CreateOwnerPhaseoneComponent implements OnInit {
   get f() { return this.ownerphaseoneForm.controls; }
   onContinue(): void {
     this.submitted = true;
-    if (this.ownerphaseoneForm.invalid) {
-      return;
-    }
+    // if (this.ownerphaseoneForm.invalid) {
+    //   return;
+    // }
     this.wizardStepEmitter.next(2);
   }
 }

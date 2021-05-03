@@ -24,10 +24,10 @@ export class SignupPhaseThreeComponent implements OnInit {
   get f() { return this.skillphasethreeForm.controls; }
 
   onContinue(): void {
-    this.submitted = true;
-    if (this.skillphasethreeForm.invalid) {
-      return;
-    }
+    // this.submitted = true;
+    // if (this.skillphasethreeForm.invalid) {
+    //   return;
+    // }
     this.wizardStepEmitter.next(4);
   }
 

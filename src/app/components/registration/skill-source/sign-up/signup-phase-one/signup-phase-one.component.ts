@@ -38,9 +38,9 @@ export class SignupPhaseOneComponent implements OnInit {
 
   onContinue(): void {
     this.submitted = true;
-    if (this.skillphaseoneForm.invalid) {
-      return;
-    }
+    // if (this.skillphaseoneForm.invalid) {
+    //   return;
+    // }
     // alert('hi');
     this.wizardStepEmitter.next(2);
   }

@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProjectOwnerRegisterRequest } from 'src/app/services/interface';
+import { ProjectOwnerService } from 'src/app/services/project-owner.service';
 
 @Component({
   selector: 'app-create-owner-phasefour',
@@ -23,7 +25,7 @@ export class CreateOwnerPhasefourComponent implements OnInit {
   ownerphasefourForm!: FormGroup;
   submitted = false;
 
-  constructor(private modalService: BsModalService, private formBuilder: FormBuilder) {
+  constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private projectOwnerService: ProjectOwnerService) {
     this.statementHeader = 'Statement 1';
     this.statementContent = `<p>Timely approval of Timecards and electronic payments</p><br>
     <p>I agree to providin fair payment terms. I Understand that any payment term over Net 45 will inccur a 0.5% fee for every 15 days. I also understand net terms start from the last day</p><br>
@@ -73,9 +75,24 @@ export class CreateOwnerPhasefourComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-    if (this.ownerphasefourForm.invalid) {
-      return;
-    }
+    // if (this.ownerphasefourForm.invalid) {
+    //   return;
+    // }
+    const request: ProjectOwnerRegisterRequest = {
+      "cname": "Romeo",
+      "email": "msm17b003@iiitdmmm.ac.in",
+      "password": "password"
+    };
+
+    this.projectOwnerService.register(request).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.error(error.error);
+      }
+    );
+
     this.wizardStepEmitter.next(5);
   }
 }
