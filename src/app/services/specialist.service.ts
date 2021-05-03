@@ -13,7 +13,9 @@ export class SpecialistService {
 
   register(request: Contract.SpecialistRegisterRequest): Observable<any> {
     return this.httpClient
-      .post(`${this.baseUrl}/${SPECIALIST_URLs.specialistRegister}`, request)
+      .post(`${this.baseUrl}/${SPECIALIST_URLs.specialistRegister}`, request, {
+        responseType: 'text',
+      })
       .pipe(
         map((response) => {
           return response;
