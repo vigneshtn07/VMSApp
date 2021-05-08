@@ -12,11 +12,25 @@ export class CommonService {
   constructor(private httpClient: HttpClient) { }
   forgotPassword(request: Contract.ForgotPasswordRequest): Observable<any> {
     return this.httpClient
-      .post(`${this.baseUrl}/${COMMON_API_URLs.forgotPassword}`, request)
+      .post(`${this.baseUrl}/${COMMON_API_URLs.forgotPassword}`, request, {
+        responseType: 'text',
+      })
       .pipe(
         map((response) => {
           return response;
         })
       );
   }
+  createPassword(request: Contract.createPasswordRequest): Observable<any> {
+    return this.httpClient
+      .post(`${this.baseUrl}/${COMMON_API_URLs.createPassword}`, request, {
+        responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
 }

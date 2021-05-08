@@ -121,10 +121,7 @@ const routes: Routes = [
     component: ChangePasswordComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {
-    path: 'Mail',
-    component: VmsEmailComponent,
-  },
+
   ...SUPER_ADMIN_ROUTES,
   ...BUSINESS_ADMIN_ROUTES,
   ...TECHNICAL_ADMIN_ROUTES,
@@ -135,4 +132,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

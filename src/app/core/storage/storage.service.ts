@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { STORAGE_KEYS } from './storage.constants';
 import { StorageType } from './storage.enum';
 
 @Injectable()
 export class StorageService {
-  constructor() {}
+  constructor() { }
 
   /**
    *store values into session/local storage
@@ -31,9 +32,20 @@ export class StorageService {
    */
   public getValueFromStorage(storageType: StorageType, key: string): any {
     if (storageType === StorageType.LocalStorage) {
-      return localStorage.JSON.parse(localStorage.getItem(key));
+      // return localStorage.JSON.parse(localStorage.getItem(key));
+      return localStorage.getItem(key);
     } else {
       return sessionStorage.getItem(key);
+    }
+  }
+
+  public clear(storageType: StorageType) {
+    if (storageType === StorageType.LocalStorage) {
+      localStorage.removeItem(STORAGE_KEYS.ID);
+      localStorage.removeItem(STORAGE_KEYS.AuthToken);
+      localStorage.clear();
+    } else {
+      sessionStorage.clear();
     }
   }
 }

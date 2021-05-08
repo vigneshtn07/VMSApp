@@ -13,7 +13,9 @@ export class SkillSourceService {
 
   register(request: Contract.SkillSourceRegisterRequest): Observable<any> {
     return this.httpClient
-      .post(`${this.baseUrl}/${SKILL_SOURCE_URLs.skillsourceRegister}`, request)
+      .post(`${this.baseUrl}/${SKILL_SOURCE_URLs.skillsourceRegister}`, request, {
+        responseType: 'text',
+      })
       .pipe(
         map((response) => {
           return response;

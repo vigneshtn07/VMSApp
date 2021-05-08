@@ -40,6 +40,7 @@ import { TechnicalAdminModule } from './technical-admin/technical-admin.module';
 import { VMSInterceptor } from './core/interceptor/httpconfig.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
+import { DatePipe } from '@angular/common';
 
 export abstract class AppModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -86,5 +87,5 @@ export abstract class AppModuleConstants {
     VerificationResponseComponent,
     RegistrationComponent,
   ];
-  static readonly MODULE_PROVIDERS = [];
+  static readonly MODULE_PROVIDERS = [DatePipe];
 }

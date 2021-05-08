@@ -48,8 +48,8 @@
                     <select class="dropdown" formControlName="gender"
                         [ngClass]="{'is-invalid': submitted && f.gender.errors }">
                         <option value="null" selected>Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
                     </select>
                     <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
                         <div *ngIf="f.gender.errors.required">Gender is required</div>
@@ -135,7 +135,7 @@
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="LinkedInProfile" id="" class="form__field"
                         placeholder="LinkedIn Profile Name" aria-describedby="helpId" maxlength="30"
-                        formControlName="LinkedInProfile"
+                        formControlName="LinkedInProfile" autocomplete="off"
                         [ngClass]="{'is-invalid': submitted && f.LinkedInProfile.errors }">
                     <label for="LinkedInProfile" class="form__label">LinkedIn Profile Name</label>
                     <div *ngIf="submitted && f.LinkedInProfile.errors" class="invalid-feedback">
@@ -143,12 +143,12 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Roles/Titles" id="" class="form__field"
+                    <input type="text" name="Roles/Titles" id="" class="form__field" autocomplete="off"
                         placeholder="Roles/Titles/best suited for" aria-describedby="helpId" maxlength="30"
                         formControlName="Roles" [ngClass]="{'is-invalid': submitted && f.Roles.errors }">
                     <label for="Roles/Titles" class="form__label">Roles/Titles/best suited for</label>
                     <div *ngIf="submitted && f.Roles.errors" class="invalid-feedback">
-                        <div *ngIf="f.Roles.errors.required">Linked In Profile is required</div>
+                        <div *ngIf="f.Roles.errors.required">Roles/Titles is required</div>
                     </div>
                 </div>
             </div>

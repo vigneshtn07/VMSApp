@@ -1,1 +1,10 @@
 @import "../../../registration/skill-source/sign-up/sign-up.component.scss";
+
+
+.form-check 
+{
+    .form-check-input:hover
+    {
+        cursor: pointer;
+    }
+}

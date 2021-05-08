@@ -36,20 +36,18 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     const request: ForgotPasswordRequest = {
-      email: 'msm17b011@iiitdm.ac.i'
+      email: this.emailId
     };
 
     this.commonService.forgotPassword(request).subscribe(
       (response) => {
         console.log(response);
+        this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'wizard-prompt' }));
       },
       (error) => {
         console.error(error.error);
       }
     );
-
-
-    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'wizard-prompt' }));
   }
 
   redirectToLogin(): void {

@@ -13,7 +13,9 @@ export class ProjectOwnerService {
 
   register(request: Contract.ProjectOwnerRegisterRequest): Observable<any> {
     return this.httpClient
-      .post(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerRegister}`, request)
+      .post(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerRegister}`, request, {
+        responseType: 'text',
+      })
       .pipe(
         map((response) => {
           return response;
