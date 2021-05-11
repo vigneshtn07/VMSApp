@@ -2,31 +2,33 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
-import { SpecialistService } from 'src/app/services/specialist.service';
 import { NotifierService } from 'angular-notifier';
-import { SpecialistRegisterRequest, SpecialistResendEmail } from 'src/app/services/interface';
+import { SkillSourceRegisterRequest, SkillSourceResendEmail } from 'src/app/services/interface';
+import { SkillSourceService } from 'src/app/services/skill-source.service';
 
 @Component({
-  selector: 'app-verify-admins',
-  templateUrl: './verify-admins.component.html',
-  styleUrls: ['./verify-admins.component.scss'],
+  selector: 'app-skill-source',
+  templateUrl: './skill-source.component.html',
+  styleUrls: ['./skill-source.component.scss']
 })
-export class VerifyAdminsComponent implements OnInit {
+export class SkillSourceSignUpComponent implements OnInit {
   modalRef!: BsModalRef;
   showPassword = {
     password: false,
     confirmPassword: false,
   };
   emailId!: string;
-  verifyadminForm!: FormGroup;
+  username!: string;
+  skillsignupForm!: FormGroup;
   submitted = false;
   private readonly notifier!: NotifierService;
-  constructor(notifierService: NotifierService, private modalService: BsModalService, private formBuilder: FormBuilder, private specialistservice: SpecialistService) {
+  constructor(notifierService: NotifierService, private modalService: BsModalService, private formBuilder: FormBuilder, private skillSourceService: SkillSourceService) {
     this.notifier = notifierService;
   }
 
   ngOnInit(): void {
-    this.verifyadminForm = this.formBuilder.group({
+    this.skillsignupForm = this.formBuilder.group({
+      uname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       NewPassword: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
       ConfirmPassword: ['', [Validators.required]]
@@ -36,30 +38,32 @@ export class VerifyAdminsComponent implements OnInit {
   }
 
   get f() {
-    return this.verifyadminForm.controls;
+    return this.skillsignupForm.controls;
   }
 
 
   onSubmit(template: TemplateRef<any>): void {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.verifyadminForm.invalid) {
+    if (this.skillsignupForm.invalid) {
       return;
     }
 
-    const request: SpecialistRegisterRequest = {
-      email: this.verifyadminForm.value.email,
-      password: this.verifyadminForm.value.NewPassword
+    const request: SkillSourceRegisterRequest = {
+      "cname": this.skillsignupForm.value.uname,
+      "email": this.skillsignupForm.value.email,
+      "password": this.skillsignupForm.value.NewPassword
     };
 
-    this.specialistservice.register(request).subscribe(
+    this.skillSourceService.register(request).subscribe(
       (response) => {
         console.log(response);
         this.notifier.show({
           type: 'success',
           message: 'Your Registration has been completed.Verification Link sent to your Email',
         });
-        this.emailId = this.verifyadminForm.value.email;
+        this.emailId = this.skillsignupForm.value.email;
+        this.username = this.skillsignupForm.value.uname;
         this.modalRef = this.modalService.show(template);
       },
       (error) => {
@@ -74,17 +78,17 @@ export class VerifyAdminsComponent implements OnInit {
 
   }
   onResend(): void {
-    const request: SpecialistResendEmail = {
-      fname: "",
+    const request: SkillSourceResendEmail = {
+      fname: this.username,
       email: this.emailId,
     };
 
-    this.specialistservice.resendemail(request).subscribe(
+    this.skillSourceService.resendemail(request).subscribe(
       (response) => {
         console.log(response);
         this.notifier.show({
           type: 'success',
-          message: 'Verification link sent to your email address',
+          message: 'Verification link to your email address',
         });
       },
       (error) => {
@@ -96,4 +100,5 @@ export class VerifyAdminsComponent implements OnInit {
       }
     );
   }
+
 }

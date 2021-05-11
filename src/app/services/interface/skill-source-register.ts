@@ -3,3 +3,8 @@ export interface SkillSourceRegisterRequest {
     email: string;
     password: string;
 }
+
+export interface SkillSourceResendEmail {
+    fname: string;
+    email: string;
+}

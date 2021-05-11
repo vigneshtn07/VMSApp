@@ -3,3 +3,7 @@ export interface ProjectOwnerRegisterRequest {
     email: string;
     password: string;
 }
+export interface ProjectOwnerResendEmail {
+    fname: string;
+    email: string;
+}

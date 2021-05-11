@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EditSpecialistRequest, SpecialistRegisterRequest } from 'src/app/services/interface';
+import { additionalInfoRequest, EditSpecialistRequest, SpecialistRegisterRequest } from 'src/app/services/interface';
 import { SpecialistService } from 'src/app/services/specialist.service';
+import { CommonService } from 'src/app/services/common.service';
 import { STORAGE_KEYS } from 'src/app/core/storage/storage.constants';
 import { StorageType } from 'src/app/core/storage/storage.enum';
 import { StorageService } from 'src/app/core/storage/storage.service';
@@ -38,6 +39,7 @@ export class RegistrationSpecialistFormComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private specialistService: SpecialistService,
+    private commonService: CommonService,
     private storageService: StorageService,
     public datepipe: DatePipe
   ) {
@@ -77,15 +79,6 @@ export class RegistrationSpecialistFormComponent implements OnInit {
       return;
     }
 
-    // const request: SpecialistRegisterRequest = {
-    //   email: 'shelcia19998123@gmail.com',
-    //   fname: 'Test',
-    //   lname: 'Sample',
-    //   password: 'test678',
-    // };
-
-    // this.specialistService.register(request).subscribe(
-    //   (response) => {
     const id = JSON.parse(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.ID));
 
     const request: EditSpecialistRequest = {
@@ -113,6 +106,11 @@ export class RegistrationSpecialistFormComponent implements OnInit {
     this.specialistService.editregister(request, id).subscribe(
       (response) => {
         console.log(response);
+        const request: additionalInfoRequest = {
+          fname: this.specialistregisterForm.value.firstName,
+          email: this.specialistregisterForm.value.email,
+          link: "http://localhost:4200/info-form",
+        };
         this.router.navigate(['verify-specialist']);
       }
       ,
@@ -126,6 +124,7 @@ export class RegistrationSpecialistFormComponent implements OnInit {
     //   }
     // );
   }
+
 
   get f() {
     return this.specialistregisterForm.controls;

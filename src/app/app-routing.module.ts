@@ -28,6 +28,8 @@ import { TDashboardComponent } from './technical-admin/pages/dashboard/dashboard
 import { TAdminRegistrationComponent } from './technical-admin/pages/admin-registration/admin-registration.component';
 import { ProjectsListComponent } from './super-admin/pages/projects-list/projects-list.component';
 import { HomeLandingComponent } from './components/home-landing/home-landing.component';
+import { SkillSourceSignUpComponent } from './components/signup/skill-source/skill-source.component';
+import { ProjectOwnerComponent } from './components/signup/project-owner/project-owner.component';
 
 const SUPER_ADMIN_ROUTES: Routes = [
   {
@@ -83,6 +85,8 @@ const routes: Routes = [
   { path: 'registration-status', component: RegistrationStatusComponent },
   { path: 'info-form', component: RegistrationAddtionalInfoComponent },
   { path: 'home', component: HomeLandingComponent },
+  { path: 'skill-source-signup', component: SkillSourceSignUpComponent },
+  { path: 'project-owner-signup', component: ProjectOwnerComponent },
   {
     path: 'verify-email',
     children: [

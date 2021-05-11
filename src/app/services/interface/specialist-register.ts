@@ -1,8 +1,11 @@
 export interface SpecialistRegisterRequest {
-  fname: string;
-  lname: string;
   email: string;
   password: string;
+}
+
+export interface SpecialistResendEmail {
+  fname: string;
+  email: string;
 }
 
 export interface EditSpecialistRequest {

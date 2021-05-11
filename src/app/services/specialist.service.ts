@@ -34,4 +34,17 @@ export class SpecialistService {
         })
       );
   }
+
+  resendemail(request: Contract.SpecialistResendEmail): Observable<any> {
+    return this.httpClient
+      .post(`${this.baseUrl}/${SPECIALIST_URLs.resendEmailSpecialist}`, request, {
+        responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
 }

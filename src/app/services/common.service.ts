@@ -33,4 +33,16 @@ export class CommonService {
       );
   }
 
+  additionalInfoRequest(request: Contract.additionalInfoRequest): Observable<any> {
+    return this.httpClient
+      .post(`${this.baseUrl}/${COMMON_API_URLs.additionalInfo}`, request, {
+        responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
 }

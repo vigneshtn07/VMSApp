@@ -9,4 +9,4 @@ import { HomeLandingComponent } from './components/home-landing/home-landing.com
   providers: [AppModuleConstants.MODULE_PROVIDERS],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
