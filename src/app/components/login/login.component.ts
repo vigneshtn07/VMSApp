@@ -23,9 +23,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userAuthService: UserAuthenticationService,
-    private messageService: MessageService, private router: Router,
-    private storageService: StorageService, notifierService: NotifierService
-  ) { this.notifier = notifierService; }
+    private messageService: MessageService,
+    private router: Router,
+    private storageService: StorageService,
+    notifierService: NotifierService
+  ) {
+    this.notifier = notifierService;
+  }
 
   ngOnInit(): void {
     // this.storageService.clear(StorageType.LocalStorage);
@@ -64,16 +68,8 @@ export class LoginComponent implements OnInit {
     this.userAuthService.authUser(userRequest).subscribe(
       (response) => {
         if (response) {
-          this.storageService.storeValue(
-            StorageType.LocalStorage,
-            STORAGE_KEYS.AuthToken,
-            response.access_token,
-          );
-          this.storageService.storeValue(
-            StorageType.LocalStorage,
-            STORAGE_KEYS.ID,
-            response.id,
-          );
+          this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.AuthToken, response.access_token);
+          this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.ID, response.id);
           //console.log(response.id);
           if (response.type == 'Project Owner') {
             this.router.navigate(['registration/project-owner/signUp']);

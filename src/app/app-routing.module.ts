@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CreatePasswordComponent } from './components/create-password/create-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
@@ -27,6 +27,7 @@ import { TechnicalAdminComponent } from './technical-admin/technical-admin.compo
 import { TDashboardComponent } from './technical-admin/pages/dashboard/dashboard.component';
 import { TAdminRegistrationComponent } from './technical-admin/pages/admin-registration/admin-registration.component';
 import { ProjectsListComponent } from './super-admin/pages/projects-list/projects-list.component';
+import { HomeLandingComponent } from './components/home-landing/home-landing.component';
 
 const SUPER_ADMIN_ROUTES: Routes = [
   {
@@ -81,6 +82,7 @@ const routes: Routes = [
   { path: 'create-password', component: CreatePasswordComponent },
   { path: 'registration-status', component: RegistrationStatusComponent },
   { path: 'info-form', component: RegistrationAddtionalInfoComponent },
+  { path: 'home', component: HomeLandingComponent },
   {
     path: 'verify-email',
     children: [
@@ -120,7 +122,7 @@ const routes: Routes = [
     path: 'change-password',
     component: ChangePasswordComponent,
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   ...SUPER_ADMIN_ROUTES,
   ...BUSINESS_ADMIN_ROUTES,
@@ -128,8 +130,13 @@ const routes: Routes = [
   // ,{ path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  scrollOffset: [0, 64],
+};
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
