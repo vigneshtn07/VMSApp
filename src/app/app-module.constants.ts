@@ -43,6 +43,7 @@ import { CoreModule } from './core/core.module';
 import { DatePipe } from '@angular/common';
 import { HomeLandingComponent } from './components/home-landing/home-landing.component';
 import { UserSignUpComponent } from './components/signup/user-sign-up.component';
+import { UserVerificationResponseComponent } from './components/user-verification-response/user-verification-response.component';
 
 export abstract class AppModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -89,6 +90,7 @@ export abstract class AppModuleConstants {
     RegistrationComponent,
     ProjectOwnerComponent,
     HomeLandingComponent,
+    UserVerificationResponseComponent,
   ];
   static readonly MODULE_PROVIDERS = [DatePipe];
 }

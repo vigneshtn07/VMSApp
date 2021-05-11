@@ -29,6 +29,7 @@ import { ProjectsListComponent } from './super-admin/pages/projects-list/project
 import { HomeLandingComponent } from './components/home-landing/home-landing.component';
 import { ProjectOwnerComponent } from './components/signup/project-owner/project-owner.component';
 import { UserSignUpComponent } from './components/signup/user-sign-up.component';
+import { UserVerificationResponseComponent } from './components/user-verification-response/user-verification-response.component';
 
 const SUPER_ADMIN_ROUTES: Routes = [
   {
@@ -76,8 +77,10 @@ const TECHNICAL_ADMIN_ROUTES: Routes = [
 ];
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'login/:userType', component: LoginComponent },
   { path: 'signup/:userType', component: UserSignUpComponent },
+  { path: 'verify-user/auth/:token', component: UserVerificationResponseComponent },
   { path: 'verify-user', component: UserVerificationComponent },
   { path: 'verify-user/AuthSucess/:id', component: AuthSuccessComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
