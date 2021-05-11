@@ -27,6 +27,9 @@ import { TechnicalAdminComponent } from './technical-admin/technical-admin.compo
 import { TDashboardComponent } from './technical-admin/pages/dashboard/dashboard.component';
 import { TAdminRegistrationComponent } from './technical-admin/pages/admin-registration/admin-registration.component';
 import { ProjectsListComponent } from './super-admin/pages/projects-list/projects-list.component';
+import { SkillSourceSignUpComponent } from './components/signup/skill-source/skill-source.component'
+import { ProjectOwnerComponent } from './components/signup/project-owner/project-owner.component';
+
 
 const SUPER_ADMIN_ROUTES: Routes = [
   {
@@ -81,6 +84,8 @@ const routes: Routes = [
   { path: 'create-password', component: CreatePasswordComponent },
   { path: 'registration-status', component: RegistrationStatusComponent },
   { path: 'info-form', component: RegistrationAddtionalInfoComponent },
+  { path: 'skill-source_signup', component: SkillSourceSignUpComponent },
+  { path: 'project-owner_signup', component: ProjectOwnerComponent },
   {
     path: 'verify-email',
     children: [

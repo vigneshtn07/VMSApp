@@ -8,8 +8,7 @@ import {
 import { NotifierService } from 'angular-notifier';
 import { SignaturePad } from 'angular2-signaturepad';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SkillSourceRegisterRequest } from 'src/app/services/interface';
-import { SkillSourceService } from 'src/app/services/skill-source.service';
+
 
 @Component({
   selector: 'app-signup-phase-four',
@@ -33,7 +32,7 @@ export class SignupPhaseFourComponent implements OnInit {
   skillphasefourForm!: FormGroup;
   submitted = false;
 
-  constructor(notifierService: NotifierService, private formBuilder: FormBuilder, private skillSourceService: SkillSourceService) {
+  constructor(notifierService: NotifierService, private formBuilder: FormBuilder) {
     this.notifier = notifierService;
   }
 
@@ -79,21 +78,6 @@ export class SignupPhaseFourComponent implements OnInit {
     // if (this.skillphasefourForm.invalid) {
     //   return;
     // }
-    const request: SkillSourceRegisterRequest = {
-      "cname": "Romeo",
-      "email": "msm17b003@iiitdmmm.ac.in",
-      "password": "password"
-    };
-
-    this.skillSourceService.register(request).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.error(error.error);
-      }
-    );
-
 
     this.wizardStepEmitter.next(5);
     this.notifier.show({

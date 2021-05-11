@@ -22,4 +22,16 @@ export class SkillSourceService {
         })
       );
   }
+
+  resendemail(request: Contract.SkillSourceResendEmail): Observable<any> {
+    return this.httpClient
+      .post(`${this.baseUrl}/${SKILL_SOURCE_URLs.skillResendemail}`, request, {
+        responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
 }

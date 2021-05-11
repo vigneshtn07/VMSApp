@@ -37,6 +37,8 @@ import { SuperAdminModule } from './super-admin/super-admin.module';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { BusinessAdminModule } from './business-admin/business-admin.module';
 import { TechnicalAdminModule } from './technical-admin/technical-admin.module';
+import { SkillSourceSignUpComponent } from './components/signup/skill-source/skill-source.component'
+import { ProjectOwnerComponent } from './components/signup/project-owner/project-owner.component';
 import { VMSInterceptor } from './core/interceptor/httpconfig.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
@@ -85,7 +87,7 @@ export abstract class AppModuleConstants {
     RegistrationSuccessComponent,
     VerifyAdminsComponent,
     VerificationResponseComponent,
-    RegistrationComponent,
+    RegistrationComponent, SkillSourceSignUpComponent, ProjectOwnerComponent
   ];
   static readonly MODULE_PROVIDERS = [DatePipe];
 }

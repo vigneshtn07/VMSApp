@@ -22,4 +22,15 @@ export class ProjectOwnerService {
         })
       );
   }
+  resendemail(request: Contract.ProjectOwnerResendEmail): Observable<any> {
+    return this.httpClient
+      .post(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerResendemail}`, request, {
+        responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
 }

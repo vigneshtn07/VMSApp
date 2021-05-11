@@ -8,4 +8,4 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [AppModuleConstants.MODULE_PROVIDERS],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
