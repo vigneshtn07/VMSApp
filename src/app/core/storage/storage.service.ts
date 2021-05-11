@@ -4,7 +4,7 @@ import { StorageType } from './storage.enum';
 
 @Injectable()
 export class StorageService {
-  constructor() { }
+  constructor() {}
 
   /**
    *store values into session/local storage
@@ -39,9 +39,15 @@ export class StorageService {
     }
   }
 
+  /**
+   * clear straoge values based on type
+   *
+   * @param {StorageType} storageType
+   * @memberof StorageService
+   */
   public clear(storageType: StorageType) {
     if (storageType === StorageType.LocalStorage) {
-      localStorage.removeItem(STORAGE_KEYS.ID);
+      localStorage.removeItem(STORAGE_KEYS.UserId);
       localStorage.removeItem(STORAGE_KEYS.AuthToken);
       localStorage.clear();
     } else {

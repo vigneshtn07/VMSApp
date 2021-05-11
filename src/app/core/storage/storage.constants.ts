@@ -1,4 +1,4 @@
 export const STORAGE_KEYS = {
   AuthToken: 'authToken',
-  ID: 'id',
+  UserId: 'id',
 };

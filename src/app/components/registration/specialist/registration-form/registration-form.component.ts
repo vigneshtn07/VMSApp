@@ -52,7 +52,7 @@ export class RegistrationSpecialistFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.ID));
+    console.log(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.UserId));
     this.specialistregisterForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -79,26 +79,33 @@ export class RegistrationSpecialistFormComponent implements OnInit {
       return;
     }
 
-    const id = JSON.parse(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.ID));
+    const id = JSON.parse(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.UserId));
 
     const request: EditSpecialistRequest = {
       fname: this.specialistregisterForm.value.firstName,
       lname: this.specialistregisterForm.value.lastName,
       email: this.specialistregisterForm.value.email,
-      dob: (moment(this.specialistregisterForm.value.dob)).format('MM-DD-yyyy'),
+      dob: moment(this.specialistregisterForm.value.dob).format('MM-DD-yyyy'),
       gender: this.specialistregisterForm.value.gender,
-      phoneno: (this.specialistregisterForm.value.PhoneNumber).replace('-', '').toString().replace('(', '').toString().replace(')', '').toString().replace('-', '').toString(),
+      phoneno: this.specialistregisterForm.value.PhoneNumber.replace('-', '')
+        .toString()
+        .replace('(', '')
+        .toString()
+        .replace(')', '')
+        .toString()
+        .replace('-', '')
+        .toString(),
       address: this.specialistregisterForm.value.StreetAddress,
       city: this.specialistregisterForm.value.City,
       state: this.specialistregisterForm.value.State,
       country: this.specialistregisterForm.value.Country,
-      pincode: (this.specialistregisterForm.value.Zipcode).replace('-', '').toString(),
+      pincode: this.specialistregisterForm.value.Zipcode.replace('-', '').toString(),
       passNumber: this.specialistregisterForm.value.PassportNumber,
       linkedinLink: this.specialistregisterForm.value.LinkedInProfile,
       roles: this.specialistregisterForm.value.Roles,
-      indKnowledge: "knowledge",
+      indKnowledge: 'knowledge',
       check: this.specialistregisterForm.value.certify,
-      skills: "skills"
+      skills: 'skills',
     };
 
     //console.log(JSON.stringify(request));
@@ -109,11 +116,10 @@ export class RegistrationSpecialistFormComponent implements OnInit {
         const request: additionalInfoRequest = {
           fname: this.specialistregisterForm.value.firstName,
           email: this.specialistregisterForm.value.email,
-          link: "http://localhost:4200/info-form",
+          link: 'http://localhost:4200/info-form',
         };
         this.router.navigate(['verify-specialist']);
-      }
-      ,
+      },
       (error) => {
         console.error(error.error);
       }
@@ -124,7 +130,6 @@ export class RegistrationSpecialistFormComponent implements OnInit {
     //   }
     // );
   }
-
 
   get f() {
     return this.specialistregisterForm.controls;

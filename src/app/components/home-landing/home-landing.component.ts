@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserType } from 'src/app/shared/constants/user-type.constant';
 
 @Component({
   selector: 'vms-home-landing',
@@ -6,11 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-landing.component.scss'],
 })
 export class HomeLandingComponent implements OnInit {
-  constructor() {}
+  userTypes: {
+    [key: string]: string;
+  };
+
+  constructor(private router: Router) {
+    this.userTypes = {
+      SuperAdmin: UserType.SuperAdmin,
+      Specialist: UserType.Specialist,
+      SkillSource: UserType.SkillSource,
+      ProjectOwner: UserType.ProjectOwner,
+    };
+  }
 
   ngOnInit(): void {}
 
-  scrollToElement(fragmentId: string) {
+  scrollToElement(fragmentId: string): void {
     const element = document.getElementById(fragmentId);
     if (element) {
       element.scrollIntoView({
@@ -18,5 +31,13 @@ export class HomeLandingComponent implements OnInit {
         block: 'start',
       });
     }
+  }
+
+  navigateToSignUp(userType: string): void {
+    this.router.navigate([`signup/${userType}`]);
+  }
+
+  navigateToSignIn(userType: string): void {
+    this.router.navigate([`login/${userType}`]);
   }
 }

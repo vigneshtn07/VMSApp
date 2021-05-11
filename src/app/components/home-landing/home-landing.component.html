@@ -64,8 +64,10 @@
                 </div>
                 <div class="col-5 col-lg-4">
                     <div class="d-flex justify-content-center">
-                        <button class="vms-btn-primary">SignUp</button>
-                        <button class="vms-btn-primary-outline ml-2">SignIn</button>
+                        <button class="vms-btn-primary"
+                            (click)="navigateToSignUp(userTypes.ProjectOwner)">SignUp</button>
+                        <button class="vms-btn-primary-outline ml-2"
+                            (click)="navigateToSignIn(userTypes.ProjectOwner)">SignIn</button>
                     </div>
                 </div>
             </div>
@@ -84,8 +86,10 @@
                 </div>
                 <div class="col-5 col-lg-4">
                     <div class="d-flex justify-content-center">
-                        <button class="vms-btn-primary">SignUp</button>
-                        <button class="vms-btn-primary-outline ml-2">SignIn</button>
+                        <button class="vms-btn-primary"
+                            (click)="navigateToSignUp(userTypes.SkillSource)">SignUp</button>
+                        <button class="vms-btn-primary-outline ml-2"
+                            (click)="navigateToSignIn(userTypes.SkillSource)">SignIn</button>
                     </div>
                 </div>
             </div>
@@ -104,8 +108,9 @@
                 </div>
                 <div class="col-5 col-lg-4">
                     <div class="d-flex justify-content-center">
-                        <button class="vms-btn-primary">SignUp</button>
-                        <button class="vms-btn-primary-outline ml-2">SignIn</button>
+                        <button class="vms-btn-primary" (click)="navigateToSignUp(userTypes.Specialist)">SignUp</button>
+                        <button class="vms-btn-primary-outline ml-2"
+                            (click)="navigateToSignIn(userTypes.Specialist)">SignIn</button>
                     </div>
                 </div>
             </div>

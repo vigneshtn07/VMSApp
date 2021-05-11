@@ -8,7 +8,6 @@ import { RegistrationAddtionalInfoComponent } from './components/registration-ad
 import { RegistrationStatusComponent } from './components/registration-status/registration-status.component';
 import { OwnerSignupComponent } from './components/registration/project-owner/owner-signup/owner-signup.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { SignUpComponent } from './components/registration/skill-source/sign-up/sign-up.component';
 import { RegistrationSpecialistFormComponent } from './components/registration/specialist/registration-form/registration-form.component';
 import { RegistrationSuccessComponent } from './components/registration/specialist/registration-success/registration-success.component';
 import { AuthSuccessComponent } from './components/user-verification-wizard/auth-success/auth-success.component';
@@ -28,8 +27,8 @@ import { TDashboardComponent } from './technical-admin/pages/dashboard/dashboard
 import { TAdminRegistrationComponent } from './technical-admin/pages/admin-registration/admin-registration.component';
 import { ProjectsListComponent } from './super-admin/pages/projects-list/projects-list.component';
 import { HomeLandingComponent } from './components/home-landing/home-landing.component';
-import { SkillSourceSignUpComponent } from './components/signup/skill-source/skill-source.component';
 import { ProjectOwnerComponent } from './components/signup/project-owner/project-owner.component';
+import { UserSignUpComponent } from './components/signup/user-sign-up.component';
 
 const SUPER_ADMIN_ROUTES: Routes = [
   {
@@ -77,7 +76,8 @@ const TECHNICAL_ADMIN_ROUTES: Routes = [
 ];
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login/:userType', component: LoginComponent },
+  { path: 'signup/:userType', component: UserSignUpComponent },
   { path: 'verify-user', component: UserVerificationComponent },
   { path: 'verify-user/AuthSucess/:id', component: AuthSuccessComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
@@ -85,8 +85,7 @@ const routes: Routes = [
   { path: 'registration-status', component: RegistrationStatusComponent },
   { path: 'info-form', component: RegistrationAddtionalInfoComponent },
   { path: 'home', component: HomeLandingComponent },
-  { path: 'skill-source-signup', component: SkillSourceSignUpComponent },
-  { path: 'project-owner-signup', component: ProjectOwnerComponent },
+  // { path: 'project-owner-signup', component: ProjectOwnerComponent },
   {
     path: 'verify-email',
     children: [
@@ -100,7 +99,7 @@ const routes: Routes = [
       {
         path: 'skill-source',
         component: RegistrationComponent,
-        children: [{ path: 'signUp', component: SignUpComponent }],
+        // children: [{ path: 'signUp', component: SignUpComponent }],
       },
     ],
   },

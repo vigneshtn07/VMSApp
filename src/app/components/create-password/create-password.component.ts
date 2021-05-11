@@ -22,19 +22,29 @@ export class CreatePasswordComponent implements OnInit {
   createpwdForm!: FormGroup;
   submitted = false;
 
-  constructor(notifierService: NotifierService, private formBuilder: FormBuilder, private commonService: CommonService, private storageService: StorageService) {
+  constructor(
+    notifierService: NotifierService,
+    private formBuilder: FormBuilder,
+    private commonService: CommonService,
+    private storageService: StorageService
+  ) {
     this.notifier = notifierService;
   }
 
   ngOnInit(): void {
-    this.createpwdForm = this.formBuilder.group({
-      EnterNewPassword: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
-      ConfirmPassword: ['', [Validators.required]]
-    }, {
-      validator: MustMatch('EnterNewPassword', 'ConfirmPassword')
-    });
+    this.createpwdForm = this.formBuilder.group(
+      {
+        EnterNewPassword: [
+          '',
+          [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)],
+        ],
+        ConfirmPassword: ['', [Validators.required]],
+      },
+      {
+        validator: MustMatch('EnterNewPassword', 'ConfirmPassword'),
+      }
+    );
   }
-
 
   get f() {
     return this.createpwdForm.controls;
@@ -48,8 +58,8 @@ export class CreatePasswordComponent implements OnInit {
     }
 
     const request: createPasswordRequest = {
-      id: JSON.parse(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.ID)),
-      password: this.createpwdForm.value.EnterNewPassword
+      id: JSON.parse(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.UserId)),
+      password: this.createpwdForm.value.EnterNewPassword,
     };
 
     this.commonService.createPassword(request).subscribe(
@@ -68,8 +78,5 @@ export class CreatePasswordComponent implements OnInit {
         });
       }
     );
-
-
-
   }
 }

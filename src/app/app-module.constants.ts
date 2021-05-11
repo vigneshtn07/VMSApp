@@ -14,7 +14,6 @@ import { UserVerificationComponent } from './components/user-verification-wizard
 import { SharedModule } from './shared/shared.module';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import { SignUpComponent } from './components/registration/skill-source/sign-up/sign-up.component';
 import { SignupPhaseOneComponent } from './components/registration/skill-source/sign-up/signup-phase-one/signup-phase-one.component';
 import { SignupPhaseTwoComponent } from './components/registration/skill-source/sign-up/signup-phase-two/signup-phase-two.component';
 import { SignupPhaseThreeComponent } from './components/registration/skill-source/sign-up/signup-phase-three/signup-phase-three.component';
@@ -37,12 +36,13 @@ import { SuperAdminModule } from './super-admin/super-admin.module';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { BusinessAdminModule } from './business-admin/business-admin.module';
 import { TechnicalAdminModule } from './technical-admin/technical-admin.module';
-import { SkillSourceSignUpComponent } from './components/signup/skill-source/skill-source.component'
 import { ProjectOwnerComponent } from './components/signup/project-owner/project-owner.component';
 import { VMSInterceptor } from './core/interceptor/httpconfig.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
 import { DatePipe } from '@angular/common';
+import { HomeLandingComponent } from './components/home-landing/home-landing.component';
+import { UserSignUpComponent } from './components/signup/user-sign-up.component';
 
 export abstract class AppModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -66,7 +66,7 @@ export abstract class AppModuleConstants {
     ConfirmationPromptComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
-    SignUpComponent,
+    UserSignUpComponent,
     SignupPhaseOneComponent,
     SignupPhaseTwoComponent,
     SignupPhaseThreeComponent,
@@ -77,7 +77,6 @@ export abstract class AppModuleConstants {
     RegistrationResponseComponent,
     RegistrationResponseComponent,
     RegistrationSpecialistFormComponent,
-    SignUpComponent,
     CreateOwnerPhaseoneComponent,
     CreateOwnerPhasetwoComponent,
     CreateOwnerPhasethreeComponent,
@@ -87,7 +86,9 @@ export abstract class AppModuleConstants {
     RegistrationSuccessComponent,
     VerifyAdminsComponent,
     VerificationResponseComponent,
-    RegistrationComponent, SkillSourceSignUpComponent, ProjectOwnerComponent
+    RegistrationComponent,
+    ProjectOwnerComponent,
+    HomeLandingComponent,
   ];
   static readonly MODULE_PROVIDERS = [DatePipe];
 }

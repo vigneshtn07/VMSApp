@@ -7,8 +7,10 @@ import { UserAuthRequest } from 'src/app/services/interface';
 import { MessageService } from 'src/app/services/message.service';
 import { UserAuthenticationService } from 'src/app/services/user-auth.service';
 import { ThemeService } from 'src/theme';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
   showPassword: boolean = false;
   loginForm!: FormGroup;
   submitted = false;
+  userType: string = '';
   private readonly notifier!: NotifierService;
   constructor(
     private formBuilder: FormBuilder,
@@ -26,18 +29,22 @@ export class LoginComponent implements OnInit {
     private messageService: MessageService,
     private router: Router,
     private storageService: StorageService,
-    notifierService: NotifierService
+    private notifierService: NotifierService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.notifier = notifierService;
   }
 
   ngOnInit(): void {
-    // this.storageService.clear(StorageType.LocalStorage);
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
-    this.messageService.setDataNotifier('test');
+    this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) => of(params))).subscribe((params: ParamMap) => {
+      if (params.has('userType')) {
+        this.userType = params.get('userType')?.toString() ?? '';
+      }
+    });
   }
 
   get f() {
@@ -51,8 +58,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    // display form values on success
-    //alert(JSON.stringify(this.loginForm.value, null, 4));
   }
 
   authenticateUser(): void {
@@ -69,7 +74,7 @@ export class LoginComponent implements OnInit {
       (response) => {
         if (response) {
           this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.AuthToken, response.access_token);
-          this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.ID, response.id);
+          this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.UserId, response.id);
           //console.log(response.id);
           if (response.type == 'Project Owner') {
             this.router.navigate(['registration/project-owner/signUp']);
