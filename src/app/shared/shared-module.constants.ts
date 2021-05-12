@@ -32,6 +32,8 @@ import { VmsNotificationComponent } from './components/vms-notification/vms-noti
 import { VmsMenuComponent } from './components/side-navbar/vms-menu/vms-menu.component';
 import { VmsMenuItemComponent } from './components/side-navbar/vms-menu-item/vms-menu-item.component';
 import { darkTheme, lightTheme, ThemeModule } from 'src/theme';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AppLoaderComponent } from './components/app-loader/app-loader.component';
 
 export abstract class SharedModuleConstants {
   static readonly MODULE_IMPORTS = [
@@ -65,6 +67,7 @@ export abstract class SharedModuleConstants {
       themes: [lightTheme, darkTheme],
       active: 'light',
     }),
+    NgxSpinnerModule,
   ];
   static readonly MODULE_DECLARATIONS = [
     VMSDialogModalComponent,
@@ -85,6 +88,7 @@ export abstract class SharedModuleConstants {
     VmsNotificationComponent,
     VmsMenuComponent,
     VmsMenuItemComponent,
+    AppLoaderComponent,
   ];
   static readonly MODULE_EXPORTS = [
     CommonModule,
@@ -116,6 +120,7 @@ export abstract class SharedModuleConstants {
     VmsNotificationComponent,
     VmsMenuComponent,
     VmsMenuItemComponent,
+    AppLoaderComponent,
   ];
   static readonly MODULE_PROVIDERS = [];
 }
