@@ -7,6 +7,7 @@ import { SkillSourceService } from '../../services/skill-source.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { UserType } from 'src/app/shared/constants/user-type.constant';
 
 @Component({
   selector: 'app-skill-source',
@@ -75,26 +76,50 @@ export class UserSignUpComponent implements OnInit {
       password: this.skillsignupForm.value.NewPassword,
     };
 
-    this.skillSourceService.register(request).subscribe(
-      (response) => {
-        console.log(response);
-        this.notifier.show({
-          type: 'success',
-          message: 'Your Registration has been completed.Verification Link sent to your Email',
-        });
-        this.emailId = this.skillsignupForm.value.email;
-        this.username = this.skillsignupForm.value.uname;
-        this.modalRef = this.modalService.show(template);
-      },
-      (error) => {
-        console.error(error.error);
-        this.notifier.show({
-          type: 'info',
-          message: error.error,
-        });
-      }
-    );
+    if (this.userType === UserType.SkillSource) {
+      this.skillSourceService.register(request).subscribe(
+        (response) => {
+          console.log(response);
+          this.showSuccess();
+          this.showVerificationPopup(template);
+        },
+        (error) => {
+          this.showError(error);
+        }
+      );
+    } else if (this.userType === UserType.Specialist) {
+      this.skillSourceService.register(request).subscribe(
+        (response) => {
+          this.showSuccess();
+          this.showVerificationPopup(template);
+        },
+        (error) => {
+          this.showError(error);
+        }
+      );
+    }
   }
+
+  showError(error: any): void {
+    this.notifier.show({
+      type: 'info',
+      message: error.error,
+    });
+  }
+
+  showSuccess(): void {
+    this.notifier.show({
+      type: 'success',
+      message: 'Your Registration has been completed.Verification Link sent to your Email',
+    });
+  }
+
+  showVerificationPopup(template: TemplateRef<any>): void {
+    this.emailId = this.skillsignupForm.value.email;
+    this.username = this.skillsignupForm.value.uname;
+    this.modalRef = this.modalService.show(template);
+  }
+
   onResend(): void {
     const request: SkillSourceResendEmail = {
       fname: this.username,

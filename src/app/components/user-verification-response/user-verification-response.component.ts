@@ -10,20 +10,26 @@ import { switchMap } from 'rxjs/operators';
 })
 export class UserVerificationResponseComponent implements OnInit {
   authToken: string = '';
+  userType: string = '';
+  isVerificationSuccess: boolean = false;
+  isApiFetched: boolean = false;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) => of(params))).subscribe((params: ParamMap) => {
       if (params.has('userType')) {
-        this.authToken = params.get('userType')?.toString() ?? '';
+        this.authToken = params.get('token')?.toString() ?? '';
+        this.userType = params.get('userType')?.toString() ?? '';
         if (this.authToken) {
           // invoke API to authenticate with this token. Add loader until this api complete then show the response either failure / success
+          this.isApiFetched = true;
+          this.isVerificationSuccess = true;
         }
       }
     });
   }
 
   navigateToSignUp(): void {
-    this.router.navigate(['login']);
+    this.router.navigate([`login/${this.userType}`]);
   }
 }

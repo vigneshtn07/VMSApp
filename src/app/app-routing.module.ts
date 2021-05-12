@@ -80,7 +80,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'login/:userType', component: LoginComponent },
   { path: 'signup/:userType', component: UserSignUpComponent },
-  { path: 'verify-user/auth/:token', component: UserVerificationResponseComponent },
+  { path: 'verify-user/:userType/auth/:token', component: UserVerificationResponseComponent },
   { path: 'verify-user', component: UserVerificationComponent },
   { path: 'verify-user/AuthSucess/:id', component: AuthSuccessComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },

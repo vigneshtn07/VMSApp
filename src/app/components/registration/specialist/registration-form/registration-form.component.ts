@@ -116,7 +116,7 @@ export class RegistrationSpecialistFormComponent implements OnInit {
         const request: additionalInfoRequest = {
           fname: this.specialistregisterForm.value.firstName,
           email: this.specialistregisterForm.value.email,
-          link: 'http://localhost:4200/info-form',
+          link: EmailRedirectUrl,
         };
         this.router.navigate(['verify-specialist']);
       },
@@ -142,3 +142,5 @@ export class RegistrationSpecialistFormComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 }
+
+const EmailRedirectUrl = 'http://localhost:4200/info-form';
