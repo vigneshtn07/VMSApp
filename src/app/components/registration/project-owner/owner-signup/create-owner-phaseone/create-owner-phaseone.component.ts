@@ -1,6 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as Model from 'src/app/services/model/common'
+import { ProjectOwnerEdit } from 'src/app/services/model/common'
+
 
 @Component({
   selector: 'app-create-owner-phaseone',
@@ -41,6 +44,11 @@ export class CreateOwnerPhaseoneComponent implements OnInit {
     // if (this.ownerphaseoneForm.invalid) {
     //   return;
     // }
+
+    const obj = new ProjectOwnerEdit;
+    obj.setcname = this.ownerphaseoneForm.value.CompanyName.toString();
+    obj.setFedTax = this.ownerphaseoneForm.value.FedralTaxId.toString();
+    obj.setPhoneno = this.ownerphaseoneForm.value.PhoneNumber.toString();
     this.wizardStepEmitter.next(2);
   }
 }

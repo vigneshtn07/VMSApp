@@ -1,3 +1,4 @@
+import { SkillSourceRegistrationStatusResponse } from '../interface';
 import { UserAuthResponse } from '../interface/user-auth-response';
 
 export class User implements UserAuthResponse {
@@ -9,5 +10,14 @@ export class User implements UserAuthResponse {
     this.access_token = access_token;
     this.type = type;
     this.id = id;
+  }
+}
+
+
+export class RegistrationStatusResponse implements SkillSourceRegistrationStatusResponse {
+  status: string;
+
+  constructor(status: string) {
+    this.status = status;
   }
 }

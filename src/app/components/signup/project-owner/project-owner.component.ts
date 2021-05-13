@@ -51,7 +51,7 @@ export class ProjectOwnerComponent implements OnInit {
     }
 
     const request: ProjectOwnerRegisterRequest = {
-      "cname": this.projectsignupForm.value.uname,
+      // "cname": this.projectsignupForm.value.uname,
       "email": this.projectsignupForm.value.email,
       "password": this.projectsignupForm.value.NewPassword
     };

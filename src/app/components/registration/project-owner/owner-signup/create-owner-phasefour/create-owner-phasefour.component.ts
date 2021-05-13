@@ -78,20 +78,20 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     // if (this.ownerphasefourForm.invalid) {
     //   return;
     // }
-    const request: ProjectOwnerRegisterRequest = {
-      "cname": "Romeo",
-      "email": "msm17b003@iiitdmmm.ac.in",
-      "password": "password"
-    };
+    // const request: ProjectOwnerRegisterRequest = {
+    //   "cname": "Romeo",
+    //   "email": "msm17b003@iiitdmmm.ac.in",
+    //   "password": "password"
+    // };
 
-    this.projectOwnerService.register(request).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.error(error.error);
-      }
-    );
+    // this.projectOwnerService.register(request).subscribe(
+    //   (response) => {
+    //     console.log(response);
+    //   },
+    //   (error) => {
+    //     console.error(error.error);
+    //   }
+    // );
 
     this.wizardStepEmitter.next(5);
   }

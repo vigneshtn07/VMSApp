@@ -11,11 +11,30 @@ import { User } from './model/index';
 @Injectable({ providedIn: 'root' })
 export class UserAuthenticationService {
   private baseUrl: string = environment.apiEndPoint;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   public authUser(requsest: Contract.UserAuthRequest): Observable<Model.User> {
     return this.httpClient
       .post<Model.User>(`${this.baseUrl}/${AUTH_URLs.specialistLogin}`, requsest)
+      .pipe(
+        map((response: Contract.UserAuthResponse) => {
+          return new User(response.access_token, response.type, response.id);
+        })
+      );
+  }
+  public authPOUser(requsest: Contract.UserAuthRequest): Observable<Model.User> {
+    return this.httpClient
+      .post<Model.User>(`${this.baseUrl}/${AUTH_URLs.projectownerLogin}`, requsest)
+      .pipe(
+        map((response: Contract.UserAuthResponse) => {
+          return new User(response.access_token, response.type, response.id);
+        })
+      );
+  }
+
+  public authSSUser(requsest: Contract.UserAuthRequest): Observable<Model.User> {
+    return this.httpClient
+      .post<Model.User>(`${this.baseUrl}/${AUTH_URLs.skillsourceLogin}`, requsest)
       .pipe(
         map((response: Contract.UserAuthResponse) => {
           return new User(response.access_token, response.type, response.id);

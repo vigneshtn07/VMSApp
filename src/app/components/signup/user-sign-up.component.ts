@@ -3,11 +3,16 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { SkillSourceRegisterRequest, SkillSourceResendEmail } from '../../services/interface/index';
+import { SpecialistRegisterRequest, SpecialistResendEmail } from '../../services/interface/index';
 import { SkillSourceService } from '../../services/skill-source.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UserType } from 'src/app/shared/constants/user-type.constant';
+import { SpecialistService } from 'src/app/services/specialist.service';
+import { ProjectOwnerRegisterRequest, ProjectOwnerResendEmail } from 'src/app/services/interface';
+import { ProjectOwnerService } from 'src/app/services/project-owner.service';
+import { MustMatch } from 'src/app/helpers/must-match.validator';
 
 @Component({
   selector: 'app-skill-source',
@@ -32,7 +37,9 @@ export class UserSignUpComponent implements OnInit {
     private modalService: BsModalService,
     private formBuilder: FormBuilder,
     private skillSourceService: SkillSourceService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private specialistService: SpecialistService,
+    private projectSourceService: ProjectOwnerService
   ) {
     this.notifier = notifierService;
   }
@@ -40,7 +47,7 @@ export class UserSignUpComponent implements OnInit {
   ngOnInit(): void {
     this.skillsignupForm = this.formBuilder.group(
       {
-        uname: ['', [Validators.required]],
+        // uname: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         NewPassword: [
           '',
@@ -69,18 +76,16 @@ export class UserSignUpComponent implements OnInit {
     if (this.skillsignupForm.invalid) {
       return;
     }
-
-    const request: SkillSourceRegisterRequest = {
-      cname: this.skillsignupForm.value.uname,
-      email: this.skillsignupForm.value.email,
-      password: this.skillsignupForm.value.NewPassword,
-    };
-
     if (this.userType === UserType.SkillSource) {
+      const request: SkillSourceRegisterRequest = {
+        email: this.skillsignupForm.value.email,
+        password: this.skillsignupForm.value.NewPassword,
+      };
+
       this.skillSourceService.register(request).subscribe(
         (response) => {
           console.log(response);
-          this.showSuccess();
+          this.showSuccess('Your Registration has been completed.Verification Link sent to your Email');
           this.showVerificationPopup(template);
         },
         (error) => {
@@ -88,15 +93,36 @@ export class UserSignUpComponent implements OnInit {
         }
       );
     } else if (this.userType === UserType.Specialist) {
-      this.skillSourceService.register(request).subscribe(
+      const request: SpecialistRegisterRequest = {
+        email: this.skillsignupForm.value.email,
+        password: this.skillsignupForm.value.NewPassword,
+      };
+
+      this.specialistService.register(request).subscribe(
         (response) => {
-          this.showSuccess();
+          this.showSuccess('Your Registration has been completed.Verification Link sent to your Email');
           this.showVerificationPopup(template);
         },
         (error) => {
           this.showError(error);
         }
       );
+    } else if (this.userType == UserType.ProjectOwner) {
+      const request: ProjectOwnerRegisterRequest = {
+        "email": this.skillsignupForm.value.email,
+        "password": this.skillsignupForm.value.NewPassword
+      };
+
+      this.projectSourceService.register(request).subscribe(
+        (response) => {
+          this.showSuccess('Your Registration has been completed.Verification Link sent to your Email');
+          this.showVerificationPopup(template);
+        },
+        (error) => {
+          this.showError(error.error);
+        }
+      );
+
     }
   }
 
@@ -107,10 +133,10 @@ export class UserSignUpComponent implements OnInit {
     });
   }
 
-  showSuccess(): void {
+  showSuccess(msg: any): void {
     this.notifier.show({
       type: 'success',
-      message: 'Your Registration has been completed.Verification Link sent to your Email',
+      message: msg,
     });
   }
 
@@ -121,29 +147,56 @@ export class UserSignUpComponent implements OnInit {
   }
 
   onResend(): void {
-    const request: SkillSourceResendEmail = {
-      fname: this.username,
-      email: this.emailId,
-    };
 
-    this.skillSourceService.resendemail(request).subscribe(
-      (response) => {
-        console.log(response);
-        this.notifier.show({
-          type: 'success',
-          message: 'Verification link to your email address',
-        });
-      },
-      (error) => {
-        console.error(error.error);
-        this.notifier.show({
-          type: 'info',
-          message: error.error,
-        });
-      }
-    );
+    if (this.userType === UserType.SkillSource) {
+
+      const request: SkillSourceResendEmail = {
+        fname: this.username,
+        email: this.emailId,
+      };
+
+      this.skillSourceService.resendemail(request).subscribe(
+        (response) => {
+          this.showSuccess('Verification link to your email address');
+        },
+        (error) => {
+          console.error(error.error);
+          this.showError(error.error);
+        }
+      );
+    } else if (this.userType === UserType.Specialist) {
+      const request: SpecialistResendEmail = {
+        fname: this.username,
+        email: this.emailId,
+      };
+
+      this.specialistService.resendemail(request).subscribe(
+        (response) => {
+          this.showSuccess('Verification link to your email address');
+        },
+        (error) => {
+          console.error(error.error);
+          this.showError(error.error);
+        }
+      );
+    } else if (this.userType === UserType.ProjectOwner) {
+      const request: ProjectOwnerResendEmail = {
+        fname: this.username,
+        email: this.emailId,
+      };
+
+      this.projectSourceService.resendemail(request).subscribe(
+        (response) => {
+          this.showSuccess('Verification link to your email address');
+        },
+        (error) => {
+          console.error(error.error);
+          this.showError(error.error);
+        }
+      );
+    }
   }
 }
-function MustMatch(arg0: string, arg1: string): any {
-  throw new Error('Function not implemented.');
-}
+// function MustMatch(arg0: string, arg1: string): any {
+//   throw new Error('Function not implemented.');
+// }
