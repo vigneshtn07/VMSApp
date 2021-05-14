@@ -86,7 +86,7 @@ const routes: Routes = [
   { path: 'verify-user/AuthSucess/:id', component: AuthSuccessComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'create-password', component: CreatePasswordComponent },
-  { path: 'registration-status', component: RegistrationStatusComponent },
+  { path: 'registration-status/:userType', component: RegistrationStatusComponent },
   { path: 'info-form', component: RegistrationAddtionalInfoComponent },
   { path: 'home', component: HomeLandingComponent },
   // { path: 'project-owner-signup', component: ProjectOwnerComponent },

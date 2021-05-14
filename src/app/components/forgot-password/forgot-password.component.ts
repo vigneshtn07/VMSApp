@@ -4,6 +4,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ForgotPasswordRequest } from 'src/app/services/interface';
 import { CommonService } from 'src/app/services/common.service';
+import { NotifierService } from 'angular-notifier';
+import { AppLoadingService } from 'src/app/shared/service/app-loading.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -15,8 +17,10 @@ export class ForgotPasswordComponent implements OnInit {
   modalRef!: BsModalRef;
   forgotpwdForm!: FormGroup;
   submitted = false;
+  private readonly notifier!: NotifierService;
   constructor(private modalService: BsModalService
-    , private router: Router, private formBuilder: FormBuilder, private commonService: CommonService) { }
+    , private router: Router, private formBuilder: FormBuilder, private appLoadingService: AppLoadingService, private commonService: CommonService, notifierService: NotifierService,
+  ) { this.notifier = notifierService; }
 
   ngOnInit(): void {
     this.forgotpwdForm = this.formBuilder.group({
@@ -39,20 +43,36 @@ export class ForgotPasswordComponent implements OnInit {
       email: this.emailId
     };
 
+    this.appLoadingService.setLoaderState(true);
     this.commonService.forgotPassword(request).subscribe(
       (response) => {
         console.log(response);
+        this.appLoadingService.setLoaderState(false);
         this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'wizard-prompt' }));
       },
       (error) => {
-        console.error(error.error);
+        console.log(error.error);
+        this.appLoadingService.setLoaderState(false);
+        this.notifier.show({
+          type: 'info',
+          message: error.error,
+        });
       }
+
     );
   }
 
   redirectToLogin(): void {
     this.modalRef.hide();
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
+
+  showError(error: any): void {
+    this.notifier.show({
+      type: 'info',
+      message: error.error,
+    });
+  }
+
 
 }

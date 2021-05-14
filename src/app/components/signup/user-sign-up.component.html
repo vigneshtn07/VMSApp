@@ -2,7 +2,7 @@
     <div class="row password-container justify-content-center">
         <form [formGroup]="skillsignupForm" class="col-12 vms-signup-container__form">
             <p class="col-12 password-container__title">Let's get started!</p>
-            <div class="col-12 vms-form__group field">
+            <!-- <div class="col-12 vms-form__group field">
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
                         <input type="text" class="form__field" placeholder="UserName" name="uname" id='uname'
@@ -11,6 +11,21 @@
                         <label for="uname" class="form__label">User Name</label>
                         <div *ngIf="submitted && f.uname.errors" class="invalid-feedback">
                             <div *ngIf="f.uname.errors.required">User Name is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="col-12 vms-form__group field">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
+                        <input type="text" class="form__field" placeholder="Email" name="Email" id='Email'
+                            formControlName="email" autocomplete="off"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required />
+                        <label for="Email" class="form__label">Email</label>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                         </div>
                     </div>
                 </div>
@@ -60,20 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 vms-form__group field">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
-                        <input type="text" class="form__field" placeholder="Email" name="Email" id='Email'
-                            formControlName="email" autocomplete="off"
-                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required />
-                        <label for="Email" class="form__label">Email</label>
-                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                            <div *ngIf="f.email.errors.required">Email is required</div>
-                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </form>
         <div class="col-12 my-4 d-flex justify-content-center">
             <button class="vms-btn-primary" (click)="onSubmit(confirmPopup)">Continue</button>

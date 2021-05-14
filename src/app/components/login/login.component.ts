@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STORAGE_KEYS } from 'src/app/core/storage/storage.constants';
 import { StorageType } from 'src/app/core/storage/storage.enum';
@@ -11,6 +11,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { of } from 'rxjs';
+import { UserType } from 'src/app/shared/constants/user-type.constant';
 
 @Component({
   selector: 'app-login',
@@ -70,27 +71,63 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
-    this.userAuthService.authUser(userRequest).subscribe(
-      (response) => {
-        if (response) {
-          this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.AuthToken, response.access_token);
-          this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.UserId, response.id);
-          //console.log(response.id);
-          if (response.type == 'Project Owner') {
+
+
+    if (this.userType == UserType.ProjectOwner) {
+      this.userAuthService.authPOUser(userRequest).subscribe(
+        (response) => {
+          if (response) {
+            this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.AuthToken, response.access_token);
+            this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.UserId, response.id);
             this.router.navigate(['registration/project-owner/signUp']);
           }
+        },
+        (error) => {
+          alert(error.error);
+          this.notifier.show({
+            type: 'info',
+            message: error.error,
+          });
+        }
+      );
 
-          if (response.type == 'Specialist') {
+    }
+
+    if (this.userType == UserType.Specialist) {
+      this.userAuthService.authUser(userRequest).subscribe(
+        (response) => {
+          if (response) {
+            this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.AuthToken, response.access_token);
+            this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.UserId, response.id);
             this.router.navigate(['/register-specialist']);
           }
+        },
+        (error) => {
+          this.notifier.show({
+            type: 'info',
+            message: error.error,
+          });
         }
-      },
-      (error) => {
-        this.notifier.show({
-          type: 'info',
-          message: error.error,
-        });
-      }
-    );
+      );
+    }
+    if (this.userType == UserType.SkillSource) {
+      this.userAuthService.authSSUser(userRequest).subscribe(
+        (response) => {
+          if (response) {
+            this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.AuthToken, response.access_token);
+            this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.UserId, response.id);
+            this.router.navigate(['registration/skill-source/signUp']);
+          }
+        },
+        (error) => {
+          this.notifier.show({
+            type: 'info',
+            message: error.error,
+          });
+        }
+      );
+
+    }
+
   }
 }

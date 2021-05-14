@@ -47,4 +47,16 @@ export class SpecialistService {
       );
   }
 
+  verifyemail(request: Contract.SpecialistEmailVerify): Observable<any> {
+    return this.httpClient
+      .post(`${this.baseUrl}/${SPECIALIST_URLs.specialistEmailVerify}`, request, {
+        responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
 }

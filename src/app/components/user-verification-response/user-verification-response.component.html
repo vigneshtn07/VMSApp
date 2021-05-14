@@ -1,17 +1,29 @@
 <user-auth-wizard>
     <ng-container *ngIf="isApiFetched">
-        <div class="wizard-title" *ngIf="isVerificationSuccess">Verification Success</div>
+        <div class="wizard-title" *ngIf="isVerificationSuccess">
+            <p class="title">Verification Success</p>
+        </div>
         <div class="wizard-title" *ngIf="!isVerificationSuccess">Verification Failed</div>
-        <div class="wizard-img d-block">
+        <div class="wizard-img d-block" *ngIf="isVerificationSuccess">
             <i class="fa fa-check-circle" aria-hidden="true"></i>
         </div>
-        <div class="wizard-content">
+        <div class="wizard-img d-block" *ngIf="!isVerificationSuccess">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <div class="wizard-content" *ngIf="isVerificationSuccess">
             <p>Your email address was successfully verified!. Please click on the following link to
-                continue with the registartion
+                continue with the Login
             </p>
+        </div>
+        <div class="wizard-content" *ngIf="!isVerificationSuccess">
+            <p>Your Email verification link was Expired!...Please click on the following link to
+                resend the verification Link </p>
         </div>
         <div class="wizard-action" *ngIf="isVerificationSuccess">
             <button class="vms-btn-primary" (click)="navigateToSignUp()">Continue</button>
         </div>
+        <!-- <div class="wizard-action" *ngIf="!isVerificationSuccess">
+            <button class="vms-btn-primary">Resend Link</button>
+        </div> -->
     </ng-container>
 </user-auth-wizard>

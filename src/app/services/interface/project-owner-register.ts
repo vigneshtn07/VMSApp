@@ -1,9 +1,16 @@
 export interface ProjectOwnerRegisterRequest {
-    cname: string;
     email: string;
     password: string;
 }
 export interface ProjectOwnerResendEmail {
     fname: string;
     email: string;
+}
+
+export interface ProjectOwnerEmailVerify {
+    string: string;
+}
+
+export interface ProjectOwnerRegistrationStatusResponse {
+    status: string;
 }

@@ -8,6 +8,10 @@ export interface SpecialistResendEmail {
   email: string;
 }
 
+export interface SpecialistEmailVerify {
+  string: string;
+}
+
 export interface EditSpecialistRequest {
   fname: string;
   lname: string;

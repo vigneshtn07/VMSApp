@@ -3,7 +3,18 @@
         <div class="col-12 vms-signup-container__title d-flex justify-content-center">
             <p>Check your Registration Status</p>
         </div>
+
         <form class="col-12 vms-signup-container__form" [formGroup]="regstatusForm">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6 col-lg-5 vms-form__group field">
+                    <div class="wizard-title" *ngIf="isVerificationSuccess">
+                        <p class="title">{{this.status}}</p>
+                    </div>
+                    <div class="wizard-title" *ngIf="!isVerificationSuccess">
+                        <p class="failed">{{this.status}}</p>
+                    </div>
+                </div>
+            </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-6 col-lg-5 vms-form__group field">
                     <input type="text" name="RegId" id="" class="form__field" placeholder="Enter Registration Id"
