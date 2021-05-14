@@ -5,16 +5,20 @@
 </div>
 
 <ng-container *ngIf="this.signUpWizardStep === 1">
-    <app-signup-phase-one (wizardStepEmitter)="onWizardStepEmitter($event)"></app-signup-phase-one>
+    <app-signup-phase-one (wizardStepEmitter)="onWizardStepEmitter($event)" [formData]="formValues">
+    </app-signup-phase-one>
 </ng-container>
 <ng-container *ngIf="this.signUpWizardStep === 2">
-    <app-signup-phase-two (wizardStepEmitter)="onWizardStepEmitter($event)"></app-signup-phase-two>
+    <app-signup-phase-two (wizardStepEmitter)="onWizardStepEmitter($event)" [formData]="formValues">
+    </app-signup-phase-two>
 </ng-container>
 <ng-container *ngIf="this.signUpWizardStep === 3">
-    <app-signup-phase-three (wizardStepEmitter)="onWizardStepEmitter($event)"></app-signup-phase-three>
+    <app-signup-phase-three (wizardStepEmitter)="onWizardStepEmitter($event)" [formData]="formValues">
+    </app-signup-phase-three>
 </ng-container>
 <ng-container *ngIf="this.signUpWizardStep === 4">
-    <app-signup-phase-four (wizardStepEmitter)="onWizardStepEmitter($event)"></app-signup-phase-four>
+    <app-signup-phase-four (wizardStepEmitter)="onWizardStepEmitter($event)" [formData]="formValues">
+    </app-signup-phase-four>
 </ng-container>
 <ng-container *ngIf="showRegistraionResponse">
     <registration-response></registration-response>

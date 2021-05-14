@@ -1,4 +1,5 @@
 @import "app-colors";
+@import "app-mixins";
 @import "../../../assets/styles/util.scss";
 
 .vms-home {
@@ -7,6 +8,7 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
     width: 100%;
+    position: relative;
     &:after {
         content: "";
         display: block;
@@ -19,41 +21,38 @@
         opacity: 0.8;
         z-index: 0;
     }
-    .vms-user {
-        &__card {
-            background: $vms-white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            margin: 0 1rem;
-            min-height: 350px;
+    .vms-users-card {
+        background: $vms-white;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        margin: 0 1rem;
+        min-height: 350px;
+        text-align: center;
+        z-index: 2;
+        box-shadow: 0px 0px 12px 4px #403939;
+        position: relative;
+        .user-title {
             text-align: center;
-            margin-top: 20%;
-            z-index: 2;
-            margin-bottom: 20%;
-            box-shadow: 0px 0px 12px 4px #403939;
-            .user-title {
-                text-align: center;
-                padding: 0.5rem 0;
-                color: $vms-primary;
-                font-weight: 600;
-                font-size: 1.25rem;
-            }
-            .user-desc {
-                text-align: center;
+            padding: 0.5rem 0;
+            color: $vms-primary;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+        .user-desc {
+            p {
                 font-size: 0.9rem;
-                color: grey;
-                font-style: "Poppins-Regular";
             }
-            .user-link {
-                padding: 0.55rem 1rem;
-                background: $vms-primary;
-                border-radius: 1.5rem;
-                color: white;
-                position: absolute;
-                bottom: 6.5rem;
-                left: 50%;
-                transform: translateX(-50%);
-            }
+        }
+        a.read-link {
+            padding: 0.55rem 1rem;
+            background: $vms-primary;
+            border-radius: 1.5rem;
+            color: $vms-white;
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
         }
     }
 }
@@ -72,22 +71,75 @@
         font-weight: 600;
         padding-bottom: 0.85rem;
     }
+    .user-actions {
+        display: flex;
+        margin-top: 1rem;
+        @include justify-content(space-between);
+    }
+}
+
+@media (max-width: 320px) {
+    .vms-home {
+        .vms-users-card {
+            min-height: 400px;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .vms-home {
+        .vms-users-card {
+            min-height: 300px;
+        }
+    }
 }
 
 @media (min-width: 764px) {
     .vms-home {
-        height: 100%;
+        .vms-users-card {
+            min-height: 250px;
+        }
     }
-    .vms-user {
-        &__card {
-            margin-top: 40% !important;
-            // margin-bottom: 0 !important;
-            .user-link {
-                bottom: 10.5rem;
+}
+
+@media (min-width: 992px) {
+    .vms-home {
+        .vms-users-card {
+            min-height: 400px;
+        }
+        .vms-cards {
+            > div[class^="col-"] {
+                margin-bottom: 20%;
+                margin-top: 20%;
+            }
+        }
+    }
+    .vms-users-details {
+        .user-actions {
+            display: flex;
+            margin-top: 0;
+            @include justify-content(center);
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .vms-home {
+        .vms-cards {
+            > div[class^="col-"] {
+                margin-bottom: 10%;
+                &:first-child {
+                    margin-top: 10%;
+                }
             }
         }
     }
 }
 
-@media (max-width: 576px) {
+@media (min-width: 1200px) {
+    .vms-home {
+        .vms-users-card {
+            min-height: 350px;
+        }
+    }
 }

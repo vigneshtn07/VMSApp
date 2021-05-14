@@ -6,15 +6,15 @@
         <div class="col-12 vms-signup-container__subHead d-flex justify-content-center">
             <p>Enter the folllowing information to continue</p>
         </div>
-        <form class="col-12 vms-signup-container__form" [formGroup]="skillphaseoneForm">
+        <form class="col-12 vms-signup-container__form" [formGroup]="skillPhaseoneForm">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
                     <input type="text" class="form__field" placeholder="CompanyName" name="CompanyName" id='CompanyName'
                         formControlName="CompanyName" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.CompanyName.errors }" required />
+                        [ngClass]="{ 'is-invalid': submitted && form.CompanyName.errors }" required />
                     <label for="CompanyName" class="form__label">Company Name</label>
-                    <div *ngIf="submitted && f.CompanyName.errors" class="invalid-feedback">
-                        <div *ngIf="f.CompanyName.errors.required">Company Name is required</div>
+                    <div *ngIf="submitted && form.CompanyName.errors" class="invalid-feedback">
+                        <div *ngIf="form.CompanyName.errors.required">Company Name is required</div>
                     </div>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <input type="text" class="form__field" placeholder="FedralTaxId" name="FedralTaxId" id='FedralTaxId'
                         [textMask]="maskTypes.TaxId" [maxLength]="maskTypes.TaxId.mask.length"
                         formControlName="FedralTaxId" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.FedralTaxId.errors }" required />
+                        [ngClass]="{ 'is-invalid': submitted && form.FedralTaxId.errors }" required />
                     <label for="FedralTaxId" class="form__label">Fedral Tax ID</label>
-                    <div *ngIf="submitted && f.FedralTaxId.errors" class="invalid-feedback">
-                        <div *ngIf="f.FedralTaxId.errors.required">Fedral Tax Id is required</div>
+                    <div *ngIf="submitted && form.FedralTaxId.errors" class="invalid-feedback">
+                        <div *ngIf="form.FedralTaxId.errors.required">Fedral Tax Id is required</div>
                     </div>
                 </div>
             </div>
@@ -35,10 +35,10 @@
                     <input type="text" class="form__field" placeholder="PhoneNumber" name="PhoneNumber" id='PhoneNumber'
                         [textMask]="maskTypes.Phone" [maxLength]="maskTypes.Phone.mask.length"
                         formControlName="PhoneNumber" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }" required />
+                        [ngClass]="{ 'is-invalid': submitted && form.PhoneNumber.errors }" required />
                     <label for="PhoneNumber" class="form__label">Phone Number</label>
-                    <div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
-                        <div *ngIf="f.PhoneNumber.errors.required">Phone Number is required</div>
+                    <div *ngIf="submitted && form.PhoneNumber.errors" class="invalid-feedback">
+                        <div *ngIf="form.PhoneNumber.errors.required">Phone Number is required</div>
                     </div>
                 </div>
             </div>

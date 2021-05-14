@@ -30,6 +30,7 @@ import { HomeLandingComponent } from './components/home-landing/home-landing.com
 import { ProjectOwnerComponent } from './components/signup/project-owner/project-owner.component';
 import { UserSignUpComponent } from './components/signup/user-sign-up.component';
 import { UserVerificationResponseComponent } from './components/user-verification-response/user-verification-response.component';
+import { SignUpComponent } from './components/registration/skill-source/sign-up/sign-up.component';
 
 const SUPER_ADMIN_ROUTES: Routes = [
   {
@@ -102,7 +103,7 @@ const routes: Routes = [
       {
         path: 'skill-source',
         component: RegistrationComponent,
-        // children: [{ path: 'signUp', component: SignUpComponent }],
+        children: [{ path: 'sign-up', component: SignUpComponent }],
       },
     ],
   },

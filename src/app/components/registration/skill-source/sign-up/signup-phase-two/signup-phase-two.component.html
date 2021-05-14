@@ -3,59 +3,59 @@
         <div class="col-12 vms-signup-container__title d-flex justify-content-center">
             <p>Skill Source Registration</p>
         </div>
-        <form class="col-12 vms-signup-container__form" [formGroup]="skillphasetwoForm">
+        <form class="col-12 vms-signup-container__form" [formGroup]="skillPhaseTwoForm">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="stateOfIncorporation" id="" class="form__field"
+                    <input type="text" name="StateOfIncorporation" id="" class="form__field"
                         placeholder="State of Incorporation" aria-describedby="helpId" maxlength="30"
-                        formControlName="stateOfIncorporation" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.stateOfIncorporation.errors }">
-                    <label for="stateOfIncorporation" class="form__label">State of Incorporation</label>
-                    <div *ngIf="submitted && f.stateOfIncorporation.errors" class="invalid-feedback">
-                        <div *ngIf="f.stateOfIncorporation.errors.required">State of Incorporation is required</div>
+                        formControlName="StateOfIncorporation" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && form.StateOfIncorporation.errors }">
+                    <label for="StateOfIncorporation" class="form__label">State of Incorporation</label>
+                    <div *ngIf="submitted && form.StateOfIncorporation.errors" class="invalid-feedback">
+                        <div *ngIf="form.StateOfIncorporation.errors.required">State of Incorporation is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field date-field">
-                    <input type="text" placeholder="Year Established" name="establishedYear" [(ngModel)]="modelDate"
+                    <input type="text" placeholder="Year Established" name="EstablishedYear" [(ngModel)]="modelDate"
                         class="form-control" [bsConfig]="bsConfig" class="form__field form-control"
-                        formControlName="establishedYear" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.establishedYear.errors }" bsDatepicker>
-                    <div *ngIf="submitted && f.establishedYear.errors" class="invalid-feedback">
-                        <div *ngIf="f.establishedYear.errors.required">Established Year is required</div>
+                        formControlName="EstablishedYear" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && form.EstablishedYear.errors }" bsDatepicker>
+                    <div *ngIf="submitted && form.EstablishedYear.errors" class="invalid-feedback">
+                        <div *ngIf="form.EstablishedYear.errors.required">Established Year is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field drop-down">
                     <ng-multiselect-dropdown [placeholder]="'Select Industry'" name="industry"
                         [settings]="dropdownSettings" [data]="industryDropDownList" [(ngModel)]="industrySelectedItems"
                         (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
-                        formControlName="industrySelectedItems" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.industrySelectedItems.errors }">
+                        formControlName="IndustrySelectedItems" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && form.IndustrySelectedItems.errors }">
                     </ng-multiselect-dropdown>
-                    <div *ngIf="submitted && f.industrySelectedItems.errors" class="invalid-feedback">
-                        <div *ngIf="f.industrySelectedItems.errors.required">Industry is required</div>
+                    <div *ngIf="submitted && form.IndustrySelectedItems.errors" class="invalid-feedback">
+                        <div *ngIf="form.IndustrySelectedItems.errors.required">Industry is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="Division" id="" class="form__field" maxlength="30"
                         placeholder="Division/Subsidary/Affiliate of" aria-describedby="helpId"
                         formControlName="Division" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.Division.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && form.Division.errors }">
                     <label for="Division" class="form__label">Division/Subsidary/Affiliate of</label>
-                    <div *ngIf="submitted && f.Division.errors" class="invalid-feedback">
-                        <div *ngIf="f.Division.errors.required">Division is required</div>
+                    <div *ngIf="submitted && form.Division.errors" class="invalid-feedback">
+                        <div *ngIf="form.Division.errors.required">Division is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <select class="dropdown" formControlName="payroll"
-                        [ngClass]="{'is-invalid': submitted && f.payroll.errors }">
-                        <option value="null">Select payroll</option>
-                        <option value="1">payroll 1</option>
-                        <option value="2">payroll 2</option>
-                        <option value="3">payroll 3</option>
-                        <option value="4">payroll 4</option>
+                    <select class="dropdown" formControlName="Payroll"
+                        [ngClass]="{'is-invalid': submitted && form.Payroll.errors }">
+                        <option value="null">Select Payroll</option>
+                        <option value="1">Payroll 1</option>
+                        <option value="2">Payroll 2</option>
+                        <option value="3">Payroll 3</option>
+                        <option value="4">Payroll 4</option>
                     </select>
-                    <div *ngIf="submitted && f.payroll.errors" class="invalid-feedback">
-                        <div *ngIf="f.payroll.errors.required">Payroll is required</div>
+                    <div *ngIf="submitted && form.Payroll.errors" class="invalid-feedback">
+                        <div *ngIf="form.Payroll.errors.required">Payroll is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field drop-down">
@@ -63,112 +63,112 @@
                         [settings]="dropdownSettings" [data]="specializationDropDownList"
                         [(ngModel)]="areaOfSpecialization" (onSelect)="onItemSelect($event)"
                         (onSelectAll)="onSelectAll($event)" formControlName="Specialization" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.Specialization.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && form.Specialization.errors }">
                     </ng-multiselect-dropdown>
-                    <div *ngIf="submitted && f.Specialization.errors" class="invalid-feedback">
-                        <div *ngIf="f.Specialization.errors.required">Area of Specialization is required</div>
+                    <div *ngIf="submitted && form.Specialization.errors" class="invalid-feedback">
+                        <div *ngIf="form.Specialization.errors.required">Area of Specialization is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="TotalEmployees" id="" class="form__field"
                         placeholder="Total # of employees" aria-describedby="helpId" formControlName="TotalEmployees"
-                        autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.TotalEmployees.errors }"
+                        autocomplete="off" [ngClass]="{ 'is-invalid': submitted && form.TotalEmployees.errors }"
                         numbersOnly maxlength="10">
                     <label for="TotalEmployees" class="form__label">Total # of employees</label>
-                    <div *ngIf="submitted && f.TotalEmployees.errors" class="invalid-feedback">
-                        <div *ngIf="f.TotalEmployees.errors.required">Total Employees is required</div>
+                    <div *ngIf="submitted && form.TotalEmployees.errors" class="invalid-feedback">
+                        <div *ngIf="form.TotalEmployees.errors.required">Total Employees is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="TotalFullTimeEmployees" id="" class="form__field" maxlength="10"
                         placeholder="Total # of full time Employees" aria-describedby="helpId"
                         formControlName="TotalFullTimeEmployees" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.TotalFullTimeEmployees.errors }" numbersOnly>
+                        [ngClass]="{ 'is-invalid': submitted && form.TotalFullTimeEmployees.errors }" numbersOnly>
                     <label for="TotalFullTimeEmployees" class="form__label">Total # of full time Employees</label>
-                    <div *ngIf="submitted && f.TotalFullTimeEmployees.errors" class="invalid-feedback">
-                        <div *ngIf="f.TotalFullTimeEmployees.errors.required">Total Full Employees is required</div>
+                    <div *ngIf="submitted && form.TotalFullTimeEmployees.errors" class="invalid-feedback">
+                        <div *ngIf="form.TotalFullTimeEmployees.errors.required">Total Full Employees is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="TotalSubContractors" id="" class="form__field" maxlength="10"
                         placeholder="Total # of sub contractors" aria-describedby="helpId"
                         formControlName="TotalSubContractors" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.TotalSubContractors.errors }" numbersOnly>
+                        [ngClass]="{ 'is-invalid': submitted && form.TotalSubContractors.errors }" numbersOnly>
                     <label for="TotalSubContractors" class="form__label">Total # of sub contractors</label>
-                    <div *ngIf="submitted && f.TotalSubContractors.errors" class="invalid-feedback">
-                        <div *ngIf="f.TotalSubContractors.errors.required">Total Sub Employees is required</div>
+                    <div *ngIf="submitted && form.TotalSubContractors.errors" class="invalid-feedback">
+                        <div *ngIf="form.TotalSubContractors.errors.required">Total Sub Employees is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <select class="dropdown" formControlName="Worker"
-                        [ngClass]="{'is-invalid': submitted && f.Worker.errors }">
+                        [ngClass]="{'is-invalid': submitted && form.Worker.errors }">
                         <option value="null">H1 Worker</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
-                    <div *ngIf="submitted && f.Worker.errors" class="invalid-feedback">
-                        <div *ngIf="f.Worker.errors.required">Worker is required</div>
+                    <div *ngIf="submitted && form.Worker.errors" class="invalid-feedback">
+                        <div *ngIf="form.Worker.errors.required">Worker is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="TotalH1BVisa" id="" class="form__field" maxlength="10"
                         placeholder="Total # of H1B Visa currently held" aria-describedby="helpId"
                         formControlName="TotalH1BVisa" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.TotalH1BVisa.errors }" numbersOnly>
+                        [ngClass]="{ 'is-invalid': submitted && form.TotalH1BVisa.errors }" numbersOnly>
                     <label for="TotalH1BVisa" class="form__label">Total # of H1B Visa currently held</label>
-                    <div *ngIf="submitted && f.TotalH1BVisa.errors" class="invalid-feedback">
-                        <div *ngIf="f.TotalH1BVisa.errors.required">Total H1BVisa Employees is required</div>
+                    <div *ngIf="submitted && form.TotalH1BVisa.errors" class="invalid-feedback">
+                        <div *ngIf="form.TotalH1BVisa.errors.required">Total H1BVisa Employees is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="Website" id="" class="form__field" placeholder="Website"
                         aria-describedby="helpId" formControlName="Website" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.Website.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && form.Website.errors }">
                     <label for="Website" class="form__label">Website</label>
-                    <div *ngIf="submitted && f.Website.errors" class="invalid-feedback">
-                        <div *ngIf="f.Website.errors.required">Website is required</div>
+                    <div *ngIf="submitted && form.Website.errors" class="invalid-feedback">
+                        <div *ngIf="form.Website.errors.required">Website is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="USHeadQuarters" id="" class="form__field"
                         placeholder="Headquater address in US" aria-describedby="helpId"
                         formControlName="USHeadQuarters" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.USHeadQuarters.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && form.USHeadQuarters.errors }">
                     <label for="USHeadQuarters" class="form__label">Headquater address in US</label>
-                    <div *ngIf="submitted && f.USHeadQuarters.errors" class="invalid-feedback">
-                        <div *ngIf="f.USHeadQuarters.errors.required">Headquater address is required</div>
+                    <div *ngIf="submitted && form.USHeadQuarters.errors" class="invalid-feedback">
+                        <div *ngIf="form.USHeadQuarters.errors.required">Headquater address is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="StreetAddress" id="" class="form__field" placeholder="Street Address"
                         aria-describedby="helpId" maxlength="50" formControlName="StreetAddress" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.StreetAddress.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && form.StreetAddress.errors }">
                     <label for="StreetAddress" class="form__label">Street Address</label>
-                    <div *ngIf="submitted && f.StreetAddress.errors" class="invalid-feedback">
-                        <div *ngIf="f.StreetAddress.errors.required">Street Address is required</div>
+                    <div *ngIf="submitted && form.StreetAddress.errors" class="invalid-feedback">
+                        <div *ngIf="form.StreetAddress.errors.required">Street Address is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="City" id="" class="form__field" placeholder="City"
                         aria-describedby="helpId" maxlength="30" formControlName="City" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && form.City.errors }">
                     <label for="City" class="form__label">City</label>
-                    <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
-                        <div *ngIf="f.City.errors.required">City is required</div>
+                    <div *ngIf="submitted && form.City.errors" class="invalid-feedback">
+                        <div *ngIf="form.City.errors.required">City is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="State" id="" class="form__field" placeholder="State/Province"
                         aria-describedby="helpId" maxlength="30" formControlName="State" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && form.State.errors }">
                     <label for="State" class="form__label">State/Province</label>
-                    <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
-                        <div *ngIf="f.State.errors.required">State is required</div>
+                    <div *ngIf="submitted && form.State.errors" class="invalid-feedback">
+                        <div *ngIf="form.State.errors.required">State is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <select class="dropdown" formControlName="Country"
-                        [ngClass]="{'is-invalid': submitted && f.Country.errors }">
+                        [ngClass]="{'is-invalid': submitted && form.Country.errors }">
                         <option value="null">Select country</option>
                         <option value="India">India</option>
                         <option value="UK">UK</option>
@@ -182,17 +182,17 @@
                         <option value="Sri lanka">Sri lanka</option>
                         <option value="USA">USA</option>
                     </select>
-                    <div *ngIf="submitted && f.Country.errors" class="invalid-feedback">
-                        <div *ngIf="f.Country.errors.required">Country is required</div>
+                    <div *ngIf="submitted && form.Country.errors" class="invalid-feedback">
+                        <div *ngIf="form.Country.errors.required">Country is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="Zipcode" id="" class="form__field" placeholder="Zip/Postal code"
                         aria-describedby="helpId" [textMask]="maskTypes.ZipCode" autocomplete="off"
-                        formControlName="Zipcode" [ngClass]="{'is-invalid': submitted && f.Zipcode.errors }">
+                        formControlName="Zipcode" [ngClass]="{'is-invalid': submitted && form.Zipcode.errors }">
                     <label for="Zipcode" class="form__label">Zip/Postal code</label>
-                    <div *ngIf="submitted && f.Zipcode.errors" class="invalid-feedback">
-                        <div *ngIf="f.Zipcode.errors.required">Zip/Postal code is required</div>
+                    <div *ngIf="submitted && form.Zipcode.errors" class="invalid-feedback">
+                        <div *ngIf="form.Zipcode.errors.required">Zip/Postal code is required</div>
                     </div>
                 </div>
             </div>
@@ -201,31 +201,31 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Name" id="" class="form__field" placeholder="Name" maxlength="50"
+                    <input type="text" name="Name" id="" class="form__field" placeholder="AName" maxlength="50"
                         aria-describedby="helpId" formControlName="AName" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.AName.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && form.AName.errors }">
                     <label for="Name" class="form__label">Name</label>
-                    <div *ngIf="submitted && f.AName.errors" class="invalid-feedback">
-                        <div *ngIf="f.AName.errors.required">Accounting Name is required</div>
+                    <div *ngIf="submitted && form.AName.errors" class="invalid-feedback">
+                        <div *ngIf="form.AName.errors.required">Accounting Name is required</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="Email" id="" class="form__field" placeholder="Email"
                         aria-describedby="helpId" autocomplete="off" formControlName="Aemail"
-                        [ngClass]="{ 'is-invalid': submitted && f.Aemail.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && form.Aemail.errors }">
                     <label for="Email" class="form__label">Email</label>
-                    <div *ngIf="submitted && f.Aemail.errors" class="invalid-feedback">
-                        <div *ngIf="f.Aemail.errors.required">Accounting Email is required</div>
-                        <div *ngIf="f.Aemail.errors.email">Email must be a valid email address</div>
+                    <div *ngIf="submitted && form.Aemail.errors" class="invalid-feedback">
+                        <div *ngIf="form.Aemail.errors.required">Accounting Email is required</div>
+                        <div *ngIf="form.Aemail.errors.email">Email must be a valid email address</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="Email" id="" class="form__field" placeholder="Phone"
                         [textMask]="maskTypes.Phone" aria-describedby="helpId" formControlName="APhone"
-                        autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.APhone.errors }">
+                        autocomplete="off" [ngClass]="{ 'is-invalid': submitted && form.APhone.errors }">
                     <label for="Phone" class="form__label">Phone</label>
-                    <div *ngIf="submitted && f.APhone.errors" class="invalid-feedback">
-                        <div *ngIf="f.APhone.errors.required">Accounting Phone Number is required</div>
+                    <div *ngIf="submitted && form.APhone.errors" class="invalid-feedback">
+                        <div *ngIf="form.APhone.errors.required">Accounting Phone Number is required</div>
                     </div>
                 </div>
             </div>
@@ -234,31 +234,31 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Name" id="" class="form__field" placeholder="Name" maxlength="50"
-                        aria-describedby="helpId" formControlName="Name" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && f.Name.errors }">
+                    <input type="text" name="Name" id="" class="form__field" placeholder="BName" maxlength="50"
+                        aria-describedby="helpId" formControlName="BName" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && form.BName.errors }">
                     <label for="Name" class="form__label">Name</label>
-                    <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
-                        <div *ngIf="f.Name.errors.required">Business Name is required</div>
+                    <div *ngIf="submitted && form.BName.errors" class="invalid-feedback">
+                        <div *ngIf="form.BName.errors.required">Business Name is required</div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
+                <div class="col-12 col-md-6 col-lg-4 vms-form__group Namefield">
                     <input type="text" name="Email" id="" class="form__field" placeholder="Email"
-                        aria-describedby="helpId" autocomplete="off" formControlName="email"
-                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        aria-describedby="helpId" autocomplete="off" formControlName="BEmail"
+                        [ngClass]="{ 'is-invalid': submitted && form.BEmail.errors }">
                     <label for="Email" class="form__label">Email</label>
-                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                        <div *ngIf="f.email.errors.required">Business Email is required</div>
-                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    <div *ngIf="submitted && form.BEmail.errors" class="invalid-feedback">
+                        <div *ngIf="form.BEmail.errors.required">Business Email is required</div>
+                        <div *ngIf="form.BEmail.errors.email">Email must be a valid email address</div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="Phone" id="" class="form__field" placeholder="Phone"
-                        [textMask]="maskTypes.Phone" aria-describedby="helpId" formControlName="Phone"
-                        autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.Phone.errors }">
+                        [textMask]="maskTypes.Phone" aria-describedby="helpId" formControlName="BPhone"
+                        autocomplete="off" [ngClass]="{ 'is-invalid': submitted && form.BPhone.errors }">
                     <label for="Phone" class="form__label">Phone</label>
-                    <div *ngIf="submitted && f.Phone.errors" class="invalid-feedback">
-                        <div *ngIf="f.Phone.errors.required">Business Phone Number is required</div>
+                    <div *ngIf="submitted && form.BPhone.errors" class="invalid-feedback">
+                        <div *ngIf="form.BPhone.errors.required">Business Phone Number is required</div>
                     </div>
                 </div>
             </div>

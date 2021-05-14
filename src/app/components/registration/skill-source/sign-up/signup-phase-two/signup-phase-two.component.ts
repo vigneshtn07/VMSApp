@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import {
-  BsDatepickerViewMode,
-  BsDatepickerConfig,
-} from 'ngx-bootstrap/datepicker';
+import { BsDatepickerViewMode, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { WizardEventEmit } from 'src/app/interface/wizard.interface';
+import { SkillSourceRegistrationRequest } from 'src/app/interface/skill-source-registration.interface';
+import { SignUpFormApiMapper } from '../signup-form.types';
 
 @Component({
   selector: 'app-signup-phase-two',
@@ -13,18 +13,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./signup-phase-two.component.scss'],
 })
 export class SignupPhaseTwoComponent implements OnInit {
-  @Output() wizardStepEmitter: EventEmitter<number> = new EventEmitter();
-  minMode: BsDatepickerViewMode = 'year';
-  bsConfig: Partial<BsDatepickerConfig>;
-  modelDate: any;
-  areaOfSpecialization: any;
-
-  industryDropDownList: any;
-  specializationDropDownList: any;
-  industrySelectedItems: any;
-  dropdownSettings = {};
-
-  maskTypes = {
+  @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
+  @Input() public formData!: SkillSourceRegistrationRequest;
+  public submitted = false;
+  public minMode: BsDatepickerViewMode = 'year';
+  public bsConfig: Partial<BsDatepickerConfig>;
+  public modelDate: any;
+  public areaOfSpecialization: any;
+  public industryDropDownList: any;
+  public specializationDropDownList: any;
+  public industrySelectedItems: any;
+  public dropdownSettings = {};
+  public skillPhaseTwoForm!: FormGroup;
+  public maskTypes = {
     ZipCode: {
       guide: false,
       showMask: false,
@@ -37,8 +38,6 @@ export class SignupPhaseTwoComponent implements OnInit {
     },
   };
 
-  skillphasetwoForm!: FormGroup;
-  submitted = false;
   constructor(private formBuilder: FormBuilder) {
     this.bsConfig = Object.assign(
       {},
@@ -73,12 +72,12 @@ export class SignupPhaseTwoComponent implements OnInit {
       itemsShowLimit: 2,
       allowSearchFilter: true,
     };
-    this.skillphasetwoForm = this.formBuilder.group({
-      stateOfIncorporation: ['', Validators.required],
-      establishedYear: ['', Validators.required],
-      industrySelectedItems: ['', [Validators.required]],
+    this.skillPhaseTwoForm = this.formBuilder.group({
+      StateOfIncorporation: ['', Validators.required],
+      EstablishedYear: ['', Validators.required],
+      IndustrySelectedItems: ['', [Validators.required]],
       Division: ['', [Validators.required]],
-      payroll: [null, Validators.required],
+      Payroll: [null, Validators.required],
       Specialization: ['', [Validators.required]],
       // AnnualRevenue: ['', Validators.required],
       TotalEmployees: ['', Validators.required],
@@ -96,23 +95,34 @@ export class SignupPhaseTwoComponent implements OnInit {
       AName: ['', Validators.required],
       Aemail: ['', [Validators.required, Validators.email]],
       APhone: ['', Validators.required],
-      Name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      Phone: ['', Validators.required],
+      BName: ['', Validators.required],
+      BEmail: ['', [Validators.required, Validators.email]],
+      BPhone: ['', Validators.required],
     });
   }
 
-  get f() { return this.skillphasetwoForm.controls; }
+  get form() {
+    return this.skillPhaseTwoForm.controls;
+  }
   onContinue(): void {
     this.submitted = true;
-    // if (this.skillphasetwoForm.invalid) {
-    //   return;
-    // }
-    this.wizardStepEmitter.next(3);
+    if (this.skillPhaseTwoForm.invalid) {
+      return;
+    }
+    const requestObject = this.getUpdatedRequestObject();
+    this.wizardStepEmitter.next({ step: 3, payLoad: requestObject });
+  }
+
+  getUpdatedRequestObject(): SkillSourceRegistrationRequest {
+    const formData: any = this.formData;
+    Object.keys(this.skillPhaseTwoForm.controls).forEach((formControlKey: string) => {
+      formData[SignUpFormApiMapper[formControlKey]] = this.skillPhaseTwoForm.controls[formControlKey].value;
+    });
+    return formData;
   }
 
   navigateBack(): void {
-    this.wizardStepEmitter.next(1);
+    this.wizardStepEmitter.next({ step: 1, payLoad: this.formData });
   }
 
   onOpenCalendar(container: any) {
