@@ -13,7 +13,7 @@ export interface WizardEngine {
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit, WizardEngine {
+export class SkillSourceSignUpComponent implements OnInit, WizardEngine {
   public signUpWizardStep: number = 4;
   public showRegistraionResponse: boolean = false;
   stepProgressData!: ProgressBreadCumb;
