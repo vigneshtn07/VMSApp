@@ -3,6 +3,13 @@ import {
   ProgressBreadCumb,
   ProgressMove,
 } from 'src/app/shared/interface/progress-breadcrumb';
+import { ProjectOwnerRegistrationRequest } from 'src/app/interface/project-owner-registration.interface';
+import { WizardEventEmit } from 'src/app/interface/wizard.interface';
+import { ProjectOwnerRegistration } from 'src/app/models/project-owner-registration.model';
+
+export interface WizardEngine {
+  onWizardStepEmitter(event: any): void;
+}
 
 @Component({
   selector: 'app-owner-signup',
@@ -15,7 +22,10 @@ export class OwnerSignupComponent implements OnInit {
   stepProgressData!: ProgressBreadCumb;
   @ViewChild('progressBarEle')
   progressBarEle!: ElementRef;
-  constructor() {}
+  formValues: ProjectOwnerRegistrationRequest;
+  constructor() {
+    this.formValues = new ProjectOwnerRegistration();
+  }
 
   ngOnInit(): void {
     this.initProgressBar();
@@ -36,9 +46,9 @@ export class OwnerSignupComponent implements OnInit {
     };
   }
 
-  onWizardStepEmitter(step: number): void {
-    if (step <= this.stepProgressData.totalStep) {
-      if (step >= this.signUpWizardStep) {
+  onWizardStepEmitter(event: WizardEventEmit): void {
+    if (event.step <= this.stepProgressData.totalStep) {
+      if (event.step >= this.signUpWizardStep) {
         this.incrementProgress();
       } else {
         this.decrementProgress();
@@ -47,9 +57,11 @@ export class OwnerSignupComponent implements OnInit {
       this.incrementProgress();
       this.showRegistraionResponse = true;
     }
-    this.signUpWizardStep = step;
+    this.signUpWizardStep = event.step;
     this.progressBarEle.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
+
+
 
   incrementProgress(): void {
     if (this.stepProgressData) {

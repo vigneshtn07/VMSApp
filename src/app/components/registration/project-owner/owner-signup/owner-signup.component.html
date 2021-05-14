@@ -5,16 +5,20 @@
 </div>
 
 <ng-container *ngIf="this.signUpWizardStep === 1">
-    <app-create-owner-phaseone (wizardStepEmitter)="onWizardStepEmitter($event)"></app-create-owner-phaseone>
+    <app-create-owner-phaseone (wizardStepEmitter)="onWizardStepEmitter($event)" [formData]="formValues">
+    </app-create-owner-phaseone>
 </ng-container>
 <ng-container *ngIf="this.signUpWizardStep === 2">
-    <app-create-owner-phasetwo (wizardStepEmitter)="onWizardStepEmitter($event)"></app-create-owner-phasetwo>
+    <app-create-owner-phasetwo (wizardStepEmitter)="onWizardStepEmitter($event)" [formData]="formValues">
+    </app-create-owner-phasetwo>
 </ng-container>
 <ng-container *ngIf="this.signUpWizardStep === 3">
-    <app-create-owner-phasethree (wizardStepEmitter)="onWizardStepEmitter($event)"></app-create-owner-phasethree>
+    <app-create-owner-phasethree (wizardStepEmitter)="onWizardStepEmitter($event)" [formData]="formValues">
+    </app-create-owner-phasethree>
 </ng-container>
 <ng-container *ngIf="this.signUpWizardStep === 4">
-    <app-create-owner-phasefour (wizardStepEmitter)="onWizardStepEmitter($event)"></app-create-owner-phasefour>
+    <app-create-owner-phasefour (wizardStepEmitter)="onWizardStepEmitter($event)" [formData]="formValues">
+    </app-create-owner-phasefour>
 </ng-container>
 <ng-container *ngIf="showRegistraionResponse">
     <app-create-owner-response></app-create-owner-response>

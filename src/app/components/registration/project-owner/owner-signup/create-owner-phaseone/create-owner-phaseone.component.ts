@@ -1,8 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as Model from 'src/app/services/model/common'
 import { ProjectOwnerEdit } from 'src/app/services/model/common'
+import { WizardEventEmit } from 'src/app/interface/wizard.interface';
+import { ProjectOwnerRegistrationRequest } from 'src/app/interface/project-owner-registration.interface';
+import { ProjectOwnerRegistration } from 'src/app/models/project-owner-registration.model';
+import { SignUpFormApiMapper } from '../signup-form.types';
 
 
 @Component({
@@ -11,7 +15,8 @@ import { ProjectOwnerEdit } from 'src/app/services/model/common'
   styleUrls: ['./create-owner-phaseone.component.scss'],
 })
 export class CreateOwnerPhaseoneComponent implements OnInit {
-  @Output() wizardStepEmitter: EventEmitter<number> = new EventEmitter();
+  @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
+  @Input() public formData!: ProjectOwnerRegistrationRequest;
   ownerphaseoneForm!: FormGroup;
   submitted = false;
 
@@ -38,17 +43,21 @@ export class CreateOwnerPhaseoneComponent implements OnInit {
     });
   }
 
-  get f() { return this.ownerphaseoneForm.controls; }
+  get form() { return this.ownerphaseoneForm.controls; }
   onContinue(): void {
     this.submitted = true;
     // if (this.ownerphaseoneForm.invalid) {
     //   return;
     // }
+    const requestObj = this.getRequestObject();
+    this.wizardStepEmitter.next({ step: 2, payLoad: requestObj });
+  }
 
-    const obj = new ProjectOwnerEdit;
-    obj.setcname = this.ownerphaseoneForm.value.CompanyName.toString();
-    obj.setFedTax = this.ownerphaseoneForm.value.FedralTaxId.toString();
-    obj.setPhoneno = this.ownerphaseoneForm.value.PhoneNumber.toString();
-    this.wizardStepEmitter.next(2);
+  getRequestObject(): ProjectOwnerRegistrationRequest {
+    const projectOwnerRequest: any = new ProjectOwnerRegistration();
+    Object.keys(this.ownerphaseoneForm.controls).forEach((formControlKey: string) => {
+      projectOwnerRequest[SignUpFormApiMapper[formControlKey]] = this.ownerphaseoneForm.controls[formControlKey].value;
+    });
+    return projectOwnerRequest;
   }
 }

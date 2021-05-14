@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   OnInit,
+  Input,
   Output,
   TemplateRef,
 } from '@angular/core';
@@ -9,6 +10,9 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProjectOwnerRegisterRequest } from 'src/app/services/interface';
 import { ProjectOwnerService } from 'src/app/services/project-owner.service';
+import { WizardEventEmit } from 'src/app/interface/wizard.interface';
+import { ProjectOwnerRegistrationRequest } from 'src/app/interface/project-owner-registration.interface';
+import { SignUpFormApiMapper } from '../signup-form.types';
 
 @Component({
   selector: 'app-create-owner-phasefour',
@@ -16,7 +20,8 @@ import { ProjectOwnerService } from 'src/app/services/project-owner.service';
   styleUrls: ['./create-owner-phasefour.component.scss'],
 })
 export class CreateOwnerPhasefourComponent implements OnInit {
-  @Output() wizardStepEmitter: EventEmitter<number> = new EventEmitter();
+  @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
+  @Input() public formData!: ProjectOwnerRegistrationRequest;
   list: any[] = [];
   openedModalIndex: number = 0;
   modalRef!: BsModalRef;
@@ -67,10 +72,10 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  get f() { return this.ownerphasefourForm.controls; }
+  get form() { return this.ownerphasefourForm.controls; }
 
   navigateBack(): void {
-    this.wizardStepEmitter.next(3);
+    this.wizardStepEmitter.next({ step: 3, payLoad: this.formData });
   }
 
   onSubmit(): void {
@@ -92,7 +97,16 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     //     console.error(error.error);
     //   }
     // );
+    const requestObject = this.getUpdatedRequestObject();
+    this.wizardStepEmitter.next({ step: 5, payLoad: this.formData });
+  }
 
-    this.wizardStepEmitter.next(5);
+
+  getUpdatedRequestObject(): ProjectOwnerRegistrationRequest {
+    const formData: any = this.formData;
+    Object.keys(this.ownerphasefourForm.controls).forEach((formControlKey: string) => {
+      formData[SignUpFormApiMapper[formControlKey]] = this.ownerphasefourForm.controls[formControlKey].value;
+    });
+    return formData;
   }
 }

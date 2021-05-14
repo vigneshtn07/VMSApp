@@ -1,10 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   BsDatepickerViewMode,
   BsDatepickerConfig,
 } from 'ngx-bootstrap/datepicker';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { WizardEventEmit } from 'src/app/interface/wizard.interface';
+import { ProjectOwnerRegistrationRequest } from 'src/app/interface/project-owner-registration.interface';
+import { SignUpFormApiMapper } from '../signup-form.types'
 
 @Component({
   selector: 'app-create-owner-phasetwo',
@@ -12,7 +15,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-owner-phasetwo.component.scss'],
 })
 export class CreateOwnerPhasetwoComponent implements OnInit {
-  @Output() wizardStepEmitter: EventEmitter<number> = new EventEmitter();
+  @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
+  @Input() public formData!: ProjectOwnerRegistrationRequest;
   ownerphasetwoForm!: FormGroup;
   submitted = false;
 
@@ -77,11 +81,21 @@ export class CreateOwnerPhasetwoComponent implements OnInit {
     // if (this.ownerphasetwoForm.invalid) {
     //   return;
     // }
-    this.wizardStepEmitter.next(3);
+    const requestObject = this.getUpdatedRequestObject();
+    this.wizardStepEmitter.next({ step: 3, payLoad: requestObject });
   }
 
+  getUpdatedRequestObject(): ProjectOwnerRegistrationRequest {
+    const formData: any = this.formData;
+    Object.keys(this.ownerphasetwoForm.controls).forEach((formControlKey: string) => {
+      formData[SignUpFormApiMapper[formControlKey]] = this.ownerphasetwoForm.controls[formControlKey].value;
+    });
+    return formData;
+  }
+
+
   navigateBack(): void {
-    this.wizardStepEmitter.next(1);
+    this.wizardStepEmitter.next({ step: 1, payLoad: this.formData });
   }
 
   onOpenCalendar(container: any) {
@@ -98,7 +112,7 @@ export class CreateOwnerPhasetwoComponent implements OnInit {
     console.log(items);
   }
 
-  get f() { return this.ownerphasetwoForm.controls; }
+  get form() { return this.ownerphasetwoForm.controls; }
 
   ngOnInit(): void {
     this.ownerphasetwoForm = this.formBuilder.group({

@@ -1,5 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProjectOwnerRegistrationRequest } from 'src/app/interface/project-owner-registration.interface';
+import { WizardEventEmit } from 'src/app/interface/wizard.interface';
+import { ProjectOwnerRegisterRequest } from 'src/app/services/interface';
+import { SignUpFormApiMapper } from '../signup-form.types';
+
 
 @Component({
   selector: 'app-create-owner-phasethree',
@@ -7,7 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-owner-phasethree.component.scss'],
 })
 export class CreateOwnerPhasethreeComponent implements OnInit {
-  @Output() wizardStepEmitter: EventEmitter<number> = new EventEmitter();
+  @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
+  @Input() public formData!: ProjectOwnerRegistrationRequest;
   ownerphasethreeForm!: FormGroup;
   submitted = false;
   constructor(private formBuilder: FormBuilder) { }
@@ -19,17 +25,27 @@ export class CreateOwnerPhasethreeComponent implements OnInit {
     });
   }
 
-  get f() { return this.ownerphasethreeForm.controls; }
+  get form() { return this.ownerphasethreeForm.controls; }
 
   onContinue(): void {
     this.submitted = true;
     // if (this.ownerphasethreeForm.invalid) {
     //   return;
     // }
-    this.wizardStepEmitter.next(4);
+    const requestObject = this.getUpdatedRequestObject();
+    this.wizardStepEmitter.next({ step: 4, payLoad: this.formData });
   }
 
+  getUpdatedRequestObject(): ProjectOwnerRegisterRequest {
+    const formData: any = this.formData;
+    Object.keys(this.ownerphasethreeForm.controls).forEach((formControlKey: string) => {
+      formData[SignUpFormApiMapper[formControlKey]] = this.ownerphasethreeForm.controls[formControlKey].value;
+    });
+    return formData;
+  }
+
+
   navigateBack(): void {
-    this.wizardStepEmitter.next(2);
+    this.wizardStepEmitter.next({ step: 2, payLoad: this.formData });
   }
 }
