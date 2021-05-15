@@ -14,3 +14,9 @@ export interface ProjectOwnerEmailVerify {
 export interface ProjectOwnerRegistrationStatusResponse {
     status: string;
 }
+
+export interface ProjectOwnerStatement {
+    id: number;
+    title: string;
+    checked: boolean;
+}

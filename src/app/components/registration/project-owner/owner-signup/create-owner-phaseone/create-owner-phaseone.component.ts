@@ -17,7 +17,7 @@ import { SignUpFormApiMapper } from '../signup-form.types';
 export class CreateOwnerPhaseoneComponent implements OnInit {
   @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
   @Input() public formData!: ProjectOwnerRegistrationRequest;
-  ownerphaseoneForm!: FormGroup;
+  ownerPhaseOneForm!: FormGroup;
   submitted = false;
 
   maskTypes = {
@@ -36,14 +36,14 @@ export class CreateOwnerPhaseoneComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.ownerphaseoneForm = this.formBuilder.group({
+    this.ownerPhaseOneForm = this.formBuilder.group({
       CompanyName: ['', Validators.required],
       FedralTaxId: ['', Validators.required],
       PhoneNumber: ['', Validators.required]
     });
   }
 
-  get form() { return this.ownerphaseoneForm.controls; }
+  get form() { return this.ownerPhaseOneForm.controls; }
   onContinue(): void {
     this.submitted = true;
     // if (this.ownerphaseoneForm.invalid) {
@@ -55,8 +55,8 @@ export class CreateOwnerPhaseoneComponent implements OnInit {
 
   getRequestObject(): ProjectOwnerRegistrationRequest {
     const projectOwnerRequest: any = new ProjectOwnerRegistration();
-    Object.keys(this.ownerphaseoneForm.controls).forEach((formControlKey: string) => {
-      projectOwnerRequest[SignUpFormApiMapper[formControlKey]] = this.ownerphaseoneForm.controls[formControlKey].value;
+    Object.keys(this.ownerPhaseOneForm.controls).forEach((formControlKey: string) => {
+      projectOwnerRequest[SignUpFormApiMapper[formControlKey]] = this.ownerPhaseOneForm.controls[formControlKey].value;
     });
     return projectOwnerRequest;
   }

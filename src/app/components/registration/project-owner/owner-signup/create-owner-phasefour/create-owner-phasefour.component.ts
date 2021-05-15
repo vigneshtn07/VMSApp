@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProjectOwnerRegisterRequest } from 'src/app/services/interface';
+import { ProjectOwnerRegisterRequest, ProjectOwnerStatement } from 'src/app/services/interface';
 import { ProjectOwnerService } from 'src/app/services/project-owner.service';
 import { WizardEventEmit } from 'src/app/interface/wizard.interface';
 import { ProjectOwnerRegistrationRequest } from 'src/app/interface/project-owner-registration.interface';
@@ -20,14 +20,14 @@ import { SignUpFormApiMapper } from '../signup-form.types';
   styleUrls: ['./create-owner-phasefour.component.scss'],
 })
 export class CreateOwnerPhasefourComponent implements OnInit {
-  @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
+  @Output() public wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
   @Input() public formData!: ProjectOwnerRegistrationRequest;
-  list: any[] = [];
+  public list: ProjectOwnerStatement[] = [];
   openedModalIndex: number = 0;
   modalRef!: BsModalRef;
   statementHeader: string;
   statementContent: string;
-  ownerphasefourForm!: FormGroup;
+  ownerPhaseFourForm!: FormGroup;
   submitted = false;
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private projectOwnerService: ProjectOwnerService) {
@@ -56,7 +56,7 @@ export class CreateOwnerPhasefourComponent implements OnInit {
         checked: false,
       },
     ];
-    this.ownerphasefourForm = this.formBuilder.group({
+    this.ownerPhaseFourForm = this.formBuilder.group({
       certify: [false, Validators.requiredTrue]
     });
   }
@@ -72,7 +72,7 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  get form() { return this.ownerphasefourForm.controls; }
+  get form() { return this.ownerPhaseFourForm.controls; }
 
   navigateBack(): void {
     this.wizardStepEmitter.next({ step: 3, payLoad: this.formData });
@@ -104,8 +104,8 @@ export class CreateOwnerPhasefourComponent implements OnInit {
 
   getUpdatedRequestObject(): ProjectOwnerRegistrationRequest {
     const formData: any = this.formData;
-    Object.keys(this.ownerphasefourForm.controls).forEach((formControlKey: string) => {
-      formData[SignUpFormApiMapper[formControlKey]] = this.ownerphasefourForm.controls[formControlKey].value;
+    Object.keys(this.ownerPhaseFourForm.controls).forEach((formControlKey: string) => {
+      formData[SignUpFormApiMapper[formControlKey]] = this.ownerPhaseFourForm.controls[formControlKey].value;
     });
     return formData;
   }

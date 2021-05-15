@@ -22,7 +22,7 @@ export class OwnerSignupComponent implements OnInit {
   stepProgressData!: ProgressBreadCumb;
   @ViewChild('progressBarEle')
   progressBarEle!: ElementRef;
-  formValues: ProjectOwnerRegistrationRequest;
+  public formValues: ProjectOwnerRegistrationRequest;
   constructor() {
     this.formValues = new ProjectOwnerRegistration();
   }

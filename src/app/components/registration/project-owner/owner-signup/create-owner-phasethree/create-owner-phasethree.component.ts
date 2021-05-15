@@ -14,18 +14,18 @@ import { SignUpFormApiMapper } from '../signup-form.types';
 export class CreateOwnerPhasethreeComponent implements OnInit {
   @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
   @Input() public formData!: ProjectOwnerRegistrationRequest;
-  ownerphasethreeForm!: FormGroup;
+  ownerPhaseThreeForm!: FormGroup;
   submitted = false;
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.ownerphasethreeForm = this.formBuilder.group({
+    this.ownerPhaseThreeForm = this.formBuilder.group({
       projectname: ['', Validators.required],
       projectdesc: ['', Validators.required]
     });
   }
 
-  get form() { return this.ownerphasethreeForm.controls; }
+  get form() { return this.ownerPhaseThreeForm.controls; }
 
   onContinue(): void {
     this.submitted = true;
@@ -38,8 +38,8 @@ export class CreateOwnerPhasethreeComponent implements OnInit {
 
   getUpdatedRequestObject(): ProjectOwnerRegisterRequest {
     const formData: any = this.formData;
-    Object.keys(this.ownerphasethreeForm.controls).forEach((formControlKey: string) => {
-      formData[SignUpFormApiMapper[formControlKey]] = this.ownerphasethreeForm.controls[formControlKey].value;
+    Object.keys(this.ownerPhaseThreeForm.controls).forEach((formControlKey: string) => {
+      formData[SignUpFormApiMapper[formControlKey]] = this.ownerPhaseThreeForm.controls[formControlKey].value;
     });
     return formData;
   }

@@ -17,7 +17,7 @@ import { SignUpFormApiMapper } from '../signup-form.types'
 export class CreateOwnerPhasetwoComponent implements OnInit {
   @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
   @Input() public formData!: ProjectOwnerRegistrationRequest;
-  ownerphasetwoForm!: FormGroup;
+  ownerPhaseTwoForm!: FormGroup;
   submitted = false;
 
   minMode: BsDatepickerViewMode = 'year';
@@ -87,8 +87,8 @@ export class CreateOwnerPhasetwoComponent implements OnInit {
 
   getUpdatedRequestObject(): ProjectOwnerRegistrationRequest {
     const formData: any = this.formData;
-    Object.keys(this.ownerphasetwoForm.controls).forEach((formControlKey: string) => {
-      formData[SignUpFormApiMapper[formControlKey]] = this.ownerphasetwoForm.controls[formControlKey].value;
+    Object.keys(this.ownerPhaseTwoForm.controls).forEach((formControlKey: string) => {
+      formData[SignUpFormApiMapper[formControlKey]] = this.ownerPhaseTwoForm.controls[formControlKey].value;
     });
     return formData;
   }
@@ -112,10 +112,10 @@ export class CreateOwnerPhasetwoComponent implements OnInit {
     console.log(items);
   }
 
-  get form() { return this.ownerphasetwoForm.controls; }
+  get form() { return this.ownerPhaseTwoForm.controls; }
 
   ngOnInit(): void {
-    this.ownerphasetwoForm = this.formBuilder.group({
+    this.ownerPhaseTwoForm = this.formBuilder.group({
       stateOfIncorporation: ['', Validators.required],
       establishedYear: ['', Validators.required],
       industrySelectedItems: ['', [Validators.required]],
