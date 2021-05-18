@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { additionalInfoRequest, EditSpecialistRequest, SpecialistRegisterRequest } from 'src/app/services/interface';
+import { additionalInfoRequest, EditSpecialistRequest, SpecialistRegisterRequest } from 'src/app/interface/index';
 import { SpecialistService } from 'src/app/services/specialist.service';
 import { CommonService } from 'src/app/services/common.service';
 import { STORAGE_KEYS } from 'src/app/core/storage/storage.constants';

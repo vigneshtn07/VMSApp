@@ -67,9 +67,9 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-2 col-lg-3 vms-form__group field">
-                    <input type="text" name="Website" id="" class="form__field" maxlength="10" placeholder="Website"
+                    <input type="text" name="Website" id="" class="form__field" maxlength="20" placeholder="Website"
                         aria-describedby="helpId" formControlName="Website" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && form.Website.errors }" numbersOnly>
+                        [ngClass]="{ 'is-invalid': submitted && form.Website.errors }">
                     <label for="Website" class="form__label">Website</label>
                     <div *ngIf="submitted && form.Website.errors" class="invalid-feedback">
                         <div *ngIf="form.Website.errors.required">Website is required</div>
@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
-                    <input type="text" name="Zipcode" id="" class="form__field" placeholder="Zip/Postal code"
+                    <input type="text" name="Zipcode" id="" class="form__field" maxlength="5" placeholder="Zip/Postal code"
                         aria-describedby="helpId" [textMask]="maskTypes.ZipCode" autocomplete="off"
                         formControlName="Zipcode" [ngClass]="{'is-invalid': submitted && form.Zipcode.errors }">
                     <label for="Zipcode" class="form__label">Zip/Postal code</label>

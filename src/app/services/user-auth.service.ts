@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AUTH_URLs } from './constants/user-auth.constant';
-import * as Contract from './interface/index';
-import * as Model from './model/index';
-import { User } from './model/index';
+import * as Contract from '../interface/index';
+import * as Model from '../models/index';
+import { User } from '../models/index';
 
 @Injectable({ providedIn: 'root' })
 export class UserAuthenticationService {

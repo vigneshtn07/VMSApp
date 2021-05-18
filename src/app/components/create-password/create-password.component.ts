@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
-import { createPasswordRequest, ForgotPasswordRequest } from 'src/app/services/interface';
+import { createPasswordRequest, ForgotPasswordRequest } from 'src/app/interface/index';
 import { CommonService } from 'src/app/services/common.service';
 import { STORAGE_KEYS } from 'src/app/core/storage/storage.constants';
 import { StorageType } from 'src/app/core/storage/storage.enum';

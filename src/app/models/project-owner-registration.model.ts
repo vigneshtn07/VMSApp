@@ -8,7 +8,7 @@ export class ProjectOwnerRegistration implements ProjectOwnerRegistrationRequest
     year!: string;
     industry!: string;
     division!: string;
-    annualRevenue!: bigint;
+    annualRevenue!: number;
     noOfContractor!: number;
     website!: string;
     address!: string;

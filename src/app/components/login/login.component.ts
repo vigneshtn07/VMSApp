@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STORAGE_KEYS } from 'src/app/core/storage/storage.constants';
 import { StorageType } from 'src/app/core/storage/storage.enum';
 import { StorageService } from 'src/app/core/storage/storage.service';
-import { UserAuthRequest } from 'src/app/services/interface';
+//import { UserAuthRequest } from 'src/app/services/interface/';
+import { UserAuthRequest } from 'src/app/interface/index';
 import { MessageService } from 'src/app/services/message.service';
 import { UserAuthenticationService } from 'src/app/services/user-auth.service';
 import { ThemeService } from 'src/theme';
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   userType: string = '';
   private readonly notifier!: NotifierService;
+
   constructor(
     private formBuilder: FormBuilder,
     private userAuthService: UserAuthenticationService,

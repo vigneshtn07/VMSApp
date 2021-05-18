@@ -17,8 +17,8 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-sm-8 col-md-9 col-lg-6 vms-form__group field">
                 <input type="text" class="form__field" placeholder="FedralTaxId" name="FedralTaxId" id='FedralTaxId'
-                    [textMask]="maskTypes.TaxId" [maxLength]="maskTypes.TaxId.mask.length" formControlName="FedralTaxId"
-                    autocomplete="off" [ngClass]="{ 'is-invalid': submitted && form.FedralTaxId.errors }" required />
+                    [textMask]="maskTypes.TaxId" maxlength="7" formControlName="FedralTaxId" autocomplete="off"
+                    [ngClass]="{ 'is-invalid': submitted && form.FedralTaxId.errors }" required />
                 <label for="FedralTaxId" class="form__label">Fedral Tax ID</label>
                 <div *ngIf="submitted && form.FedralTaxId.errors" class="invalid-feedback">
                     <div *ngIf="form.FedralTaxId.errors.required">Fedral Tax Id is required</div>

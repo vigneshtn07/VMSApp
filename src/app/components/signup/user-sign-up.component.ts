@@ -2,15 +2,15 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
-import { SkillSourceRegisterRequest, SkillSourceResendEmail } from '../../services/interface/index';
-import { SpecialistRegisterRequest, SpecialistResendEmail } from '../../services/interface/index';
+import { SkillSourceRegisterRequest, SkillSourceResendEmail } from '../../interface/index';
+import { SpecialistRegisterRequest, SpecialistResendEmail } from '../../interface/index';
 import { SkillSourceService } from '../../services/skill-source.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UserType } from 'src/app/shared/constants/user-type.constant';
 import { SpecialistService } from 'src/app/services/specialist.service';
-import { ProjectOwnerRegisterRequest, ProjectOwnerResendEmail } from 'src/app/services/interface';
+import { ProjectOwnerRegisterRequest, ProjectOwnerResendEmail } from 'src/app/interface/index';
 import { ProjectOwnerService } from 'src/app/services/project-owner.service';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
 

@@ -19,4 +19,5 @@ export interface ProjectOwnerStatement {
     id: number;
     title: string;
     checked: boolean;
+    formkey: boolean;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ForgotPasswordRequest } from 'src/app/services/interface';
+import { ForgotPasswordRequest } from 'src/app/interface/index';
 import { CommonService } from 'src/app/services/common.service';
 import { NotifierService } from 'angular-notifier';
 import { AppLoadingService } from 'src/app/shared/service/app-loading.service';

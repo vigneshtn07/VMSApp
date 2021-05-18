@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { COMMON_API_URLs } from './constants/common-api-url.constants';
-import * as Contract from './interface/index';
+import * as Contract from '../interface/index';
 
 @Injectable({ providedIn: 'root' })
 export class CommonService {

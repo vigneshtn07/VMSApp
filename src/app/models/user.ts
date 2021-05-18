@@ -11,13 +11,9 @@ export class User implements UserAuthResponse {
     this.type = type;
     this.id = id;
   }
-}
 
-
-export class RegistrationStatusResponse implements SkillSourceRegistrationStatusResponse {
-  status: string;
-
-  constructor(status: string) {
-    this.status = status;
+  get Type(): string {
+    return this.type;
   }
+
 }

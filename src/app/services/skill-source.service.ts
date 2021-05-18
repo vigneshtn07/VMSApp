@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { SKILL_SOURCE_URLs } from './constants/skill-source-constant';
-import * as Contract from './interface/index';
-import * as Model from './model/index';
-import { RegistrationStatusResponse } from './model/index';
+import * as Contract from '../interface/index';
 
 @Injectable({ providedIn: 'root' })
 export class SkillSourceService {
@@ -49,12 +47,12 @@ export class SkillSourceService {
       );
   }
 
-  registrationstatus(request: Contract.SkillSourceRegistrationStatus): Observable<Model.RegistrationStatusResponse> {
+  registrationstatus(request: Contract.SkillSourceRegistrationStatus): Observable<string> {
     return this.httpClient
-      .post<Model.RegistrationStatusResponse>(`${this.baseUrl}/${SKILL_SOURCE_URLs.registrationStatus}`, request)
+      .post<string>(`${this.baseUrl}/${SKILL_SOURCE_URLs.registrationStatus}`, request)
       .pipe(
-        map((response: Contract.SkillSourceRegistrationStatusResponse) => {
-          return new RegistrationStatusResponse(response.status);
+        map((response: any) => {
+          return response.status;
         })
       );
   }

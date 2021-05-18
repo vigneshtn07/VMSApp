@@ -4,10 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { PROJECT_OWNER_URLs } from './constants/project-owner.constant';
-import * as Contract from './interface/index';
-import * as Model from './model/index';
-import { RegistrationStatusResponse } from './model/index';
-
+import * as Contract from '../interface/index';
+import * as Model from '../models/index';
 @Injectable({ providedIn: 'root' })
 export class ProjectOwnerService {
   private baseUrl: string = environment.apiEndPoint;
@@ -15,7 +13,7 @@ export class ProjectOwnerService {
 
   register(request: Contract.ProjectOwnerRegisterRequest): Observable<any> {
     return this.httpClient
-      .post(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerRegister}`, request, {
+      .post(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerSignUp}`, request, {
         responseType: 'text',
       })
       .pipe(
@@ -48,13 +46,29 @@ export class ProjectOwnerService {
   }
 
 
-  registrationstatus(request: Contract.SkillSourceRegistrationStatus): Observable<Model.RegistrationStatusResponse> {
+  registrationstatus(request: Contract.SkillSourceRegistrationStatus): Observable<string> {
     return this.httpClient
-      .post<Model.RegistrationStatusResponse>(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerRegistrationStatus}`, request)
+      .post<string>(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerRegistrationStatus}`, request)
       .pipe(
-        map((response: Contract.SkillSourceRegistrationStatusResponse) => {
-          return new RegistrationStatusResponse(response.status);
+        map((response: any) => {
+          return response.status;
         })
       );
   }
+
+
+  editregister(request: Contract.ProjectOwnerRegistrationRequest, id: any): Observable<any> {
+    debugger;
+    return this.httpClient
+      .put(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerEdit}/${id}`, request, {
+        responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+
 }

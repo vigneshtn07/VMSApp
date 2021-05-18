@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MaskInputType } from 'src/app/shared/constants/masking.constant';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as Model from 'src/app/services/model/common'
-import { ProjectOwnerEdit } from 'src/app/services/model/common'
+import * as Model from 'src/app/interface/index'
 import { WizardEventEmit } from 'src/app/interface/wizard.interface';
 import { ProjectOwnerRegistrationRequest } from 'src/app/interface/project-owner-registration.interface';
 import { ProjectOwnerRegistration } from 'src/app/models/project-owner-registration.model';
@@ -54,7 +53,7 @@ export class CreateOwnerPhaseoneComponent implements OnInit {
   }
 
   getRequestObject(): ProjectOwnerRegistrationRequest {
-    const projectOwnerRequest: any = new ProjectOwnerRegistration();
+    const projectOwnerRequest: any = this.formData;
     Object.keys(this.ownerPhaseOneForm.controls).forEach((formControlKey: string) => {
       projectOwnerRequest[SignUpFormApiMapper[formControlKey]] = this.ownerPhaseOneForm.controls[formControlKey].value;
     });

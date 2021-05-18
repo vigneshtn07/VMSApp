@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { SPECIALIST_URLs } from './constants/specialist.constant';
-import * as Contract from './interface/index';
+import * as Contract from '../interface/index';
 
 @Injectable({ providedIn: 'root' })
 export class SpecialistService {

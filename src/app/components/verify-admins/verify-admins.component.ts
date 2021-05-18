@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
 import { SpecialistService } from 'src/app/services/specialist.service';
 import { NotifierService } from 'angular-notifier';
-import { SpecialistRegisterRequest, SpecialistResendEmail } from 'src/app/services/interface';
+import { SpecialistRegisterRequest, SpecialistResendEmail } from 'src/app/interface/index';
 
 @Component({
   selector: 'app-verify-admins',

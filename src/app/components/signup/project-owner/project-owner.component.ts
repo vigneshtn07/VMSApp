@@ -3,7 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
 import { NotifierService } from 'angular-notifier';
-import { ProjectOwnerRegisterRequest, ProjectOwnerResendEmail } from 'src/app/services/interface';
+import { ProjectOwnerRegisterRequest, ProjectOwnerResendEmail } from 'src/app/interface/index';
 import { ProjectOwnerService } from 'src/app/services/project-owner.service';
 
 @Component({

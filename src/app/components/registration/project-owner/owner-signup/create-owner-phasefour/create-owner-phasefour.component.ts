@@ -8,11 +8,20 @@ import {
 } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProjectOwnerRegisterRequest, ProjectOwnerStatement } from 'src/app/services/interface';
+import { ProjectOwnerRegisterRequest, ProjectOwnerStatement } from 'src/app/interface/index';
 import { ProjectOwnerService } from 'src/app/services/project-owner.service';
 import { WizardEventEmit } from 'src/app/interface/wizard.interface';
 import { ProjectOwnerRegistrationRequest } from 'src/app/interface/project-owner-registration.interface';
 import { SignUpFormApiMapper } from '../signup-form.types';
+import { STORAGE_KEYS } from 'src/app/core/storage/storage.constants';
+import { StorageType } from 'src/app/core/storage/storage.enum';
+import { StorageService } from 'src/app/core/storage/storage.service';
+import { CommonService } from 'src/app/services/common.service';
+import { ProjectOwnerRegistration } from 'src/app/models';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { NotifierService } from 'angular-notifier';
+import { additionalInfoRequest } from 'src/app/interface/index';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-owner-phasefour',
@@ -29,13 +38,16 @@ export class CreateOwnerPhasefourComponent implements OnInit {
   statementContent: string;
   ownerPhaseFourForm!: FormGroup;
   submitted = false;
+  industryDropDownList: any;
+  private readonly notifier!: NotifierService;
 
-  constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private projectOwnerService: ProjectOwnerService) {
+  constructor(private router: Router, notifierService: NotifierService, private commonService: CommonService, private modalService: BsModalService, private formBuilder: FormBuilder, private projectOwnerService: ProjectOwnerService, private storageService: StorageService) {
     this.statementHeader = 'Statement 1';
     this.statementContent = `<p>Timely approval of Timecards and electronic payments</p><br>
     <p>I agree to providin fair payment terms. I Understand that any payment term over Net 45 will inccur a 0.5% fee for every 15 days. I also understand net terms start from the last day</p><br>
     <p>Provided minimum two week notice to Skill source to end an assigment</p><br>
     <p>Provided truthful reason if contract is ended short</p>`;
+    this.notifier = notifierService;
   }
 
   ngOnInit(): void {
@@ -44,16 +56,19 @@ export class CreateOwnerPhasefourComponent implements OnInit {
         id: 1,
         title: 'Statement 1',
         checked: false,
+        formkey: false,
       },
       {
         id: 2,
         title: 'Statement 2',
         checked: false,
+        formkey: false,
       },
       {
         id: 3,
         title: 'Statement 3',
         checked: false,
+        formkey: false,
       },
     ];
     this.ownerPhaseFourForm = this.formBuilder.group({
@@ -83,22 +98,89 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     // if (this.ownerphasefourForm.invalid) {
     //   return;
     // }
-    // const request: ProjectOwnerRegisterRequest = {
-    //   "cname": "Romeo",
-    //   "email": "msm17b003@iiitdmmm.ac.in",
-    //   "password": "password"
-    // };
 
-    // this.projectOwnerService.register(request).subscribe(
-    //   (response) => {
-    //     console.log(response);
-    //   },
-    //   (error) => {
-    //     console.error(error.error);
-    //   }
-    // );
-    const requestObject = this.getUpdatedRequestObject();
-    this.wizardStepEmitter.next({ step: 5, payLoad: this.formData });
+    const id = JSON.parse(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.UserId));
+
+
+
+    var requestObject = this.getUpdatedRequestObject();
+    var obj: ProjectOwnerRegistrationRequest;
+    obj = requestObject;
+    obj.s1 = false;
+    obj.s2 = false;
+    obj.s3 = false;
+    console.log(requestObject);
+    var date = (requestObject["year"].toString());
+    this.industryDropDownList = (requestObject["industry"]);
+    for (var i = 0; i < this.industryDropDownList.length; i++) {
+      obj.industry = this.industryDropDownList[i].item_text;
+    }
+    obj.year = date.substr(11, 4);
+    obj.fedTaxId = (requestObject["fedTaxId"].toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').replace('-', '').toString());
+    obj.bphone = (requestObject["bphone"].toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').replace('-', '').toString().replace('-', '').toString());
+    obj.phone = (requestObject["phone"].toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').replace('-', '').toString().replace('-', '').toString());
+    obj.phoneno = (requestObject["phoneno"].toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').replace('-', '').toString().replace('-', '').toString());
+    obj.pincode = (requestObject["pincode"].toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').replace('-', '').toString());
+    obj.annualRevenue = (requestObject["annualRevenue"]);
+    obj.noOfContractor = (requestObject["noOfContractor"]);
+
+    const request: ProjectOwnerRegistrationRequest = {
+      "cname": (requestObject["cname"]).toString(),
+      "fedTaxId": obj.fedTaxId,
+      "phoneno": obj.phoneno,
+      "stateOfInc": (requestObject["stateOfInc"]).toString(),
+      "year": obj.year,
+      "industry": obj.industry,
+      "division": (requestObject["division"]).toString(),
+      "annualRevenue": (requestObject["annualRevenue"]),
+      "noOfContractor": (requestObject["noOfContractor"]),
+      "website": (requestObject["website"]).toString(),
+      "address": (requestObject["address"]).toString(),
+      "city": (requestObject["city"]).toString(),
+      "state": (requestObject["state"]).toString(),
+      "country": (requestObject["country"]).toString(),
+      "pincode": obj.pincode,
+      "fullname": (requestObject["fullname"]).toString(),
+      "phone": obj.phone,
+      "email": (requestObject["email"]).toString(),
+      "bfullname": (requestObject["bfullname"]).toString(),
+      "bphone": obj.bphone,
+      "bemail": (requestObject["bemail"]).toString(),
+      "businessDesc": (requestObject["businessDesc"]).toString(),
+      "invoice": (requestObject["invoice"]).toString(),
+      "pname": (requestObject["pname"]).toString(),
+      "pdesc": (requestObject["pdesc"]).toString(),
+      "s1": true,
+      "s2": true,
+      "s3": true,
+      "dec": (requestObject["dec"])
+    };
+
+    debugger;
+    this.projectOwnerService.editregister(request, id).subscribe(
+      (response) => {
+        console.log(response);
+        const request: additionalInfoRequest = {
+          fname: (requestObject["cname"]).toString(),
+          email: (requestObject["email"]).toString(),
+          link: EmailRedirectUrl,
+        };
+        this.commonService.additionalInfoRequest(request).subscribe(
+          (response) => {
+            console.log(response);
+            this.showSuccess("Additional Info Link Sent to email.kindly check...!");
+            this.wizardStepEmitter.next({ step: 5, payLoad: this.formData });
+          },
+          (error) => {
+            this.showError(error.error);
+          }
+        );
+      },
+      (error) => {
+        this.showError(error.error);
+      }
+    );
+
   }
 
 
@@ -109,4 +191,27 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     });
     return formData;
   }
+
+  onReset() {
+    this.submitted = false;
+    this.ownerPhaseFourForm.reset();
+    this.storageService.clear(StorageType.LocalStorage);
+    this.router.navigate(['/login']);
+  }
+
+
+  showError(error: any): void {
+    this.notifier.show({
+      type: 'info',
+      message: error.error,
+    });
+  }
+
+  showSuccess(msg: any): void {
+    this.notifier.show({
+      type: 'success',
+      message: msg,
+    });
+  }
 }
+const EmailRedirectUrl = 'http://localhost:4200/info-form';

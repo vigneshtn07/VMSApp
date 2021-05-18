@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProjectOwnerRegistrationRequest } from 'src/app/interface/project-owner-registration.interface';
 import { WizardEventEmit } from 'src/app/interface/wizard.interface';
-import { ProjectOwnerRegisterRequest } from 'src/app/services/interface';
+import { ProjectOwnerRegisterRequest } from 'src/app/interface/index';
 import { SignUpFormApiMapper } from '../signup-form.types';
 
 
@@ -33,7 +33,7 @@ export class CreateOwnerPhasethreeComponent implements OnInit {
     //   return;
     // }
     const requestObject = this.getUpdatedRequestObject();
-    this.wizardStepEmitter.next({ step: 4, payLoad: this.formData });
+    this.wizardStepEmitter.next({ step: 4, payLoad: requestObject });
   }
 
   getUpdatedRequestObject(): ProjectOwnerRegisterRequest {

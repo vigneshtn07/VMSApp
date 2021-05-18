@@ -6,9 +6,9 @@ import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { of } from 'rxjs';
 import { UserType } from 'src/app/shared/constants/user-type.constant';
 import { SkillSourceService } from 'src/app/services/skill-source.service';
-import { SkillSourceRegistrationStatus } from 'src/app/services/interface';
+import { SkillSourceRegistrationStatus } from 'src/app/interface/index';
 import { ProjectOwnerService } from 'src/app/services/project-owner.service';
-import { ProjectOwnerRegistrationStatusResponse } from 'src/app/services/interface';
+//import { ProjectOwnerRegistrationStatusResponse } from 'src/app/services/interface';
 import { AppLoadingService } from 'src/app/shared/service/app-loading.service';
 
 @Component({
@@ -59,7 +59,7 @@ export class RegistrationStatusComponent implements OnInit {
     if (this.userType == UserType.SkillSource) {
 
       this.skillsourceservice.registrationstatus(userRequest).subscribe(
-        (response) => {
+        (response: any) => {
           if (response) {
 
             this.status = "Your Application is " + response.status;
@@ -76,7 +76,7 @@ export class RegistrationStatusComponent implements OnInit {
     }
     if (this.userType == UserType.ProjectOwner) {
       this.projectownerService.registrationstatus(userRequest).subscribe(
-        (response) => {
+        (response: any) => {
           if (response) {
             this.status = "Your Application is " + response.status;
             this.isVerificationSuccess = true;
