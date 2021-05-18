@@ -22,6 +22,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { NotifierService } from 'angular-notifier';
 import { additionalInfoRequest } from 'src/app/interface/index';
 import { Router } from '@angular/router';
+import { AppLoadingService } from 'src/app/shared/service/app-loading.service';
 
 @Component({
   selector: 'app-create-owner-phasefour',
@@ -41,7 +42,7 @@ export class CreateOwnerPhasefourComponent implements OnInit {
   industryDropDownList: any;
   private readonly notifier!: NotifierService;
 
-  constructor(private router: Router, notifierService: NotifierService, private commonService: CommonService, private modalService: BsModalService, private formBuilder: FormBuilder, private projectOwnerService: ProjectOwnerService, private storageService: StorageService) {
+  constructor(private appLoadingService: AppLoadingService, private router: Router, notifierService: NotifierService, private commonService: CommonService, private modalService: BsModalService, private formBuilder: FormBuilder, private projectOwnerService: ProjectOwnerService, private storageService: StorageService) {
     this.statementHeader = 'Statement 1';
     this.statementContent = `<p>Timely approval of Timecards and electronic payments</p><br>
     <p>I agree to providin fair payment terms. I Understand that any payment term over Net 45 will inccur a 0.5% fee for every 15 days. I also understand net terms start from the last day</p><br>
@@ -102,7 +103,7 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     const id = JSON.parse(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.UserId));
 
 
-
+    this.appLoadingService.setLoaderState(true);
     var requestObject = this.getUpdatedRequestObject();
     var obj: ProjectOwnerRegistrationRequest;
     obj = requestObject;
@@ -170,14 +171,17 @@ export class CreateOwnerPhasefourComponent implements OnInit {
             console.log(response);
             this.showSuccess("Additional Info Link Sent to email.kindly check...!");
             this.wizardStepEmitter.next({ step: 5, payLoad: this.formData });
+            this.appLoadingService.setLoaderState(false);
           },
           (error) => {
             this.showError(error.error);
+            this.appLoadingService.setLoaderState(false);
           }
         );
       },
       (error) => {
         this.showError(error.error);
+        this.appLoadingService.setLoaderState(false);
       }
     );
 

@@ -61,8 +61,8 @@ export class RegistrationStatusComponent implements OnInit {
       this.skillsourceservice.registrationstatus(userRequest).subscribe(
         (response: any) => {
           if (response) {
-
-            this.status = "Your Application is " + response.status;
+            console.log(response);
+            this.status = "Your Application is " + response;
             this.isVerificationSuccess = true;
             this.appLoadingService.setLoaderState(false);
           }
@@ -78,7 +78,8 @@ export class RegistrationStatusComponent implements OnInit {
       this.projectownerService.registrationstatus(userRequest).subscribe(
         (response: any) => {
           if (response) {
-            this.status = "Your Application is " + response.status;
+            console.log(response);
+            this.status = "Your Application is " + response;
             this.isVerificationSuccess = true;
             this.appLoadingService.setLoaderState(false);
           }
