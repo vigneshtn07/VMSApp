@@ -5,6 +5,11 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { WizardEventEmit } from 'src/app/interface/wizard.interface';
 import { SkillSourceRegistrationRequest } from 'src/app/interface/skill-source-registration.interface';
 import { SignUpFormApiMapper } from '../signup-form.types';
+import { AppLoadingService } from 'src/app/shared/service/app-loading.service';
+import { CommonService } from 'src/app/services/common.service';
+import { SkillSourceService } from 'src/app/services/skill-source.service';
+import { additionalInfoRequest } from 'src/app/interface/index';
+import { StorageService } from 'src/app/core/storage/storage.service';
 
 @Component({
   selector: 'app-signup-phase-four',
@@ -21,7 +26,7 @@ export class SignupPhaseFourComponent implements OnInit {
   public formFileNames: FormFiles;
   private readonly notifier!: NotifierService;
 
-  constructor(notifierService: NotifierService, private formBuilder: FormBuilder) {
+  constructor(private appLoadingService: AppLoadingService, notifierService: NotifierService, private storageService: StorageService, private formBuilder: FormBuilder, private skillSourceService: SkillSourceService, private commonService: CommonService) {
     this.submitted = false;
     this.notifier = notifierService;
     this.formFileNames = {
@@ -71,6 +76,7 @@ export class SignupPhaseFourComponent implements OnInit {
     //   return;
     // }
     const requestObject = this.getUpdatedRequestObject();
+    console.log(requestObject);
     const formDataRequestObject = this.convertJSONtoFormData(requestObject);
     console.log(formDataRequestObject);
     // this.wizardStepEmitter.next({ step: 5, payLoad: this.formData });
@@ -78,6 +84,34 @@ export class SignupPhaseFourComponent implements OnInit {
     //   type: 'Signin successful',
     //   message: 'You will receive a confirmation email shortly!',
     // });
+
+    this.skillSourceService.skillsourceedit(requestObject).subscribe(
+      (response) => {
+        console.log(response);
+        const request: additionalInfoRequest = {
+          fname: (requestObject["cname"]).toString(),
+          email: (requestObject["email"]).toString(),
+          link: EmailRedirectUrl,
+        };
+        this.commonService.additionalInfoRequest(request).subscribe(
+          (response) => {
+            console.log(response);
+            this.showSuccess("Additional Info Link Sent to email.kindly check...!");
+            this.wizardStepEmitter.next({ step: 5, payLoad: this.formData });
+            this.appLoadingService.setLoaderState(false);
+          },
+          (error) => {
+            this.showError(error.error);
+            this.appLoadingService.setLoaderState(false);
+          }
+        );
+      },
+      (error) => {
+        this.showError(error.error);
+        this.appLoadingService.setLoaderState(false);
+      }
+    );
+
   }
 
   getUpdatedRequestObject(): SkillSourceRegistrationRequest {
@@ -100,6 +134,20 @@ export class SignupPhaseFourComponent implements OnInit {
     }
     return requestFormData;
   }
+
+  showError(error: any): void {
+    this.notifier.show({
+      type: 'info',
+      message: error.error,
+    });
+  }
+
+  showSuccess(msg: any): void {
+    this.notifier.show({
+      type: 'success',
+      message: msg,
+    });
+  }
 }
 
 interface FormFiles {
@@ -109,3 +157,5 @@ interface FormFiles {
   // Quaters: any;
   [key: string]: string;
 }
+
+const EmailRedirectUrl = 'http://localhost:4200/info-form';

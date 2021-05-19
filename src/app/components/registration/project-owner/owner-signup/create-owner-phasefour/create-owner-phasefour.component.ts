@@ -110,7 +110,6 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     obj.s1 = false;
     obj.s2 = false;
     obj.s3 = false;
-    console.log(requestObject);
     var date = (requestObject["year"].toString());
     this.industryDropDownList = (requestObject["industry"]);
     for (var i = 0; i < this.industryDropDownList.length; i++) {
@@ -125,40 +124,8 @@ export class CreateOwnerPhasefourComponent implements OnInit {
     obj.annualRevenue = (requestObject["annualRevenue"]);
     obj.noOfContractor = (requestObject["noOfContractor"]);
 
-    const request: ProjectOwnerRegistrationRequest = {
-      "cname": (requestObject["cname"]).toString(),
-      "fedTaxId": obj.fedTaxId,
-      "phoneno": obj.phoneno,
-      "stateOfInc": (requestObject["stateOfInc"]).toString(),
-      "year": obj.year,
-      "industry": obj.industry,
-      "division": (requestObject["division"]).toString(),
-      "annualRevenue": (requestObject["annualRevenue"]),
-      "noOfContractor": (requestObject["noOfContractor"]),
-      "website": (requestObject["website"]).toString(),
-      "address": (requestObject["address"]).toString(),
-      "city": (requestObject["city"]).toString(),
-      "state": (requestObject["state"]).toString(),
-      "country": (requestObject["country"]).toString(),
-      "pincode": obj.pincode,
-      "fullname": (requestObject["fullname"]).toString(),
-      "phone": obj.phone,
-      "email": (requestObject["email"]).toString(),
-      "bfullname": (requestObject["bfullname"]).toString(),
-      "bphone": obj.bphone,
-      "bemail": (requestObject["bemail"]).toString(),
-      "businessDesc": (requestObject["businessDesc"]).toString(),
-      "invoice": (requestObject["invoice"]).toString(),
-      "pname": (requestObject["pname"]).toString(),
-      "pdesc": (requestObject["pdesc"]).toString(),
-      "s1": true,
-      "s2": true,
-      "s3": true,
-      "dec": (requestObject["dec"])
-    };
-
     debugger;
-    this.projectOwnerService.editregister(request, id).subscribe(
+    this.projectOwnerService.editregister(obj, id).subscribe(
       (response) => {
         console.log(response);
         const request: additionalInfoRequest = {

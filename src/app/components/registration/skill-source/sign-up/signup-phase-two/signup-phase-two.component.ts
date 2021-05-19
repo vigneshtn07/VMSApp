@@ -37,7 +37,7 @@ export class SignupPhaseTwoComponent implements OnInit {
       mask: MaskInputType.PhoneFormat,
     },
   };
-
+  inputReadonly = true;
   constructor(private formBuilder: FormBuilder) {
     this.bsConfig = Object.assign(
       {},
@@ -110,6 +110,7 @@ export class SignupPhaseTwoComponent implements OnInit {
       return;
     }
     const requestObject = this.getUpdatedRequestObject();
+    console.log(requestObject);
     this.wizardStepEmitter.next({ step: 3, payLoad: requestObject });
   }
 

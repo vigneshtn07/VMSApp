@@ -18,7 +18,7 @@
                 <div class="col-12 col-md-4 col-lg-4 vms-form__group field date-field">
                     <input type="text" placeholder="Year Established" name="establishedYear" [(ngModel)]="modelDate"
                         class="form__field form-control" [bsConfig]="bsConfig" class="form__field form-control"
-                        formControlName="establishedYear" autocomplete="off"
+                        formControlName="establishedYear" readonly="true" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.establishedYear.errors }" bsDatepicker>
                     <div *ngIf="submitted && form.establishedYear.errors" class="invalid-feedback">
                         <div *ngIf="form.establishedYear.errors.required">Established Year is required</div>
@@ -134,9 +134,10 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-lg-4 vms-form__group field">
-                    <input type="text" name="Zipcode" id="" class="form__field" maxlength="5" placeholder="Zip/Postal code"
-                        aria-describedby="helpId" [textMask]="maskTypes.ZipCode" autocomplete="off"
-                        formControlName="Zipcode" [ngClass]="{'is-invalid': submitted && form.Zipcode.errors }">
+                    <input type="text" name="Zipcode" id="" class="form__field" maxlength="5"
+                        placeholder="Zip/Postal code" aria-describedby="helpId" [textMask]="maskTypes.ZipCode"
+                        autocomplete="off" formControlName="Zipcode"
+                        [ngClass]="{'is-invalid': submitted && form.Zipcode.errors }">
                     <label for="Zipcode" class="form__label">Zip/Postal code</label>
                     <div *ngIf="submitted && form.Zipcode.errors" class="invalid-feedback">
                         <div *ngIf="form.Zipcode.errors.required">Zip/Postal code is required</div>

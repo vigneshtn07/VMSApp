@@ -29,7 +29,7 @@ export class SignupPhaseOneComponent implements OnInit {
     },
   };
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.skillPhaseoneForm = this.formBuilder.group({
@@ -54,6 +54,7 @@ export class SignupPhaseOneComponent implements OnInit {
       return;
     }
     const requestObj = this.getRequestObject();
+    console.log(requestObj);
     this.wizardStepEmitter.next({ step: 2, payLoad: requestObj });
   }
 

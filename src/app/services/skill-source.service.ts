@@ -57,4 +57,16 @@ export class SkillSourceService {
       );
   }
 
+  skillsourceedit(request: Contract.SkillSourceRegistrationRequest): Observable<any> {
+    return this.httpClient
+      .post(`${this.baseUrl}/${SKILL_SOURCE_URLs.skillsourceEdit}`, request, {
+        responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
 }

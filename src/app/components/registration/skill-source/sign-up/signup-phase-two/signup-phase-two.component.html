@@ -19,7 +19,8 @@
                     <input type="text" placeholder="Year Established" name="EstablishedYear" [(ngModel)]="modelDate"
                         class="form-control" [bsConfig]="bsConfig" class="form__field form-control"
                         (bsValueChange)="onValueChange($event)" formControlName="EstablishedYear" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && form.EstablishedYear.errors }" bsDatepicker>
+                        readonly="true" [ngClass]="{ 'is-invalid': submitted && form.EstablishedYear.errors }"
+                        bsDatepicker>
                     <div *ngIf="submitted && form.EstablishedYear.errors" class="invalid-feedback">
                         <div *ngIf="form.EstablishedYear.errors.required">Established Year is required</div>
                     </div>
