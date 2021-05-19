@@ -116,7 +116,13 @@ export class SignupPhaseTwoComponent implements OnInit {
   getUpdatedRequestObject(): SkillSourceRegistrationRequest {
     const formData: any = this.formData;
     Object.keys(this.skillPhaseTwoForm.controls).forEach((formControlKey: string) => {
-      formData[SignUpFormApiMapper[formControlKey]] = this.skillPhaseTwoForm.controls[formControlKey].value;
+      if (formControlKey === 'IndustrySelectedItems' || formControlKey === 'Specialization') {
+        formData[SignUpFormApiMapper[formControlKey]] = this.skillPhaseTwoForm.controls[formControlKey].value
+          .map((value: any) => value.item_text)
+          .toString();
+      } else {
+        formData[SignUpFormApiMapper[formControlKey]] = this.skillPhaseTwoForm.controls[formControlKey].value;
+      }
     });
     return formData;
   }
@@ -137,5 +143,11 @@ export class SignupPhaseTwoComponent implements OnInit {
   }
   onSelectAll(items: any) {
     console.log(items);
+  }
+
+  onValueChange(modelDate: Date): void {
+    if (modelDate) {
+      this.skillPhaseTwoForm.controls.EstablishedYear.patchValue(new Date(modelDate).getFullYear());
+    }
   }
 }

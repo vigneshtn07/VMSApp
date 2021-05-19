@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
           if (response) {
             this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.AuthToken, response.access_token);
             this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.UserId, response.id);
-            this.router.navigate(['registration/project-owner/signUp']);
+            this.router.navigate(['registration/project-owner/sign-up']);
           }
         },
         (error) => {
@@ -118,7 +118,7 @@ export class LoginComponent implements OnInit {
           if (response) {
             this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.AuthToken, response.access_token);
             this.storageService.storeValue(StorageType.LocalStorage, STORAGE_KEYS.UserId, response.id);
-            this.router.navigate(['registration/skill-source/signUp']);
+            this.router.navigate(['registration/skill-source/sign-up']);
           }
         },
         (error) => {

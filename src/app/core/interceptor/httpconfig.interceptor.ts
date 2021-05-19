@@ -26,9 +26,10 @@ export class VMSInterceptor implements HttpInterceptor {
     }
     return next.handle(request).pipe(
       tap((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          console.log('event--->>>', event);
-        }
+        // uncomment for logging response
+        // if (event instanceof HttpResponse) { 
+        //   console.log('event--->>>', event);
+        // }
         return event;
       }),
       catchError((error: HttpErrorResponse) => {

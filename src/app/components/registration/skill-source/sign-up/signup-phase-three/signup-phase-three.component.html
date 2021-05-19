@@ -3,7 +3,7 @@
         <div class="col-12 vms-signup-container__title d-flex justify-content-center">
             <p>Additional Information</p>
         </div>
-        <form class="col-12 vms-signup-container__form" [formGroup]="skillPhaseThreeForm">
+        <form class="col-12 vms-signup-container__form" [formGroup]="skillPhaseThreeForm" (ngSubmit)="onContinue()">
             <div class="row d-flex">
                 <div class="col-12 vms-form__group field">
                     <label class="stanalone-form__label" for="TopTechSkills">Top Technical skill and Industry
@@ -21,40 +21,45 @@
                         <div class="col-12">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" formControlName="BenefitsProvides"
+                                    (change)="onBenefitsCheckChange($event.target, 0)"
                                     [ngClass]="{ 'is-invalid': submitted && form.BenefitsProvides.errors }"
                                     type="checkbox" id="Medical" value="Medical">
                                 <label class="form-check-label" for="Medical">Medical</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" formControlName="BenefitsProvides"
+                                    (change)="onBenefitsCheckChange($event.target, 1)"
                                     [ngClass]="{ 'is-invalid': submitted && form.BenefitsProvides.errors }" id="Vision"
                                     value="Vision">
                                 <label class="form-check-label" for="Vision">Vision</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" formControlName="BenefitsProvides"
+                                    (change)="onBenefitsCheckChange($event.target, 2)"
                                     [ngClass]="{ 'is-invalid': submitted && form.BenefitsProvides.errors }"
                                     type="checkbox" id="LifeInsurance" value="LifeInsurance">
                                 <label class="form-check-label" for="LifeInsurance">Life Insurance</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" formControlName="BenefitsProvides"
+                                    (change)="onBenefitsCheckChange($event.target, 3)"
                                     [ngClass]="{ 'is-invalid': submitted && form.BenefitsProvides.errors }"
                                     type="checkbox" id="Disablity" value="Disablity">
                                 <label class="form-check-label" for="Disablity">Disablity</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" formControlName="BenefitsProvides"
+                                    (change)="onBenefitsCheckChange($event.target, 4)"
                                     [ngClass]="{ 'is-invalid': submitted && form.BenefitsProvides.errors }"
                                     type="checkbox" id="401K" value="401K">
                                 <label class="form-check-label" for="Disablity">401K</label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <!-- <div class="form-check form-check-inline">
                                 <input class="form-check-input" formControlName="BenefitsProvides"
                                     [ngClass]="{ 'is-invalid': submitted && form.BenefitsProvides.errors }"
                                     type="checkbox" id="OtherBenefits" value="OtherBenefits">
                                 <label class="form-check-label" for="OtherBenefits">401K</label>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div *ngIf="submitted && form.BenefitsProvides.errors" class="invalid-feedback">
@@ -87,7 +92,7 @@
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     Previous
                 </button>
-                <button class="col-12 col-sm-5  vms-btn-primary" (click)="onContinue()">
+                <button class="col-12 col-sm-5  vms-btn-primary" type="submit" (click)="onContinue()">
                     Continue
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </button>

@@ -113,7 +113,7 @@ const routes: Routes = [
       {
         path: 'project-owner',
         component: RegistrationComponent,
-        children: [{ path: 'signUp', component: OwnerSignupComponent }],
+        children: [{ path: 'sign-up', component: OwnerSignupComponent }],
       },
     ],
   },

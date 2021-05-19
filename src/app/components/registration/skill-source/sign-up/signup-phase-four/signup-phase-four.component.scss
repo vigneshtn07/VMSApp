@@ -22,6 +22,7 @@
 
 .signature-pad {
   border: 1px solid $vms-grey-900;
+  width: 300px;
   ::ng-deep signature-pad {
     height: inherit;
     width: 300px;

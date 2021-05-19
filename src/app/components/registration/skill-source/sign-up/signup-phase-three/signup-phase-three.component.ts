@@ -14,6 +14,13 @@ export class SignupPhaseThreeComponent implements OnInit {
   @Input() public formData!: SkillSourceRegistrationRequest;
   public skillPhaseThreeForm!: FormGroup;
   public submitted = false;
+  private benefitsOptions = [
+    { isChecked: false, value: 'Medical' },
+    { isChecked: false, value: 'Vision' },
+    { isChecked: false, value: 'Life Insurance' },
+    { isChecked: false, value: 'Disablity' },
+    { isChecked: false, value: '401K' },
+  ];
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
@@ -40,12 +47,21 @@ export class SignupPhaseThreeComponent implements OnInit {
   getUpdatedRequestObject(): SkillSourceRegistrationRequest {
     const formData: any = this.formData;
     Object.keys(this.skillPhaseThreeForm.controls).forEach((formControlKey: string) => {
-      formData[SignUpFormApiMapper[formControlKey]] = this.skillPhaseThreeForm.controls[formControlKey].value;
+      if (formControlKey === 'BenefitsProvides') {
+        const benefitsCheckedValues = this.benefitsOptions.filter((x) => x.isChecked).map((y) => y.value);
+        formData[SignUpFormApiMapper[formControlKey]] = benefitsCheckedValues.toString();
+      } else {
+        formData[SignUpFormApiMapper[formControlKey]] = this.skillPhaseThreeForm.controls[formControlKey].value;
+      }
     });
     return formData;
   }
 
   navigateBack(): void {
     this.wizardStepEmitter.next({ step: 2, payLoad: this.formData });
+  }
+
+  onBenefitsCheckChange(target: any, index: number): void {
+    this.benefitsOptions[index].isChecked = target.checked;
   }
 }

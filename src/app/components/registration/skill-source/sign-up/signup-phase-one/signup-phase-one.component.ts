@@ -13,7 +13,7 @@ import { SignUpFormApiMapper } from '../signup-form.types';
 })
 export class SignupPhaseOneComponent implements OnInit {
   @Output() public wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
-  @Input() public formData!: SkillSourceRegistrationRequest;
+  @Input() public formData!: SkillSourceRegistration;
   public skillPhaseoneForm!: FormGroup;
   public submitted = false;
   public maskTypes = {
@@ -37,6 +37,12 @@ export class SignupPhaseOneComponent implements OnInit {
       FedralTaxId: ['', Validators.required],
       PhoneNumber: ['', Validators.required],
     });
+    // Object.keys(this.skillPhaseoneForm.controls).forEach((formKey) => {
+    //   if (this.formData && Object.keys(this.formData).length) {
+    //     const value = (this.formData as any)[SignUpFormApiMapper[formKey]];
+    //     this.skillPhaseoneForm.controls[formKey].patchValue(value);
+    //   }
+    // });
   }
   get form() {
     return this.skillPhaseoneForm.controls;

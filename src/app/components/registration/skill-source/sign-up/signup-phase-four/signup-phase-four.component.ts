@@ -58,7 +58,7 @@ export class SignupPhaseFourComponent implements OnInit {
 
   drawComplete() {
     // will be notified of szimek/signature_pad's onEnd event
-    console.log(this.signaturePad.toDataURL());
+    console.log(this.signaturePad.toDataURL('.jpg'));
   }
 
   navigateBack(): void {
@@ -71,17 +71,19 @@ export class SignupPhaseFourComponent implements OnInit {
     //   return;
     // }
     const requestObject = this.getUpdatedRequestObject();
-    this.wizardStepEmitter.next({ step: 5, payLoad: this.formData });
-    this.notifier.show({
-      type: 'Signin successful',
-      message: 'You will receive a confirmation email shortly!',
-    });
+    const formDataRequestObject = this.convertJSONtoFormData(requestObject);
+    console.log(formDataRequestObject);
+    // this.wizardStepEmitter.next({ step: 5, payLoad: this.formData });
+    // this.notifier.show({
+    //   type: 'Signin successful',
+    //   message: 'You will receive a confirmation email shortly!',
+    // });
   }
 
   getUpdatedRequestObject(): SkillSourceRegistrationRequest {
-    const formData: any = this.formData;
+    const formData = this.formData;
     Object.keys(this.skillPhaseFourForm.controls).forEach((formControlKey: string) => {
-      formData[SignUpFormApiMapper[formControlKey]] = this.skillPhaseFourForm.controls[formControlKey].value;
+      (formData as any)[SignUpFormApiMapper[formControlKey]] = this.skillPhaseFourForm.controls[formControlKey].value;
     });
     return formData;
   }
@@ -89,6 +91,14 @@ export class SignupPhaseFourComponent implements OnInit {
   handleFileInput(event: any, formkey: string): void {
     this.formFileNames[formkey] = event.target.files[0].name;
     this.skillPhaseFourForm.controls[formkey].patchValue(event.target.files[0]);
+  }
+
+  convertJSONtoFormData(requestObject: SkillSourceRegistrationRequest): FormData {
+    let requestFormData = new FormData();
+    for (let [key, value] of Object.entries(requestObject)) {
+      requestFormData.append(key, value);
+    }
+    return requestFormData;
   }
 }
 

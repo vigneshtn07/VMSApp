@@ -14,7 +14,7 @@ export interface WizardEngine {
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SkillSourceSignUpComponent implements OnInit, WizardEngine {
-  public signUpWizardStep: number = 4;
+  public signUpWizardStep: number = 2;
   public showRegistraionResponse: boolean = false;
   stepProgressData!: ProgressBreadCumb;
   @ViewChild('progressBarEle') progressBarEle!: ElementRef;
