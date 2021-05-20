@@ -10,7 +10,7 @@ import * as Contract from '../interface/index';
 @Injectable({ providedIn: 'root' })
 export class SkillSourceService {
   private baseUrl: string = environment.apiEndPoint;
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   register(request: Contract.SkillSourceRegisterRequest): Observable<any> {
     return this.httpClient
@@ -48,16 +48,14 @@ export class SkillSourceService {
   }
 
   registrationstatus(request: Contract.SkillSourceRegistrationStatus): Observable<string> {
-    return this.httpClient
-      .post<string>(`${this.baseUrl}/${SKILL_SOURCE_URLs.registrationStatus}`, request)
-      .pipe(
-        map((response: any) => {
-          return response.status;
-        })
-      );
+    return this.httpClient.post<string>(`${this.baseUrl}/${SKILL_SOURCE_URLs.registrationStatus}`, request).pipe(
+      map((response: any) => {
+        return response.status;
+      })
+    );
   }
 
-  skillsourceedit(request: Contract.SkillSourceRegistrationRequest): Observable<any> {
+  skillSourceUpdate(request: Contract.SkillSourceRegistrationRequest): Observable<any> {
     return this.httpClient
       .post(`${this.baseUrl}/${SKILL_SOURCE_URLs.skillsourceEdit}`, request, {
         responseType: 'text',
@@ -68,5 +66,4 @@ export class SkillSourceService {
         })
       );
   }
-
 }

@@ -6,7 +6,7 @@
         <form class="col-12 vms-signup-container__form" [formGroup]="skillPhaseTwoForm">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="StateOfIncorporation" id="" class="form__field"
+                    <input type="text" name="StateOfIncorporation" id="StateOfIncorporation" class="form__field"
                         placeholder="State of Incorporation" aria-describedby="helpId" maxlength="30"
                         formControlName="StateOfIncorporation" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.StateOfIncorporation.errors }">
@@ -19,8 +19,7 @@
                     <input type="text" placeholder="Year Established" name="EstablishedYear" [(ngModel)]="modelDate"
                         class="form-control" [bsConfig]="bsConfig" class="form__field form-control"
                         (bsValueChange)="onValueChange($event)" formControlName="EstablishedYear" autocomplete="off"
-                        readonly="true" [ngClass]="{ 'is-invalid': submitted && form.EstablishedYear.errors }"
-                        bsDatepicker>
+                        [ngClass]="{ 'is-invalid': submitted && form.EstablishedYear.errors }" bsDatepicker>
                     <div *ngIf="submitted && form.EstablishedYear.errors" class="invalid-feedback">
                         <div *ngIf="form.EstablishedYear.errors.required">Established Year is required</div>
                     </div>
@@ -28,7 +27,6 @@
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field drop-down">
                     <ng-multiselect-dropdown [placeholder]="'Select Industry'" name="industry"
                         [settings]="dropdownSettings" [data]="industryDropDownList" [(ngModel)]="industrySelectedItems"
-                        (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
                         formControlName="IndustrySelectedItems" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.IndustrySelectedItems.errors }">
                     </ng-multiselect-dropdown>
@@ -37,7 +35,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Division" id="" class="form__field" maxlength="30"
+                    <input type="text" name="Division" id="Division" class="form__field" maxlength="30"
                         placeholder="Division/Subsidary/Affiliate of" aria-describedby="helpId"
                         formControlName="Division" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.Division.errors }">
@@ -62,8 +60,7 @@
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field drop-down">
                     <ng-multiselect-dropdown [placeholder]="'Area of Specialization'" name="Specialization"
                         [settings]="dropdownSettings" [data]="specializationDropDownList"
-                        [(ngModel)]="areaOfSpecialization" (onSelect)="onItemSelect($event)"
-                        (onSelectAll)="onSelectAll($event)" formControlName="Specialization" autocomplete="off"
+                        [(ngModel)]="areaOfSpecialization" formControlName="Specialization" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.Specialization.errors }">
                     </ng-multiselect-dropdown>
                     <div *ngIf="submitted && form.Specialization.errors" class="invalid-feedback">
@@ -71,7 +68,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="TotalEmployees" id="" class="form__field"
+                    <input type="text" name="TotalEmployees" id="TotalEmployees" class="form__field"
                         placeholder="Total # of employees" aria-describedby="helpId" formControlName="TotalEmployees"
                         autocomplete="off" [ngClass]="{ 'is-invalid': submitted && form.TotalEmployees.errors }"
                         numbersOnly maxlength="10">
@@ -81,8 +78,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="TotalFullTimeEmployees" id="" class="form__field" maxlength="10"
-                        placeholder="Total # of full time Employees" aria-describedby="helpId"
+                    <input type="text" name="TotalFullTimeEmployees" id="TotalFullTimeEmployees" class="form__field"
+                        maxlength="10" placeholder="Total # of full time Employees" aria-describedby="helpId"
                         formControlName="TotalFullTimeEmployees" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.TotalFullTimeEmployees.errors }" numbersOnly>
                     <label for="TotalFullTimeEmployees" class="form__label">Total # of full time Employees</label>
@@ -91,8 +88,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="TotalSubContractors" id="" class="form__field" maxlength="10"
-                        placeholder="Total # of sub contractors" aria-describedby="helpId"
+                    <input type="text" name="TotalSubContractors" id="TotalSubContractors" class="form__field"
+                        maxlength="10" placeholder="Total # of sub contractors" aria-describedby="helpId"
                         formControlName="TotalSubContractors" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.TotalSubContractors.errors }" numbersOnly>
                     <label for="TotalSubContractors" class="form__label">Total # of sub contractors</label>
@@ -112,7 +109,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="TotalH1BVisa" id="" class="form__field" maxlength="10"
+                    <input type="text" name="TotalH1BVisa" id="TotalH1BVisa" class="form__field" maxlength="10"
                         placeholder="Total # of H1B Visa currently held" aria-describedby="helpId"
                         formControlName="TotalH1BVisa" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.TotalH1BVisa.errors }" numbersOnly>
@@ -122,7 +119,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Website" id="" class="form__field" placeholder="Website"
+                    <input type="text" name="Website" id="Website" class="form__field" placeholder="Website"
                         aria-describedby="helpId" formControlName="Website" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.Website.errors }">
                     <label for="Website" class="form__label">Website</label>
@@ -131,7 +128,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="USHeadQuarters" id="" class="form__field"
+                    <input type="text" name="USHeadQuarters" id="USHeadQuarters" class="form__field"
                         placeholder="Headquater address in US" aria-describedby="helpId"
                         formControlName="USHeadQuarters" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.USHeadQuarters.errors }">
@@ -141,8 +138,9 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="StreetAddress" id="" class="form__field" placeholder="Street Address"
-                        aria-describedby="helpId" maxlength="50" formControlName="StreetAddress" autocomplete="off"
+                    <input type="text" name="StreetAddress" id="StreetAddress" class="form__field"
+                        placeholder="Street Address" aria-describedby="helpId" maxlength="50"
+                        formControlName="StreetAddress" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.StreetAddress.errors }">
                     <label for="StreetAddress" class="form__label">Street Address</label>
                     <div *ngIf="submitted && form.StreetAddress.errors" class="invalid-feedback">
@@ -150,7 +148,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="City" id="" class="form__field" placeholder="City"
+                    <input type="text" name="City" id="City" class="form__field" placeholder="City"
                         aria-describedby="helpId" maxlength="30" formControlName="City" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.City.errors }">
                     <label for="City" class="form__label">City</label>
@@ -159,7 +157,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="State" id="" class="form__field" placeholder="State/Province"
+                    <input type="text" name="State" id="State" class="form__field" placeholder="State/Province"
                         aria-describedby="helpId" maxlength="30" formControlName="State" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.State.errors }">
                     <label for="State" class="form__label">State/Province</label>
@@ -188,7 +186,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Zipcode" id="" class="form__field" placeholder="Zip/Postal code"
+                    <input type="text" name="Zipcode" id="Zipcode" class="form__field" placeholder="Zip/Postal code"
                         aria-describedby="helpId" [textMask]="maskTypes.ZipCode" autocomplete="off"
                         formControlName="Zipcode" [ngClass]="{'is-invalid': submitted && form.Zipcode.errors }">
                     <label for="Zipcode" class="form__label">Zip/Postal code</label>
@@ -202,7 +200,7 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Name" id="" class="form__field" placeholder="AName" maxlength="50"
+                    <input type="text" name="Name" id="Name" class="form__field" placeholder="AName" maxlength="50"
                         aria-describedby="helpId" formControlName="AName" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.AName.errors }">
                     <label for="Name" class="form__label">Name</label>
@@ -211,7 +209,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Email" id="" class="form__field" placeholder="Email"
+                    <input type="text" name="Email" id="Email" class="form__field" placeholder="Email"
                         aria-describedby="helpId" autocomplete="off" formControlName="Aemail"
                         [ngClass]="{ 'is-invalid': submitted && form.Aemail.errors }">
                     <label for="Email" class="form__label">Email</label>
@@ -221,7 +219,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Email" id="" class="form__field" placeholder="Phone"
+                    <input type="text" name="Email" id="Phone" class="form__field" placeholder="Phone"
                         [textMask]="maskTypes.Phone" aria-describedby="helpId" formControlName="APhone"
                         autocomplete="off" [ngClass]="{ 'is-invalid': submitted && form.APhone.errors }">
                     <label for="Phone" class="form__label">Phone</label>
@@ -235,7 +233,7 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Name" id="" class="form__field" placeholder="BName" maxlength="50"
+                    <input type="text" name="Name" id="Name" class="form__field" placeholder="BName" maxlength="50"
                         aria-describedby="helpId" formControlName="BName" autocomplete="off"
                         [ngClass]="{ 'is-invalid': submitted && form.BName.errors }">
                     <label for="Name" class="form__label">Name</label>
@@ -244,7 +242,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group Namefield">
-                    <input type="text" name="Email" id="" class="form__field" placeholder="Email"
+                    <input type="text" name="Email" id="Email" class="form__field" placeholder="Email"
                         aria-describedby="helpId" autocomplete="off" formControlName="BEmail"
                         [ngClass]="{ 'is-invalid': submitted && form.BEmail.errors }">
                     <label for="Email" class="form__label">Email</label>
@@ -254,7 +252,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
-                    <input type="text" name="Phone" id="" class="form__field" placeholder="Phone"
+                    <input type="text" name="Phone" id="Phone" class="form__field" placeholder="Phone"
                         [textMask]="maskTypes.Phone" aria-describedby="helpId" formControlName="BPhone"
                         autocomplete="off" [ngClass]="{ 'is-invalid': submitted && form.BPhone.errors }">
                     <label for="Phone" class="form__label">Phone</label>

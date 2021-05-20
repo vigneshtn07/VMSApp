@@ -3,65 +3,67 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { SkillSourceRegistrationRequest } from 'src/app/interface/skill-source-registration.interface';
 import { WizardEventEmit } from 'src/app/interface/wizard.interface';
 import { SignUpFormApiMapper } from '../signup-form.types';
+import * as SignUpFormHelper from '../sign-up.helper';
+import { StorageService } from 'src/app/core/storage/storage.service';
 
 @Component({
-  selector: 'app-signup-phase-three',
-  templateUrl: './signup-phase-three.component.html',
-  styleUrls: ['./signup-phase-three.component.scss'],
+    selector: 'app-signup-phase-three',
+    templateUrl: './signup-phase-three.component.html',
+    styleUrls: ['./signup-phase-three.component.scss'],
 })
 export class SignupPhaseThreeComponent implements OnInit {
-  @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
-  @Input() public formData!: SkillSourceRegistrationRequest;
-  public skillPhaseThreeForm!: FormGroup;
-  public submitted = false;
-  private benefitsOptions = [
-    { isChecked: false, value: 'Medical' },
-    { isChecked: false, value: 'Vision' },
-    { isChecked: false, value: 'Life Insurance' },
-    { isChecked: false, value: 'Disablity' },
-    { isChecked: false, value: '401K' },
-  ];
+    @Output() wizardStepEmitter: EventEmitter<WizardEventEmit> = new EventEmitter();
+    public skillPhaseThreeForm!: FormGroup;
+    public submitted = false;
+    private benefitsOptions = [
+        { isChecked: false, value: 'Medical' },
+        { isChecked: false, value: 'Vision' },
+        { isChecked: false, value: 'Life Insurance' },
+        { isChecked: false, value: 'Disablity' },
+        { isChecked: false, value: '401K' },
+    ];
 
-  constructor(private formBuilder: FormBuilder) {}
-  ngOnInit(): void {
-    this.skillPhaseThreeForm = this.formBuilder.group({
-      TopTechSkills: ['', Validators.required],
-      ServiceQualityPolicy: ['', Validators.required],
-      OfferTraining: ['', Validators.required],
-      BenefitsProvides: [false, Validators.requiredTrue],
-    });
-  }
-  get form() {
-    return this.skillPhaseThreeForm.controls;
-  }
-
-  onContinue(): void {
-    this.submitted = true;
-    if (this.skillPhaseThreeForm.invalid) {
-      return;
+    constructor(private formBuilder: FormBuilder, private storageService: StorageService) {}
+    ngOnInit(): void {
+        this.skillPhaseThreeForm = this.formBuilder.group({
+            TopTechSkills: ['', Validators.required],
+            ServiceQualityPolicy: ['', Validators.required],
+            OfferTraining: ['', Validators.required],
+            BenefitsProvides: [false, Validators.requiredTrue],
+        });
+        const cachedValueFromSession = SignUpFormHelper.getStoredFormData(this.storageService);
     }
-    const requestObject = this.getUpdatedRequestObject();
-    this.wizardStepEmitter.next({ step: 4, payLoad: this.formData });
-  }
+    get form() {
+        return this.skillPhaseThreeForm.controls;
+    }
 
-  getUpdatedRequestObject(): SkillSourceRegistrationRequest {
-    const formData: any = this.formData;
-    Object.keys(this.skillPhaseThreeForm.controls).forEach((formControlKey: string) => {
-      if (formControlKey === 'BenefitsProvides') {
-        const benefitsCheckedValues = this.benefitsOptions.filter((x) => x.isChecked).map((y) => y.value);
-        formData[SignUpFormApiMapper[formControlKey]] = benefitsCheckedValues.toString();
-      } else {
-        formData[SignUpFormApiMapper[formControlKey]] = this.skillPhaseThreeForm.controls[formControlKey].value;
-      }
-    });
-    return formData;
-  }
+    onContinue(): void {
+        this.submitted = true;
+        if (this.skillPhaseThreeForm.invalid) {
+            return;
+        }
+        const requestObject = this.getUpdatedRequestObject();
+        this.wizardStepEmitter.next({ step: 4, payLoad: SignUpFormHelper.getStoredFormData(this.storageService) });
+    }
 
-  navigateBack(): void {
-    this.wizardStepEmitter.next({ step: 2, payLoad: this.formData });
-  }
+    getUpdatedRequestObject(): SkillSourceRegistrationRequest {
+        const formData: any = SignUpFormHelper.getStoredFormData(this.storageService);
+        Object.keys(this.skillPhaseThreeForm.controls).forEach((formControlKey: string) => {
+            if (formControlKey === 'BenefitsProvides') {
+                const benefitsCheckedValues = this.benefitsOptions.filter((x) => x.isChecked).map((y) => y.value);
+                formData[SignUpFormApiMapper[formControlKey]] = benefitsCheckedValues.toString();
+            } else {
+                formData[SignUpFormApiMapper[formControlKey]] = this.skillPhaseThreeForm.controls[formControlKey].value;
+            }
+        });
+        return formData;
+    }
 
-  onBenefitsCheckChange(target: any, index: number): void {
-    this.benefitsOptions[index].isChecked = target.checked;
-  }
+    navigateBack(): void {
+        this.wizardStepEmitter.next({ step: 2, payLoad: SignUpFormHelper.getStoredFormData(this.storageService) });
+    }
+
+    onBenefitsCheckChange(target: any, index: number): void {
+        this.benefitsOptions[index].isChecked = target.checked;
+    }
 }

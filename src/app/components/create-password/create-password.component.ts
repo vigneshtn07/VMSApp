@@ -9,74 +9,70 @@ import { StorageType } from 'src/app/core/storage/storage.enum';
 import { StorageService } from 'src/app/core/storage/storage.service';
 
 @Component({
-  selector: 'app-create-password',
-  templateUrl: './create-password.component.html',
-  styleUrls: ['./create-password.component.scss'],
+    selector: 'app-create-password',
+    templateUrl: './create-password.component.html',
+    styleUrls: ['./create-password.component.scss'],
 })
 export class CreatePasswordComponent implements OnInit {
-  showPassword = {
-    newPassword: false,
-    confirmPassword: false,
-  };
-  private readonly notifier!: NotifierService;
-  createpwdForm!: FormGroup;
-  submitted = false;
+    showPassword = {
+        newPassword: false,
+        confirmPassword: false,
+    };
+    private readonly notifier!: NotifierService;
+    createpwdForm!: FormGroup;
+    submitted = false;
 
-  constructor(
-    notifierService: NotifierService,
-    private formBuilder: FormBuilder,
-    private commonService: CommonService,
-    private storageService: StorageService
-  ) {
-    this.notifier = notifierService;
-  }
-
-  ngOnInit(): void {
-    this.createpwdForm = this.formBuilder.group(
-      {
-        EnterNewPassword: [
-          '',
-          [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)],
-        ],
-        ConfirmPassword: ['', [Validators.required]],
-      },
-      {
-        validator: MustMatch('EnterNewPassword', 'ConfirmPassword'),
-      }
-    );
-  }
-
-  get f() {
-    return this.createpwdForm.controls;
-  }
-
-  onSubmit(): void {
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.createpwdForm.invalid) {
-      return;
+    constructor(
+        notifierService: NotifierService,
+        private formBuilder: FormBuilder,
+        private commonService: CommonService,
+        private storageService: StorageService
+    ) {
+        this.notifier = notifierService;
     }
 
-    const request: createPasswordRequest = {
-      id: JSON.parse(this.storageService.getValueFromStorage(StorageType.LocalStorage, STORAGE_KEYS.UserId)),
-      password: this.createpwdForm.value.EnterNewPassword,
-    };
+    ngOnInit(): void {
+        this.createpwdForm = this.formBuilder.group(
+            {
+                EnterNewPassword: ['', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
+                ConfirmPassword: ['', [Validators.required]],
+            },
+            {
+                validator: MustMatch('EnterNewPassword', 'ConfirmPassword'),
+            }
+        );
+    }
 
-    this.commonService.createPassword(request).subscribe(
-      (response) => {
-        console.log(response);
-        this.notifier.show({
-          type: 'success',
-          message: 'Your password has been updated successfully',
-        });
-      },
-      (error) => {
-        console.error(error.error);
-        this.notifier.show({
-          type: 'info',
-          message: error.error,
-        });
-      }
-    );
-  }
+    get f() {
+        return this.createpwdForm.controls;
+    }
+
+    onSubmit(): void {
+        this.submitted = true;
+        // stop here if form is invalid
+        if (this.createpwdForm.invalid) {
+            return;
+        }
+
+        const request: createPasswordRequest = {
+            id: JSON.parse(this.storageService.getValueFromStorage<string>(StorageType.LocalStorage, STORAGE_KEYS.UserId)),
+            password: this.createpwdForm.value.EnterNewPassword,
+        };
+
+        this.commonService.createPassword(request).subscribe(
+            (response) => {
+                this.notifier.show({
+                    type: 'success',
+                    message: 'Your password has been updated successfully',
+                });
+            },
+            (error) => {
+                console.error(error.error);
+                this.notifier.show({
+                    type: 'info',
+                    message: error.error,
+                });
+            }
+        );
+    }
 }

@@ -1,4 +1,5 @@
 export const STORAGE_KEYS = {
-  AuthToken: 'authToken',
-  UserId: 'id',
+    AuthToken: 'authToken',
+    UserId: 'id',
+    FormSession: 'FormSession',
 };
