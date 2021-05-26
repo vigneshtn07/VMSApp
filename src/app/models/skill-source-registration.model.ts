@@ -42,6 +42,6 @@ export class SkillSourceRegistration implements SkillSourceRegistrationRequest {
   repTitle!: string;
   signature!: File;
   password!: string;
-
-  constructor() {}
+  id!: string;
+  constructor() { }
 }

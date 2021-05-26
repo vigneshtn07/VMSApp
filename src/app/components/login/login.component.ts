@@ -16,6 +16,7 @@ import { UserType } from 'src/app/shared/constants/user-type.constant';
 import { AppLoadingService } from 'src/app/shared/service/app-loading.service';
 import { User } from 'src/app/models/user';
 import { NOFITICATION_TYPE } from 'src/app/shared/constants/notification-types';
+import { RegistrationResponseComponent } from '../registration/skill-source/sign-up/registration-response/registration-response.component';
 
 @Component({
     selector: 'app-login',

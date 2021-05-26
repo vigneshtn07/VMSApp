@@ -136,8 +136,10 @@
             </div>
             <div class="col-12 m-t-20 pl-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Agree" value="Agree" formControlName="Agree"
-                        [ngClass]="{ 'is-invalid': submitted && form.Agree.errors }">
+                    <input class="form-check-input" type="checkbox" id="Agree" value="Agree">
+                    <!-- formControlName="Agree"
+                        [ngClass]="{ 'is-invalid': submitted && form.Agree.errors }" -->
+
                     <label class="form-check-label" for="Agree">I hereby declare that all information furnished above
                         are true and correct to the best of my
                         knowledge. I
@@ -145,9 +147,9 @@
                         invalid
                         and
                         reserve the rights to reject my application</label>
-                    <div *ngIf="submitted && form.Agree.errors" class="invalid-feedback">Accept Declaration
+                    <!-- <div *ngIf="submitted && form.Agree.errors" class="invalid-feedback">Accept Declaration
                         is required
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </form>

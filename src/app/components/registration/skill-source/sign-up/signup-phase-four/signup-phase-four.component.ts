@@ -11,6 +11,8 @@ import { SkillSourceService } from 'src/app/services/skill-source.service';
 import { additionalInfoRequest } from 'src/app/interface/index';
 import { StorageService } from 'src/app/core/storage/storage.service';
 import * as SignUpFormHelper from '../sign-up.helper';
+import { STORAGE_KEYS } from 'src/app/core/storage/storage.constants';
+import { StorageType } from 'src/app/core/storage/storage.enum';
 
 @Component({
     selector: 'app-signup-phase-four',
@@ -25,7 +27,7 @@ export class SignupPhaseFourComponent implements OnInit {
     public submitted: boolean;
     public formFileNames: FormFiles;
     private readonly notifier!: NotifierService;
-
+    blob: any;
     constructor(
         private appLoadingService: AppLoadingService,
         notifierService: NotifierService,
@@ -55,7 +57,6 @@ export class SignupPhaseFourComponent implements OnInit {
             Reason: ['', Validators.required],
             Name: ['', Validators.required],
             Title: ['', Validators.required],
-            Agree: [false, Validators.requiredTrue],
         });
     }
     get form() {
@@ -68,7 +69,19 @@ export class SignupPhaseFourComponent implements OnInit {
         this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
     }
 
-    drawComplete() {}
+    drawComplete() {
+        console.log(this.signaturePad.toDataURL());
+        const dataURL = this.signaturePad.toDataURL('image/jpg');
+        const data = atob(dataURL.substring('data:image/jpg;base64,'.length)),
+            asArray = new Uint8Array(data.length);
+
+        for (var i = 0, len = data.length; i < len; ++i) {
+            asArray[i] = data.charCodeAt(i);
+        }
+        this.blob = new Blob([asArray], { type: 'image/jpg' });
+
+        //console.log(blob);
+    }
 
     navigateBack(): void {
         this.wizardStepEmitter.next({ step: 3, payLoad: SignUpFormHelper.getStoredFormData(this.storageService) });
@@ -79,16 +92,95 @@ export class SignupPhaseFourComponent implements OnInit {
         // if (this.skillphasefourForm.invalid) {
         //   return;
         // }
+        const id = (this.storageService.getValueFromStorage<string>(StorageType.LocalStorage, STORAGE_KEYS.UserId));
+        this.appLoadingService.setLoaderState(true);
         const requestObject = this.getUpdatedRequestObject();
-        const formDataRequestObject = this.convertJSONtoFormData(requestObject);
-        console.log(formDataRequestObject);
-        // this.wizardStepEmitter.next({ step: 5, payLoad: this.formData });
-        // this.notifier.show({
-        //   type: 'Signin successful',
-        //   message: 'You will receive a confirmation email shortly!',
-        // });
+        var obj: SkillSourceRegistrationRequest;
+        obj = requestObject;
+        // const formDataRequestObject = this.convertJSONtoFormData(requestObject);
+        // console.log(id);
+        obj.fedTaxId = requestObject['fedTaxId']
+            .toString()
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+            .replace('-', '')
+            .toString();
+        obj.phoneno = requestObject['phoneno']
+            .toString()
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+            .replace('-', '')
+            .toString()
+            .replace('-', '')
+            .toString();
+        obj.phone = requestObject['phone']
+            .toString()
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+            .replace('-', '')
+            .toString()
+            .replace('-', '')
+            .toString();
+        obj.bphone = requestObject['bphone']
+            .toString()
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+            .replace('-', '')
+            .toString()
+            .replace('-', '')
+            .toString();
+        obj.pincode = requestObject['pincode']
+            .toString()
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+            .replace('-', '')
+            .toString();
+        obj.id = id;
+        obj.password = "password";
+        obj.signature = this.blob;
 
-        this.skillSourceService.skillSourceUpdate(requestObject).subscribe(
+        var data = new FormData();
+        data.append('cname', JSON.stringify(obj.cname));
+        data.append('fedTaxId', JSON.stringify(obj.fedTaxId));
+        data.append('phoneno', JSON.stringify(obj.phoneno));
+        data.append('cstate', JSON.stringify(obj.cstate));
+        data.append('year', JSON.stringify(obj.year));
+        data.append('industry', JSON.stringify(obj.industry));
+        data.append('division', JSON.stringify(obj.division));
+        data.append('payroll', JSON.stringify(obj.payroll));
+        data.append('address', JSON.stringify(obj.address));
+        data.append('noOfEmployees', JSON.stringify(obj.noOfEmployees));
+        data.append('noOfFulltime', JSON.stringify(obj.noOfFulltime));
+        data.append('noOfSubContractors', JSON.stringify(obj.noOfSubContractors));
+        data.append('HWorkers', JSON.stringify(obj.HWorkers));
+        data.append('noOfVisa', JSON.stringify(obj.noOfVisa));
+        data.append('website', JSON.stringify(obj.website));
+        data.append('city', JSON.stringify(obj.city));
+        data.append('state', JSON.stringify(obj.state));
+        data.append('country', JSON.stringify(obj.country));
+        data.append('pincode', JSON.stringify(obj.pincode));
+        data.append('fullname', JSON.stringify(obj.fullname));
+        data.append('email', JSON.stringify(obj.email));
+        data.append('area', JSON.stringify(obj.area));
+        data.append('phone', JSON.stringify(obj.phone));
+        data.append('bname', JSON.stringify(obj.bname));
+        data.append('bemail', JSON.stringify(obj.bemail));
+        data.append('bphone', JSON.stringify(obj.bphone));
+        data.append('topSkills', JSON.stringify(obj.topSkills));
+        data.append('benefits', JSON.stringify(obj.benefits));
+        data.append('service', JSON.stringify(obj.service));
+        data.append('training', JSON.stringify(obj.training));
+        data.append('naics', JSON.stringify(obj.naics));
+        data.append('dnb', JSON.stringify(obj.dnb));
+        data.append('wForm', obj.wForm);
+        data.append('article', obj.article);
+        data.append('goodStanding', obj.goodStanding);
+        data.append('lastQuaters', obj.lastQuaters);
+        data.append('reason', JSON.stringify(obj.reason));
+        data.append('repName', JSON.stringify(obj.repName));
+        data.append('repTitle', JSON.stringify(obj.repTitle));
+        data.append('signature', obj.signature);
+        data.append('password', JSON.stringify(obj.password));
+        data.append('id', JSON.stringify(obj.id));
+        console.log(data);
+
+
+        this.skillSourceService.uploadskillsource(data).subscribe(
             (response) => {
                 const request: additionalInfoRequest = {
                     fname: requestObject['cname'].toString(),

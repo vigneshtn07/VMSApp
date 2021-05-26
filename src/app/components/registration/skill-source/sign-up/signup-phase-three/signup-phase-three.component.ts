@@ -23,7 +23,7 @@ export class SignupPhaseThreeComponent implements OnInit {
         { isChecked: false, value: '401K' },
     ];
 
-    constructor(private formBuilder: FormBuilder, private storageService: StorageService) {}
+    constructor(private formBuilder: FormBuilder, private storageService: StorageService) { }
     ngOnInit(): void {
         this.skillPhaseThreeForm = this.formBuilder.group({
             TopTechSkills: ['', Validators.required],
@@ -43,7 +43,7 @@ export class SignupPhaseThreeComponent implements OnInit {
             return;
         }
         const requestObject = this.getUpdatedRequestObject();
-        this.wizardStepEmitter.next({ step: 4, payLoad: SignUpFormHelper.getStoredFormData(this.storageService) });
+        this.wizardStepEmitter.next({ step: 4, payLoad: requestObject });
     }
 
     getUpdatedRequestObject(): SkillSourceRegistrationRequest {

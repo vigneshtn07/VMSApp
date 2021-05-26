@@ -48,10 +48,10 @@
                     <select class="dropdown" formControlName="Payroll"
                         [ngClass]="{'is-invalid': submitted && form.Payroll.errors }">
                         <option value="null">Select Payroll</option>
-                        <option value="1">Payroll 1</option>
-                        <option value="2">Payroll 2</option>
-                        <option value="3">Payroll 3</option>
-                        <option value="4">Payroll 4</option>
+                        <option value="payroll1">Payroll 1</option>
+                        <option value="payroll2">Payroll 2</option>
+                        <option value="payroll3">Payroll 3</option>
+                        <option value="payroll4">Payroll 4</option>
                     </select>
                     <div *ngIf="submitted && form.Payroll.errors" class="invalid-feedback">
                         <div *ngIf="form.Payroll.errors.required">Payroll is required</div>
@@ -129,13 +129,8 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="USHeadQuarters" id="USHeadQuarters" class="form__field"
-                        placeholder="Headquater address in US" aria-describedby="helpId"
-                        formControlName="USHeadQuarters" autocomplete="off"
-                        [ngClass]="{ 'is-invalid': submitted && form.USHeadQuarters.errors }">
+                        placeholder="Headquater address in US" aria-describedby="helpId" autocomplete="off">
                     <label for="USHeadQuarters" class="form__label">Headquater address in US</label>
-                    <div *ngIf="submitted && form.USHeadQuarters.errors" class="invalid-feedback">
-                        <div *ngIf="form.USHeadQuarters.errors.required">Headquater address is required</div>
-                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 vms-form__group field">
                     <input type="text" name="StreetAddress" id="StreetAddress" class="form__field"

@@ -40,4 +40,5 @@ export interface SkillSourceRegistrationRequest {
   repTitle: string;
   signature: File;
   password: string;
+  id: string;
 }

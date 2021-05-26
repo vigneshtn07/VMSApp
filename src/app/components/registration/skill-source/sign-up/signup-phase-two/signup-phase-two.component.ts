@@ -89,7 +89,6 @@ export class SignupPhaseTwoComponent implements OnInit {
             Worker: [null, Validators.required],
             TotalH1BVisa: ['', Validators.required],
             Website: ['', Validators.required],
-            USHeadQuarters: ['', Validators.required],
             StreetAddress: ['', Validators.required],
             City: ['', Validators.required],
             State: ['', Validators.required],

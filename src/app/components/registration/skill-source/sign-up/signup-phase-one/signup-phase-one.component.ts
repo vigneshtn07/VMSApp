@@ -31,7 +31,7 @@ export class SignupPhaseOneComponent implements OnInit {
         },
     };
 
-    constructor(private formBuilder: FormBuilder, private storageService: StorageService) {}
+    constructor(private formBuilder: FormBuilder, private storageService: StorageService) { }
 
     ngOnInit(): void {
         this.skillPhaseoneForm = this.formBuilder.group({

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { request } from 'node:http';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import * as Contract from '../interface/index';
 @Injectable({ providedIn: 'root' })
 export class SkillSourceService {
   private baseUrl: string = environment.apiEndPoint;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   register(request: Contract.SkillSourceRegisterRequest): Observable<any> {
     return this.httpClient
@@ -55,7 +55,7 @@ export class SkillSourceService {
     );
   }
 
-  skillSourceUpdate(request: Contract.SkillSourceRegistrationRequest): Observable<any> {
+  skillSourceUpdate(request: FormData): Observable<any> {
     return this.httpClient
       .post(`${this.baseUrl}/${SKILL_SOURCE_URLs.skillsourceEdit}`, request, {
         responseType: 'text',
@@ -66,4 +66,15 @@ export class SkillSourceService {
         })
       );
   }
+
+
+  uploadskillsource(request: FormData): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/${SKILL_SOURCE_URLs.skillsourceEdit}`, request, {
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+      }),
+      responseType: 'text',
+    });
+  }
+
 }
