@@ -18,7 +18,7 @@ export class VMSInterceptor implements HttpInterceptor {
     if (authToken) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer  ${authToken}`,
+          Authorization: `Bearer ${authToken}`,
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },

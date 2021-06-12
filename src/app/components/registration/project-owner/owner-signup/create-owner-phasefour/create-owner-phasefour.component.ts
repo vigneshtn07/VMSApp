@@ -103,7 +103,8 @@ export class CreateOwnerPhasefourComponent implements OnInit {
         //   return;
         // }
 
-        const id = JSON.parse(this.storageService.getValueFromStorage<string>(StorageType.LocalStorage, STORAGE_KEYS.UserId));
+        //const id = JSON.parse(this.storageService.getValueFromStorage<string>(StorageType.LocalStorage, STORAGE_KEYS.UserId));
+        const id = "";
 
         this.appLoadingService.setLoaderState(true);
         var requestObject = this.getUpdatedRequestObject();

@@ -17,15 +17,15 @@ export class ProjectOwnerService {
         responseType: 'text',
       })
       .pipe(
-        map((response) => {
-          return response;
+        map((response: any) => {
+          return response.message;
         })
       );
   }
   resendemail(request: Contract.ProjectOwnerResendEmail): Observable<any> {
     return this.httpClient
       .post(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerResendemail}`, request, {
-        responseType: 'text',
+        // responseType: 'text',
       })
       .pipe(
         map((response) => {
@@ -60,12 +60,12 @@ export class ProjectOwnerService {
   editregister(request: Contract.ProjectOwnerRegistrationRequest, id: any): Observable<any> {
     debugger;
     return this.httpClient
-      .put(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerEdit}/${id}`, request, {
-        responseType: 'text',
+      .patch<string>(`${this.baseUrl}/${PROJECT_OWNER_URLs.projectOwnerEdit}`, request, {
+        //responseType: 'text',
       })
       .pipe(
-        map((response) => {
-          return response;
+        map((response: any) => {
+          return response.message;
         })
       );
   }

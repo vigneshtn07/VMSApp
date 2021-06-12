@@ -27,7 +27,7 @@
                 <td>
                     <ng-template [ngIf]="col.type === 'link'" [ngIfElse]="default_text">
                         <a [class]="'grid-link grid-link-'+rowData[col.field]"
-                            [routerLink]="['../registration/'+rowData.registrationId]">{{rowData[col.field]}}</a>
+                            [routerLink]="['../registration/'+rowData.userId]">{{rowData[col.field]}}</a>
                     </ng-template>
                     <ng-template #default_text>{{rowData[col.field]}}</ng-template>
                 </td>

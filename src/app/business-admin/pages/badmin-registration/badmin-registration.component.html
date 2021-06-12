@@ -4,10 +4,10 @@
             <div class="row card__container registration-detail">
                 <div class="col-12 col-lg-6">
                     <div class="registration-detail__owner-info">
-                        <h3>KV Tech</h3>
+                        <h3>{{this.registrationlist.username}}</h3>
                         <div class="d-flex owner-status">
-                            <p>1026886</p>
-                            <p class="owner-status--in-progress">In Progress</p>
+                            <p>{{this.userId}}</p>
+                            <p class="owner-status--in-progress">{{this.registrationlist.status}}</p>
                         </div>
                     </div>
                 </div>
@@ -34,28 +34,15 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 vms-form__group">
-                            <label class="stanalone-form__label mb-0">Name</label>
-                            <input type="text" name="name" class="form__field" aria-describedby="name" maxlength="30">
-                        </div>
-                        <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Account Type</label>
-                            <select class="dropdown d-block">
-                                <option>Select country</option>
-                                <option>Skill source</option>
-                                <option>Specialist</option>
-                            </select>
+                            <input type="text" name="atype" value="{{this.registrationlist.accountType}}"
+                                class="form__field" aria-describedby="atype" maxlength="30">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-12 col-md-6 vms-form__group">
                             <label class="stanalone-form__label mb-0">Submitted Date</label>
                             <input type="text" placeholder="Year Established" name="establishedYear" autocomplete="off"
-                                [(ngModel)]="submittedDate" class="form-control" [bsConfig]="bsConfig"
-                                class="form__field form-control" bsDatepicker>
-                        </div>
-                        <div class="col-12 col-md-6 vms-form__group">
-                            <label class="stanalone-form__label mb-0">Owner</label>
-                            <input type="text" name="Owner" class="form__field" aria-describedby="name" maxlength="30">
+                                value="{{this.registrationlist.date}}" class="form-control"
+                                class="form__field form-control">
                         </div>
                     </div>
                     <div class="row">

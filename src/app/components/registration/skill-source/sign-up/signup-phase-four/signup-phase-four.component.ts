@@ -98,7 +98,7 @@ export class SignupPhaseFourComponent implements OnInit {
         var obj: SkillSourceRegistrationRequest;
         obj = requestObject;
         // const formDataRequestObject = this.convertJSONtoFormData(requestObject);
-        // console.log(id);
+        // console.log(id);serve
         obj.fedTaxId = requestObject['fedTaxId']
             .toString()
             .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
@@ -174,13 +174,11 @@ export class SignupPhaseFourComponent implements OnInit {
         data.append('reason', JSON.stringify(obj.reason));
         data.append('repName', JSON.stringify(obj.repName));
         data.append('repTitle', JSON.stringify(obj.repTitle));
-        data.append('signature', obj.signature);
-        data.append('password', JSON.stringify(obj.password));
-        data.append('id', JSON.stringify(obj.id));
+        // data.append('signature', obj.signature);
         console.log(data);
 
 
-        this.skillSourceService.uploadskillsource(data).subscribe(
+        this.skillSourceService.uploadskillsource(data, id).subscribe(
             (response) => {
                 const request: additionalInfoRequest = {
                     fname: requestObject['cname'].toString(),

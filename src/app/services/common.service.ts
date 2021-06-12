@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { COMMON_API_URLs } from './constants/common-api-url.constants';
 import * as Contract from '../interface/index';
+import { viewregisteredusers, getSingleuser } from '../interface/index';
 
 @Injectable({ providedIn: 'root' })
 export class CommonService {
@@ -44,5 +45,31 @@ export class CommonService {
         })
       );
   }
+
+  viewAllUsers(): Observable<any> {
+    return this.httpClient
+      .post<viewregisteredusers>(`${this.baseUrl}/${COMMON_API_URLs.viewAllusers}`, {
+        // responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response.users;
+        })
+      );
+  }
+
+  getSingleRecord(id: any): Observable<any> {
+    return this.httpClient
+      .get<getSingleuser>(`${this.baseUrl}/${COMMON_API_URLs.getSingleRecord}/${id}`, {
+        // responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response.user;
+        })
+      );
+  }
+
+
 
 }

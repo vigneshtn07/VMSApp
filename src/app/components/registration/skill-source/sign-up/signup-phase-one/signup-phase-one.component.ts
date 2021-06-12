@@ -46,6 +46,7 @@ export class SignupPhaseOneComponent implements OnInit {
                 this.skillPhaseoneForm.controls[formKey].patchValue(value);
             }
         });
+        console.log((this.storageService.getValueFromStorage<string>(StorageType.LocalStorage, STORAGE_KEYS.UserId)));
     }
     get form() {
         return this.skillPhaseoneForm.controls;

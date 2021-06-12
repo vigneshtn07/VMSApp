@@ -1,10 +1,18 @@
 import { Component, OnInit, TemplateRef, Input, ViewChild, ElementRef } from '@angular/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
+import { of } from 'rxjs';
 import {
   ProgressBreadCumb,
   ProgressMove,
 } from 'src/app/shared/interface/progress-breadcrumb';
+import { viewregisteredusers, getSingleuser, allRegistredusers } from 'src/app/interface/index';
+import { CommonService } from 'src/app/services/common.service';
+import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-badmin-registration',
@@ -28,7 +36,9 @@ export class BadminRegistrationComponent implements OnInit {
 
   userListOptions: any;
   selectedUserOption: any;
-
+  userId: string = '';
+  public registrationlist!: allRegistredusers;
+  atype: string = '';
   imageObject: Array<any> = [
     {
       image: '../../../../assets/images/attachment-1.png',
@@ -52,7 +62,7 @@ export class BadminRegistrationComponent implements OnInit {
     },
   ];
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
     this.userListOptions = [
       { user: 'Karthick', code: 'karthick' },
       { user: 'Sabari', code: 'sabari' },
@@ -61,7 +71,31 @@ export class BadminRegistrationComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+    this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) => of(params))).subscribe((params: ParamMap) => {
+      if (params.has('id')) {
+        this.userId = params.get('id')?.toString() ?? '';
+        console.log(this.userId);
+      }
+    });
+    this.commonService.getSingleRecord(this.userId).subscribe(
+      (response) => {
+        this.registrationlist = response;
+        let sdate = moment(this.registrationlist.date).format('DD/MM/YYYY');
+        this.registrationlist.date = sdate?.toString();
+        console.log(response);
+        //this.atype = this.registrationlist;
+      },
+      (error) => {
+        // this.appLoadingService.setLoaderState(false);
+        // this.notifier.show({
+        //     type: 'info',
+        //     message: error.error,
+        // });
+      }
+    );
+  }
 
   showLightbox(index: number) {
     this.currentIndex = index;

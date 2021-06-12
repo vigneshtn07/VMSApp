@@ -68,8 +68,8 @@ export class SkillSourceService {
   }
 
 
-  uploadskillsource(request: FormData): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/${SKILL_SOURCE_URLs.skillsourceEdit}`, request, {
+  uploadskillsource(request: FormData, id: any): Observable<any> {
+    return this.httpClient.patch(`${this.baseUrl}/${SKILL_SOURCE_URLs.skillsourceEdit}/${id}`, request, {
       headers: new HttpHeaders({
         'Content-Type': 'multipart/form-data',
       }),
